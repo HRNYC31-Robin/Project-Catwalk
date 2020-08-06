@@ -6,7 +6,7 @@
   "scripts": {
     "react-dev": "webpack -d --watch",
     "start": "nodemon server/index.js",
-    "scss": "node-sass --watch ./client/src/styles -o ./client/dist"
+    "sass": "node-sass --watch ./client/src/styles/main -o ./client/dist/"
   },
   "repository": {
     "type": "git",
@@ -22,7 +22,6 @@
   "dependencies": {
     "axios": "^0.19.2",
     "body-parser": "^1.19.0",
-    "bootstrap": "^4.5.1",
     "express": "^4.17.1",
     "react": "^16.13.1",
     "react-bootstrap": "^1.3.0",
@@ -40,7 +39,7 @@
     "babel-preset-react": "^6.24.1",
     "css-loader": "^4.2.0",
     "node-sass": "^4.14.1",
-    "react-hot-loader": "^4.12.21",
+    "sass-loader": "^9.0.3",
     "style-loader": "^1.2.1",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12"
