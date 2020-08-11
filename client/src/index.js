@@ -4,7 +4,7 @@ import App from './components/App';
 import './styles/index.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import store and redux deps
-import store from './store';
+import store from './redux/store';
 import { Provider } from 'react-redux';
 
 ReactDOM.render(
