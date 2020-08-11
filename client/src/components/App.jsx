@@ -31,7 +31,7 @@ class App extends React.Component {
   render() {
     return (
       <Container>
-          <Overview />
+          <Overview productName={!this.props.product ? 'Unknown' : this.props.product.name}/>
           <Products />
           <RatingsReviews />
       </Container>
