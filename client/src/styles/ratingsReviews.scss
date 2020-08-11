@@ -1,8 +1,19 @@
 @import './common/layout.scss';
 
-#ratingsReviews {
-  background-color: cornflowerblue;
+#ratings-reviews {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
   height: 100vh;
   width: 100%;
+
+  #breakdown {
+    display: grid;
+    grid-column: 1;
+  }
+
+  #review-list {
+    display: grid;
+    grid-column: 2;
+  }
 }
 
