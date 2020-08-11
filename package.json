@@ -4,6 +4,7 @@
   "description": "FEC Project Hack Reactor",
   "main": "index.js",
   "scripts": {
+    "postinstall": "curl -s https://raw.githubusercontent.com/hackreactor-labs/pomander/master/bin/install | bash",
     "react-dev": "webpack -d --watch",
     "start": "nodemon server/index.js",
     "sass": "node-sass --watch ./client/src/styles/main -o ./client/dist/"
