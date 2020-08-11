@@ -7,20 +7,23 @@ import RatingsReviews from './Armando/RatingsReviews.jsx';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import axios from 'axios';
 
 class App extends React.Component {
+  constructor() {
+    super()
+  }
+
+  componentDidMount() {
+
+  }
+
   render() {
     return (
       <Container>
-        <Row>
           <Overview />
-        </Row>
-        <Row>
           <Products />
-        </Row>
-        <Row>
           <RatingsReviews />
-        </Row>
       </Container>
     );
   }
