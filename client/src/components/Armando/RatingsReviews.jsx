@@ -1,5 +1,6 @@
 import React from 'react';
-import ReviewListContainer from '../../containers/ReviewListContainer.js'
+import ReviewListContainer from '../../containers/ReviewListContainer.js';
+import Breakdown from './Breakdown';
 import axios from 'axios';
 
 class RatingsReviews extends React.Component {
@@ -19,7 +20,14 @@ class RatingsReviews extends React.Component {
 
   render() {
     return (
-      <ReviewListContainer />
+      <div id='ratings-reviews'>
+        <div id='breakdown'>
+          <Breakdown ratings={this.props.ratingsMeta.ratings} totalRatings={this.props.totalRatings}/>
+        </div>
+        <div id='review-list'>
+          <ReviewListContainer totalRatings={this.props.totalRatings}/>
+        </div>
+      </div>
     );
   }
 }

@@ -10,6 +10,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   handleMoreReviewsClick: (reviews) => {
     dispatch(reviewListActions.addVisibleReviews(reviews));
+  },
+  addMoreReviews: (reviews) => {
+    dispatch(reviewListActions.changeReviewList(reviews));
   }
 });
 

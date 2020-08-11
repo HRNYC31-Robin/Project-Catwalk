@@ -89,7 +89,8 @@ const initialState = {
   related: [],
   reviews: test.results,
   visibleReviews: test.results.slice(0, 2),
-  ratingsMeta: {}
+  ratingsMeta: {},
+  totalRatings: 0
 };
 
 
