@@ -29,6 +29,7 @@
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.1",
     "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0",
     "request": "^2.88.2",
     "thunk": "0.0.1"
   },
