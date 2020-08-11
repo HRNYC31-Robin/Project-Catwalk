@@ -3,6 +3,7 @@ import ReviewList from '../../components/Armando/ReviewList.jsx';
 import reviewListActions from '../actions/ReviewsActions/reviewListAction.js';
 
 const mapStateToProps = (state) => ({
+  currentProduct: state.currentProduct,
   reviews: state.reviews,
   visibleReviews: state.visibleReviews
 });
