@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Button from 'react-bootstrap/Button';
-import Products from './Deo/Products.jsx';
+import ProductContainer from '../containers/ProductsContainer.js';
 import Overview from './Liam/Overview.jsx';
 import RatingsReviewsContainer from '../containers/ratingsReviewsContainer.js';
 import Container from 'react-bootstrap/Container';
@@ -16,7 +16,7 @@ class App extends React.Component {
           <Overview />
         </Row>
         <Row>
-          <Products />
+          <ProductContainer />
         </Row>
         <Row>
           <RatingsReviewsContainer />
