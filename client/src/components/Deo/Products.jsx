@@ -13,13 +13,8 @@ const Products = function (props) {
                 <div className='container'>
                   <div className='row'>
                     <div className='col-sm-12 col-lg-4'>
-                      <div className='card'>
-                        <div className='card-body'>
-                          <ProductCard
-                            products={props.productList}
-                          ></ProductCard>
-                        </div>
-                      </div>
+                      {console.log(props.productList)}
+                      <ProductCard products={props.productList}></ProductCard>
                     </div>
                   </div>
                 </div>
