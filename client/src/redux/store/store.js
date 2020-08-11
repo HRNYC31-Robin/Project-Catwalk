@@ -5,6 +5,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 
 const store = createStore(
   rootReducer,
+  {currentProduct: null},
   // { videoList: null, currentVideo: null },
   composeWithDevTools(applyMiddleware(thunk))
 );

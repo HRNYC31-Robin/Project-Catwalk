@@ -6,12 +6,15 @@ import './styles/index.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { connect, Provider } from 'react-redux';
 import store from './redux/store/store.js';
+import changeProduct from './redux/actions/changeProduct.js';
 
 const mapStateToProps = (state) => ({
+  product: state.currentProduct
   //video: state.currentVideo,
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  handleProductChange: (prodInfo) => dispatch(changeProduct(prodInfo))
   //handleSearchInputChange: (q) => dispatch(handleVideoSearch(q)),
 });
 

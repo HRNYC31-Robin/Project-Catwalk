@@ -10,12 +10,22 @@ import Col from 'react-bootstrap/Col';
 import axios from 'axios';
 
 class App extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
   }
 
   componentDidMount() {
-
+    axios({
+      method: 'get',
+      url: 'http://18.224.200.47/products/1'
+    })
+      .then(({data}) => {
+        console.log('Product: ', data);
+        this.props.handleProductChange(data);
+      })
+      .catch((err) => {
+        console.log('Error in retrieving product!', err)
+      })
   }
 
   render() {
