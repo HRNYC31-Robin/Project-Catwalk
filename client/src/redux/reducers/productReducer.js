@@ -1,7 +1,7 @@
 export default function productReducer(state = [], action) {
   switch (action.type) {
-    case 'TEST':
-      return state;
+    case 'CHANGE_PRODUCT':
+      return action.currentProduct;
     default:
       return state;
   }

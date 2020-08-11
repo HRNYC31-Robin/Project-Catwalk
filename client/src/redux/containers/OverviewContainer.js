@@ -1,12 +1,13 @@
 import { connect } from 'react-redux';
 import Overview from '../../components/Liam/Overview.jsx';
+import changeProduct from '../actions/changeProductAction.js';
 
 var mapStateToProps = (state) => ({
-  //productList: state.productList,
+  currentProduct: state.currentProduct,
 });
 
 var mapDispatchToProps = (dispatch) => ({
-  //productList: state.productList,
+  handleProductChange: (prodInfo) => dispatch(changeProduct(prodInfo)),
 });
 
 var OverviewContainer = connect(mapStateToProps, mapDispatchToProps)(Overview);
