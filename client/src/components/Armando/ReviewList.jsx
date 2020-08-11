@@ -4,8 +4,9 @@ import axios from 'axios';
 
 const ReviewList = (props) => {
   const handleMoreClick = () => {
+    const prodId = props.currentProduct.id;
     if (props.reviews.length <= props.totalRatings) {
-      axios.get(`http://18.224.200.47/reviews/1/list?count=${props.totalRatings}`)
+      axios.get(`http://18.224.200.47/reviews/${prodId}/list?count=${props.totalRatings}`)
         .then(results => props.addMoreReviews(results.data.results))
         .catch(err => console.log(err));
     }
@@ -16,7 +17,7 @@ const ReviewList = (props) => {
       currentPosition + 2
     ));
     props.handleMoreReviewsClick(reviewsToAdd);
-  }
+  };
 
   return (
     <div>
@@ -27,10 +28,10 @@ const ReviewList = (props) => {
       }
       {
         props.visibleReviews.length === props.reviews.length ? null :
-        <button onClick={handleMoreClick}>MORE</button>
+          <button onClick={handleMoreClick}>MORE</button>
       }
     </div>
-  )
+  );
 };
 
 export default ReviewList;
