@@ -1,32 +1,57 @@
-.overviewContainer {
-  h3 {
-    color: blue;
-  }
+.overviewContainer-normal {
 
   background-color: lightgrey;
-  height: 100vh;
+  height: 850px;
   width: 100%;
 
   display: grid;
   grid-template-columns: 3fr 2fr;
   grid-template-rows: 5fr 1fr;
-  grid-gap: 0.5rem;
+  grid-gap: 1rem;
 
   div {
     background-color: lightblue;
     color: black;
   }
 
+  .upper-right {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-gap: 1rem;
+
+    div {
+      background-color: yellow;
+    }
+  }
+
 }
 
 
-.upper-right {
+
+.overviewContainer-expanded {
+
+  background-color: lightgrey;
+  height: 850px;
+  width: 100%;
+
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: 5fr 1fr;
   grid-gap: 1rem;
 
   div {
-    background-color: yellow;
+    background-color: lightblue;
+    color: black;
   }
+
+  .lower-portion {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    grid-gap: 1rem;
+  }
+
 }
 
+
+.expand-button {
+  float: right;
+}

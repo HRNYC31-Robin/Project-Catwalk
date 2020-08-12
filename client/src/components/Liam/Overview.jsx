@@ -1,36 +1,46 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 // import 'bootstrap/dist/css/bootstrap.min.css'; don't need?
 import Container from 'react-bootstrap/Container';
 
+import ImageGallery from './ImageGallery.jsx';
+import UpperRight from './UpperRight.jsx';
+import ProductBlurb from './ProductBlurb.jsx';
+import Checkmarks from './Checkmarks.jsx';
+
 const Overview = function ({currentProduct}) {
-  return (
-    <Container className='overviewContainer'>
-      <div class="image-gallery">
-        Image Gallery
-      </div>
+  const [expanded, changeExpand ] = useState(false);
 
-      <div class="upper-right">
-        <div class="product-info">
-          Product-info
-        </div>
-        <div class="style-selector">
-          Style Selector
-        </div>
-        <div class="add-to-cart">
-          Add to cart!
-        </div>
-      </div>
+  const toggleExpand = () => {
+    !expanded ? changeExpand(true) : changeExpand(false)
+  }
 
-      <div class="product-blurb">
-        Product-Blurb
-      </div>
+  if (!expanded) {
+    return (
+      <Container className='overviewContainer-normal'>
+        <ImageGallery toggle={toggleExpand}/>
 
-      <div class="gmo-thing">
-        GMO
-      </div>
-    </Container>
-  );
+        <UpperRight />
+
+        <ProductBlurb />
+
+        <Checkmarks />
+      </Container>
+    );
+  } else {
+    return (
+      <Container className='overviewContainer-expanded'>
+        <ImageGallery toggle={toggleExpand}/>
+
+        <div className="lower-portion">
+          <ProductBlurb />
+
+          <Checkmarks />
+        </div>
+      </Container>
+    );
+  }
+
 };
 
 export default Overview;
