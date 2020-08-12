@@ -20,7 +20,7 @@ const Overview = function ({currentProduct}) {
       <Container className='overviewContainer-normal'>
         <ImageGallery toggle={toggleExpand}/>
 
-        <UpperRight />
+        <UpperRight currentProduct={currentProduct}/>
 
         <ProductBlurb />
 

@@ -5,11 +5,17 @@ import ProductInfo from './ProductInfo.jsx';
 import StyleSelector from './StyleSelector.jsx';
 import AddToCart from './AddToCart.jsx';
 
-const UpperRight = function () {
+const UpperRight = function ({currentProduct}) {
+
+  useEffect(() => {
+    console.log(currentProduct);
+  });
 
   return (
     <div className="upper-right">
-      <ProductInfo />
+      <ProductInfo
+        category={currentProduct.category}
+      />
 
       <StyleSelector />
 
