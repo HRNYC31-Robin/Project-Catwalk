@@ -22,7 +22,7 @@ class RatingsReviews extends React.Component {
   render() {
     return (
       <div id='ratings-reviews'>
-        <div id='breakdown'>
+        <div>
           <Breakdown ratings={this.props.ratingsMeta.ratings} totalRatings={this.props.totalRatings} starAverage={this.props.starAverage}/>
         </div>
         <div id='review-list'>

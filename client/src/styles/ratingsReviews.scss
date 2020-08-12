@@ -7,8 +7,18 @@
   width: 100%;
 
   #breakdown {
-    display: grid;
     grid-column: 1;
+    display: grid;
+    grid-template-rows: 80px 1fr;
+
+    #starAverage {
+      grid-row: 1;
+    }
+
+    #bars {
+      padding-top: 10px;
+      grid-row: 2;
+    }
   }
 
   #review-list {
