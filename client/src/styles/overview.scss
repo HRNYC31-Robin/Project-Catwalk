@@ -5,7 +5,7 @@
   width: 100%;
 
   display: grid;
-  grid-template-columns: 3fr 2fr;
+  grid-template-columns: 2fr 1fr;
   grid-template-rows: 5fr 1fr;
   grid-gap: 1rem;
 
@@ -21,6 +21,23 @@
 
     div {
       background-color: yellow;
+    }
+  }
+
+  .product-info {
+    display: grid;
+    grid-template-rows: 1fr 1fr 4fr 1fr;
+    grid-gap: 1rem;
+    padding: 10px;
+    padding-left: 10px;
+
+    div {
+      background-color: red;
+    }
+
+    .prodName-pi {
+      font-size: 30px;
+      font-weight: bold;
     }
   }
 
