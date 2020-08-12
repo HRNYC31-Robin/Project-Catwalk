@@ -12,8 +12,8 @@ const Overview = function ({currentProduct}) {
   const [expanded, changeExpand ] = useState(false);
 
   const toggleExpand = () => {
-    !expanded ? changeExpand(true) : changeExpand(false)
-  }
+    !expanded ? changeExpand(true) : changeExpand(false);
+  };
 
   if (!expanded) {
     return (
