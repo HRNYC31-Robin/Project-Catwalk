@@ -1,18 +1,14 @@
 import React from 'react';
+import StarRating from '../common/StarRating.jsx';
 
 const Breakdown = (props) => {
-  // calculate star Rating
-  let starAverage = 0;
-  for (let star in props.ratings) {
-    const currentStar = props.ratings[star] * Number(star);
-    starAverage += currentStar;
-  }
 
   return (
     <div>
-      { starAverage / props.totalRatings }
+      {props.starAverage}
+      <StarRating starAverage={props.starAverage} />
     </div>
   );
-}
+};
 
 export default Breakdown;

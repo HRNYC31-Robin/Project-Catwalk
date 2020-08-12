@@ -15,14 +15,15 @@ const initialState = {
   reviews: reviewsData.results,
   visibleReviews: reviewsData.results.slice(0, 2),
   ratingsMeta: {},
-  totalRatings: 0
+  totalRatings: 0,
+  starAverage: 0
 };
 
 
 const store = createStore(
-    rootReducer,
-    initialState,
-    composeWithDevTools(applyMiddleware(thunk))
+  rootReducer,
+  initialState,
+  composeWithDevTools(applyMiddleware(thunk))
 );
 
 export default store;
