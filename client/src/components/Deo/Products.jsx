@@ -1,6 +1,9 @@
 import React from 'react';
 import ProductCard from './ProductCard.jsx';
 import axios from 'axios';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 class Products extends React.Component {
   constructor(props) {
@@ -8,6 +11,7 @@ class Products extends React.Component {
 
     this.state = {
       relatedProducts: [],
+      favoriteProducts: [],
     };
 
     this.getImage = this.getImage.bind(this);
@@ -70,17 +74,32 @@ class Products extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
-        <div className='productWrapper'>
-          <div className='productCardContainer'>
-            {this.state.relatedProducts.length !== 0 ? (
-              <ProductCard products={this.state.relatedProducts} />
-            ) : (
-              ''
-            )}
+      <Container>
+        <h6>RELATED PRODUCTS</h6>
+        <Row>
+          <div className='productWrapper'>
+            <div className='productCardContainer'>
+              {this.state.relatedProducts.length !== 0 ? (
+                <ProductCard products={this.state.relatedProducts} />
+              ) : (
+                ''
+              )}
+            </div>
           </div>
-        </div>
-      </React.Fragment>
+        </Row>
+        <h6>YOUR OUTFIT</h6>
+        <Row>
+          <div className='productWrapper'>
+            <div className='productCardContainer'>
+              {this.state.relatedProducts.length !== 0 ? (
+                <ProductCard products={this.state.relatedProducts} />
+              ) : (
+                ''
+              )}
+            </div>
+          </div>
+        </Row>
+      </Container>
     );
   }
 }
