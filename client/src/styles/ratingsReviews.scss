@@ -40,3 +40,12 @@
     grid-column: 1 / 4;
   }
 }
+
+#rating-bar {
+  display: inline-flex;
+  width: 100%;
+
+  p {
+    margin-right: 5px;
+  }
+}

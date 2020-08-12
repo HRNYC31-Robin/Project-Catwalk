@@ -15,12 +15,12 @@ const RatingsBar = ({totalRatings, starRating, starNum}) => {
   };
 
   return (
-    <React.Fragment>
+    <div id='rating-bar'>
       <p>{starNum} stars</p>
       <div id='empty-bar' style={emptyBar}>
         <div id='filler-bar' style={fillerBar}></div>
       </div>
-    </React.Fragment>
+    </div>
   );
 };
 
