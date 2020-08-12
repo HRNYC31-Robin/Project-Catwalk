@@ -5,6 +5,8 @@
   border: 3px solid gainsboro;
   margin: auto 10px;
   box-sizing: unset;
+  position: relative;
+
 }
 
 .productCat{
@@ -23,4 +25,13 @@
 .productPrice{
   font-size: 12px;
   margin-bottom: 0.2rem;
+}
+
+.star{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  height: 25px;
+  width: 25px;
+  background-color: red;
 }

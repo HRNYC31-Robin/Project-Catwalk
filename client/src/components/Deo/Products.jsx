@@ -11,10 +11,14 @@ class Products extends React.Component {
 
     this.state = {
       relatedProducts: [],
+      relatedProductsNav: [],
       favoriteProducts: [],
+      leftNav: false,
     };
 
     this.getImage = this.getImage.bind(this);
+    this.rightArrowNav = this.rightArrowNav.bind(this);
+    this.leftArrowNav = this.leftArrowNav.bind(this);
   }
 
   componentDidMount() {
@@ -36,9 +40,9 @@ class Products extends React.Component {
             let newState = result.map((item) => {
               return item.data;
             });
-            console.log('NewState ', newState);
             this.setState({
               relatedProducts: newState,
+              relatedProductsNav: newState,
             });
           })
           .catch((error) => {
@@ -72,6 +76,21 @@ class Products extends React.Component {
       });
   }
 
+  rightArrowNav(e) {
+    console.log('Clicked right');
+    this.setState({
+      leftNav: true,
+      relatedProductsNav: this.state.relatedProducts.slice(1),
+    });
+  }
+
+  leftArrowNav(e) {
+    console.log('Clicked Left');
+    this.setState({
+      relatedProductsNav: this.state.relatedProducts,
+    });
+  }
+
   render() {
     return (
       <Container>
@@ -79,11 +98,17 @@ class Products extends React.Component {
         <Row>
           <div className='productWrapper'>
             <div className='productCardContainer'>
-              {this.state.relatedProducts.length !== 0 ? (
-                <ProductCard products={this.state.relatedProducts} />
+              {this.state.leftNav ? (
+                <i class='arrow left' onClick={this.leftArrowNav}></i>
               ) : (
                 ''
               )}
+              {this.state.relatedProducts.length !== 0 ? (
+                <ProductCard products={this.state.relatedProductsNav} />
+              ) : (
+                ''
+              )}
+              <i class='arrow right' onClick={this.rightArrowNav}></i>
             </div>
           </div>
         </Row>
