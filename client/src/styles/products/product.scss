@@ -1,5 +1,12 @@
-.main {
-  background-color:blue;
+.productWrapper{
+  width: 250px;
+  height: 450px;
+
 }
 
-.carousel-control.right{ opacity:1 !important;color:red;}
+.productCardContainer{
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+}
+

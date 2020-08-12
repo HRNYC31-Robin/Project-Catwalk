@@ -70,40 +70,17 @@ class Products extends React.Component {
 
   render() {
     return (
-      <div className='container-fluid main'>
-        <div className='row'>
-          <div className='col-sm-12'>
-            <div id='inam' className='carousel slide' data-ride='carousel'>
-              <div className='carousel-inner'>
-                <div className='carousel-item active'>
-                  <div className='container'>
-                    <div className='row'>
-                      {console.log(this.state.relatedProducts)}
-                      <ProductCard
-                        products={this.state.relatedProducts}
-                      ></ProductCard>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <a
-                href='#inam'
-                className='carousel-control-prev'
-                data-slide='prev'
-              >
-                <span className='carousel-control-prev-icon'></span>
-              </a>
-              <a
-                href='#inam'
-                className='carousel-control-next'
-                data-slide='next'
-              >
-                <span className='carousel-control-next-icon'></span>
-              </a>
-            </div>
+      <React.Fragment>
+        <div className='productWrapper'>
+          <div className='productCardContainer'>
+            {this.state.relatedProducts.length !== 0 ? (
+              <ProductCard products={this.state.relatedProducts} />
+            ) : (
+              ''
+            )}
           </div>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }
