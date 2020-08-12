@@ -4,12 +4,12 @@ import ReactDOM from 'react-dom';
 import Container from 'react-bootstrap/Container';
 
 import ImageGallery from './ImageGallery.jsx';
-import UpperRight from './UpperRight.jsx';
+import UpperRight from './upper-right/UpperRight.jsx';
 import ProductBlurb from './ProductBlurb.jsx';
 import Checkmarks from './Checkmarks.jsx';
 
 const Overview = function ({currentProduct}) {
-  const [expanded, changeExpand ] = useState(false);
+  const [ expanded, changeExpand ] = useState(false);
 
   const toggleExpand = () => {
     !expanded ? changeExpand(true) : changeExpand(false);
