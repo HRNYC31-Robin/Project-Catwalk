@@ -1,12 +1,26 @@
-.card-title{
-  font-weight: bold;
-}
-
-.card{
+.productCard{
+  padding-left: 5px;;
   width: 250px;
+  height: 410px;
+  border: 3px solid gainsboro;
+  margin: auto 10px;
+  box-sizing: unset;
 }
 
-.card-text, .cat{
-  font-size: .7rem;
+.productCat{
   text-transform: uppercase;
+  font-size: 12px;
+  margin-bottom: 0;
+}
+
+.productTitle{
+  padding-top: 2px;
+  font-weight: bold;
+  text-align: left;
+  margin-bottom: 0.2rem;
+}
+
+.productPrice{
+  font-size: 12px;
+  margin-bottom: 0.2rem;
 }
