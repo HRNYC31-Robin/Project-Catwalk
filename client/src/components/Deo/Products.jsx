@@ -8,21 +8,27 @@ import Col from 'react-bootstrap/Col';
 class Products extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       relatedProducts: [],
+      relatedProductsID: [],
       relatedProductsNav: [],
-      favoriteProducts: [],
+      favoriteProducts: [
+        {
+          id: 0,
+          name: 'Add to Outfit',
+          category: '',
+        },
+      ],
       leftNav: false,
+      startPosition: 1,
     };
 
-    this.getImage = this.getImage.bind(this);
-    this.rightArrowNav = this.rightArrowNav.bind(this);
-    this.leftArrowNav = this.leftArrowNav.bind(this);
+    this.handleNext = this.handleNext.bind(this);
+    this.handlePrev = this.handlePrev.bind(this);
   }
 
   componentDidMount() {
-    console.log('Data in product:', this.props);
+    console.log('Data in current props:', this.props);
     axios
       .get(
         `http://18.224.37.110/products/${this.props.currentProduct.id}/related`
@@ -32,8 +38,6 @@ class Products extends React.Component {
         return { data };
       })
       .then((relatedProductID) => {
-        console.log('RelatedID: ', relatedProductID);
-        //console.log(this.getRelatedProducts(relatedProductID).then);
         this.getRelatedProducts(relatedProductID)
           .then((result) => {
             console.log('return related Products: ', result);
@@ -43,7 +47,11 @@ class Products extends React.Component {
             this.setState({
               relatedProducts: newState,
               relatedProductsNav: newState,
+              relatedProductsID: relatedProductID,
             });
+          })
+          .then(() => {
+            this.props.updateRelatedProductList(this.state.relatedProducts);
           })
           .catch((error) => {
             console.log(error);
@@ -61,34 +69,38 @@ class Products extends React.Component {
     const arrayOfPromise = arrayOfID.data.map((id) => {
       return axios.get(`http://18.224.37.110/products/${id}`).then().catch();
     });
-
     return Promise.all(arrayOfPromise);
   }
 
-  getImage(id) {
-    axios
-      .get(`http://18.224.37.110/products/${id}/styles`)
-      .then((image) => {
-        console.log('Image', image);
-      })
-      .catch((error) => {
-        console.log(error);
+  handleNext(e) {
+    console.log('Clicked right: ', this.state.startPosition);
+    let index = this.state.startPosition;
+    if (this.state.relatedProducts.length - this.state.startPosition > 3) {
+      this.setState({
+        leftNav: true,
+        startPosition: index + 1,
+        relatedProductsNav: this.state.relatedProducts.slice(
+          index,
+          this.state.relatedProducts.length
+        ),
       });
+    }
+    console.log(this.state.relatedProductsNav, ' clicked right');
   }
 
-  rightArrowNav(e) {
-    console.log('Clicked right');
-    this.setState({
-      leftNav: true,
-      relatedProductsNav: this.state.relatedProducts.slice(1),
-    });
-  }
-
-  leftArrowNav(e) {
+  handlePrev(e) {
     console.log('Clicked Left');
-    this.setState({
-      relatedProductsNav: this.state.relatedProducts,
-    });
+    let index = this.state.startPosition - 1;
+    console.log(this.state.relatedProductsNav, ' clicked left');
+    if (this.state.startPosition !== 0) {
+      this.setState({
+        startPosition: index,
+        relatedProductsNav: this.state.relatedProducts.slice(
+          index,
+          this.state.relatedProducts.length
+        ),
+      });
+    }
   }
 
   render() {
@@ -99,16 +111,19 @@ class Products extends React.Component {
           <div className='productWrapper'>
             <div className='productCardContainer'>
               {this.state.leftNav ? (
-                <i class='arrow left' onClick={this.leftArrowNav}></i>
+                <i className='arrow left' onClick={this.handlePrev}></i>
               ) : (
                 ''
               )}
               {this.state.relatedProducts.length !== 0 ? (
-                <ProductCard products={this.state.relatedProductsNav} />
+                <ProductCard
+                  products={this.state.relatedProductsNav}
+                  clickCurrent={this.props.handleChangeProductClick}
+                />
               ) : (
                 ''
               )}
-              <i class='arrow right' onClick={this.rightArrowNav}></i>
+              <i className='arrow right' onClick={this.handleNext}></i>
             </div>
           </div>
         </Row>
@@ -117,7 +132,7 @@ class Products extends React.Component {
           <div className='productWrapper'>
             <div className='productCardContainer'>
               {this.state.relatedProducts.length !== 0 ? (
-                <ProductCard products={this.state.relatedProducts} />
+                <ProductCard products={this.state.favoriteProducts} />
               ) : (
                 ''
               )}
