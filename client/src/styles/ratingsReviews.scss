@@ -19,12 +19,44 @@
       padding-top: 10px;
       grid-row: 2;
     }
+
+    .characteristic-bar {
+      width: 94%;
+      display: grid;
+      grid-template-rows: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+
+      #char-empty-bar {
+        grid-column: 1 / 3;
+        align-self: center;
+        justify-self: center;
+      }
+
+      #rating-pointer {
+        padding: 0;
+        margin: 0;
+        position: relative;
+        left: -5px;
+        top: 8px;
+      }
+
+      .charMeaning {
+        grid-row: 3;
+      }
+
+      #char-high {
+        justify-self: end;
+      }
+    }
+
+
   }
 
   #review-list {
     display: grid;
     grid-column: 2;
   }
+
 }
 
 #review-tile {
