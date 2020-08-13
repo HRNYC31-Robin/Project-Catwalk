@@ -16,6 +16,7 @@ const initialState = {
   visibleReviews: reviewsData.results.slice(0, 2),
   ratingsMeta: {},
   totalRatings: 0,
+  starAverage: 0
 };
 
 const store = createStore(

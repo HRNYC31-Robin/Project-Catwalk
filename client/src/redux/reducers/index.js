@@ -14,6 +14,7 @@ const rootReducer = combineReducers({
   totalRatings: ratingsReviewsReducers.totalRatingsReducer,
   currentProduct: productReducer.currentProductReducer,
   relateProducts: productReducer.relatedProductReducer,
+  starAverage: ratingsReviewsReducers.starAverageReducer,
 });
 
 export default rootReducer;
