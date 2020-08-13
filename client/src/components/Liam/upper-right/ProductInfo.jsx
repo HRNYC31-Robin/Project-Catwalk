@@ -14,7 +14,7 @@ const ProductInfo = function ({category}) {
         Category: {category}
       </div>
       <div className="prodName-pi">
-        Expanded Product Name
+        Expanded Product Name asdfasdf
       </div>
       <div className="price-pi">
         $PRICE

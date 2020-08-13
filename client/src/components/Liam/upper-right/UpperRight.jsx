@@ -7,7 +7,11 @@ import StyleSelector from './StyleSelector.jsx';
 import AddToCart from './AddToCart.jsx';
 
 
-const UpperRight = function ({currentProduct}) {
+const UpperRight = function ({
+  currentProduct,
+  styleList,
+  styleIndex
+}) {
 
   return (
     <div className="upper-right">
@@ -15,7 +19,10 @@ const UpperRight = function ({currentProduct}) {
         category={currentProduct.category}
       />
 
-      <StyleSelector />
+      <StyleSelector
+        styleList={styleList}
+        styleIndex={styleIndex}
+      />
 
       <AddToCart />
     </div>

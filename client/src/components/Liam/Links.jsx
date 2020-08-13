@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom';
 // import 'bootstrap/dist/css/bootstrap.min.css'; don't need?
 
 
-const SocialMedia = function ({toggle}) {
+const Links = function () {
 
   return (
-    <div className="socialmedia">
+    <div className="sm-links">
       Social Media Links
     </div>
   );
 };
 
-export default SocialMedia;
+export default Links;
