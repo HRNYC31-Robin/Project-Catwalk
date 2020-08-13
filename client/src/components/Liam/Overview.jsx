@@ -2,40 +2,73 @@ import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 // import 'bootstrap/dist/css/bootstrap.min.css'; don't need?
 import Container from 'react-bootstrap/Container';
+import axios from 'axios';
 
 import ImageGallery from './ImageGallery.jsx';
 import UpperRight from './upper-right/UpperRight.jsx';
 import ProductBlurb from './ProductBlurb.jsx';
-import Checkmarks from './Checkmarks.jsx';
+import Links from './Links.jsx';
 
 const Overview = function ({currentProduct}) {
   const [ expanded, changeExpand ] = useState(false);
+  const [ styleList, updateStyleList ] = useState([]);
+  const [ styleIndex, changeCurrStyle ] = useState(0);
 
   const toggleExpand = () => {
     !expanded ? changeExpand(true) : changeExpand(false);
   };
 
+
+  // On mount or update (current product has to change), get styles
+  useEffect(() => {
+    console.log('Current product: (overview useEffect) ', currentProduct);
+    axios({
+      method: 'get',
+      url: `http://18.224.200.47/products/${currentProduct.id}/styles`
+      //url: 'http://18.224.200.47/products/3/styles'
+    })
+      .then(({ data }) => {
+        console.log('Styles: ', data.results);
+        updateStyleList(data.results);
+      })
+      .catch(err => {
+        console.log('Error in retrieving styles: ', err);
+      });
+  }, [currentProduct]);
+
+
+  // Rendering
   if (!expanded) {
     return (
       <Container className='overviewContainer-normal'>
-        <ImageGallery toggle={toggleExpand}/>
+        <ImageGallery
+          toggle={toggleExpand}
+          currStyle={styleList[styleIndex]}
+        />
 
-        <UpperRight />
+        <UpperRight
+          currentProduct={currentProduct}
+          styleList={styleList}
+          styleIndex={styleIndex}
+        />
 
         <ProductBlurb />
 
-        <Checkmarks />
+        <Links />
       </Container>
     );
   } else {
     return (
       <Container className='overviewContainer-expanded'>
-        <ImageGallery toggle={toggleExpand}/>
+        <ImageGallery
+          toggle={toggleExpand}
+          currStyle={styleList[styleIndex]}
+        />
 
         <div className="lower-portion">
           <ProductBlurb />
 
-          <Checkmarks />
+          <Links />
         </div>
       </Container>
     );

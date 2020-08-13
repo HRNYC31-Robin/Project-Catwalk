@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 // import 'bootstrap/dist/css/bootstrap.min.css'; don't need?
 
 
-const ProductInfo = function () {
+const ProductInfo = function ({category}) {
 
   return (
     <div className="product-info">
@@ -11,10 +11,10 @@ const ProductInfo = function () {
         STAR PLACE-HOLDER
       </div>
       <div className="category-pi">
-        CATEGORY
+        Category: {category}
       </div>
       <div className="prodName-pi">
-        Expanded Product Name
+        Expanded Product Name asdfasdf
       </div>
       <div className="price-pi">
         $PRICE
