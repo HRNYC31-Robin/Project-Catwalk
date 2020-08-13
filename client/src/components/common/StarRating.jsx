@@ -28,7 +28,7 @@ const StarRating = ({starAverage}) => {
   }
 
   return (
-    <span>[ {stars} ]  {starAverage % 1} {integer}</span>
+    <span>[ {stars} ]</span>
   );
 };
 
