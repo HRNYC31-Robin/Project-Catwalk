@@ -12,7 +12,15 @@
     grid-template-rows: 80px 1fr;
 
     #starAverage {
+      display: inline-flex;
       grid-row: 1;
+
+      p {
+        position: relative;
+        top: -15px;
+        padding: 0;
+        font-size: 3em;
+      }
     }
 
     #bars {

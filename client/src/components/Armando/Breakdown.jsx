@@ -19,7 +19,7 @@ const Breakdown = (props) => {
     <div id='breakdown'>
       <span id='starAverage'>
         <p>
-          {props.starAverage}
+          {props.starAverage.toFixed(1)}
         </p>
         <StarRating starAverage={props.starAverage} />
       </span>
