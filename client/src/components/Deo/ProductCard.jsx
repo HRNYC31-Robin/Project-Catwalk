@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import ProductComparison from './ProductComparison.jsx';
 
 const ProductCard = ({ products, clickCurrent }) => {
   return products.map((item, index) => {
@@ -12,7 +13,12 @@ const ProductCard = ({ products, clickCurrent }) => {
             clickCurrent(item);
           }}
         >
-          <div className='star'></div>
+          <div
+            className='productStarIcon'
+            onClick={() => {
+              <ProductComparison />;
+            }}
+          ></div>
           <img
             style={{ height: '300px', width: '250px' }}
             src='https://images.unsplash.com/photo-1550338300-f9a475b50ba2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80'
