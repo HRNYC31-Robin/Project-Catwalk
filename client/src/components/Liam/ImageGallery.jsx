@@ -3,11 +3,12 @@ import ReactDOM from 'react-dom';
 // import 'bootstrap/dist/css/bootstrap.min.css'; don't need?
 
 
-const ImageGallery = function ({toggle}) {
+const ImageGallery = function ({ toggle, currStyle }) {
 
   return (
     <div className="image-gallery">
-      Image Gallery
+      Image Gallery,
+      Current style is : {currStyle ? currStyle.name : 'Rendering style'}
       <button
         className="expand-button"
         onClick={toggle}

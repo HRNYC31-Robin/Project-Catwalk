@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom';
 // import 'bootstrap/dist/css/bootstrap.min.css'; don't need?
 
 
-const Checkmarks = function ({toggle}) {
+const Links = function () {
 
   return (
-    <div className="checkmarks">
-      GMO Check
+    <div className="sm-links">
+      Social Media Links
     </div>
   );
 };
 
-export default Checkmarks;
+export default Links;

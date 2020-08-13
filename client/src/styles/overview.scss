@@ -4,10 +4,11 @@
   height: 850px;
   width: 100%;
 
+
   display: grid;
-  grid-template-columns: 2fr 1fr;
   grid-template-rows: 5fr 1fr;
-  grid-gap: 1rem;
+  grid-template-columns: 2fr 1fr;
+  grid-gap: 10px;
 
   div {
     background-color: lightblue;
@@ -16,32 +17,53 @@
 
   .upper-right {
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
-    grid-gap: 1rem;
+    grid-template-rows: minmax(225px, 225px) minmax(225px, 225px) minmax(225px, 225px);
+    grid-gap: 10px;
 
     div {
       background-color: yellow;
     }
-  }
 
-  .product-info {
-    display: grid;
-    grid-template-rows: 1fr 1fr 4fr 1fr;
-    grid-gap: 1rem;
-    padding: 10px;
-    padding-left: 10px;
 
-    div {
-      background-color: red;
+    .product-info {
+      display: grid;
+      grid-template-rows: 1fr 1fr 4fr 1fr;
+      grid-gap: 10px;
+
+      div {
+        background-color: red;
+      }
+
+      .prodName-pi {
+        font-size: 30px;
+        font-weight: bold;
+      }
+
+
     }
 
-    .prodName-pi {
-      font-size: 30px;
-      font-weight: bold;
-    }
   }
 
 }
+
+.row1Of1 {
+  display: flex;
+  grid-template-columns: repeat(1fr, 4);
+  grid-gap: 5px;
+
+  img {
+    width: 80px;
+    height: 80px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+  }
+}
+
+
+
+
+
 
 
 
@@ -51,9 +73,10 @@
   height: 850px;
   width: 100%;
 
+
   display: grid;
   grid-template-rows: 5fr 1fr;
-  grid-gap: 1rem;
+  grid-gap: 10px;
 
   div {
     background-color: lightblue;
@@ -62,8 +85,8 @@
 
   .lower-portion {
     display: grid;
-    grid-template-columns: 3fr 2fr;
-    grid-gap: 1rem;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 10px;
   }
 
 }
