@@ -1,5 +1,6 @@
 import React from 'react';
-import ProductCard from './ProductCard.jsx';
+import RelatedProductCard from './RelatedProductCard.jsx';
+import OutfitProductCard from './OutfitProductCard.jsx';
 import axios from 'axios';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -116,7 +117,7 @@ class Products extends React.Component {
                 ''
               )}
               {this.state.relatedProducts.length !== 0 ? (
-                <ProductCard
+                <RelatedProductCard
                   products={this.state.relatedProductsNav}
                   clickCurrent={this.props.handleChangeProductClick}
                 />
@@ -132,7 +133,7 @@ class Products extends React.Component {
           <div className='productWrapper'>
             <div className='productCardContainer'>
               {this.state.relatedProducts.length !== 0 ? (
-                <ProductCard products={this.state.favoriteProducts} />
+                <OutfitProductCard products={this.state.favoriteProducts} />
               ) : (
                 ''
               )}

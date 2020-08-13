@@ -1,38 +1,55 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import ProductComparison from './ProductComparison.jsx';
 
-const ProductCard = ({ products, clickCurrent }) => {
-  return products.map((item, index) => {
-    if (index < 4) {
-      return (
-        <div
-          className='productCard'
-          key={item.id}
-          onClick={() => {
-            clickCurrent(item);
-          }}
-        >
-          <div
-            className='productStarIcon'
-            onClick={() => {
-              <ProductComparison />;
-            }}
-          ></div>
-          <img
-            style={{ height: '300px', width: '250px' }}
-            src='https://images.unsplash.com/photo-1550338300-f9a475b50ba2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80'
-            alt='ProductImage'
-          />
-          <p className='productCat'>{item.category}</p>
-          <p className='productTitle'>{item.name}</p>
-          <p className='productPrice'>${item.default_price}</p>
-          <p> STAR PLACEHOLDER</p>
-        </div>
-      );
-    }
-  });
+const RelatedProductCard = ({ products, clickCurrent }) => {
+  const [modalDisplay, setModal] = useState(false);
+  const closeModal = () => {
+    setModal(false);
+  };
+
+  return (
+    <React.Fragment>
+      {products.map((item, index) => {
+        if (index < 4) {
+          return (
+            <div
+              className='productCard'
+              key={item.id}
+              onClick={() => {
+                clickCurrent(item);
+              }}
+            >
+              <div
+                className='productStarIcon'
+                onClick={() => {
+                  console.log('Clicking fav icon');
+                  setModal(true);
+                }}
+              ></div>
+              <img
+                style={{ height: '300px', width: '250px' }}
+                src='https://images.unsplash.com/photo-1550338300-f9a475b50ba2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80'
+                alt='ProductImage'
+              />
+              <p className='productCat'>{item.category}</p>
+              <p className='productTitle'>{item.name}</p>
+              <p className='productPrice'>${item.default_price}</p>
+              <p> STAR PLACEHOLDER</p>
+            </div>
+          );
+        }
+      })}
+      <ProductComparison
+        displayModal={modalDisplay}
+        closeModalFunc={closeModal}
+      />
+    </React.Fragment>
+  );
 };
+
+export default RelatedProductCard;
+
 // class ProductCard extends React.Component {
 //   constructor(props) {
 //     super(props);
@@ -127,5 +144,3 @@ const ProductCard = ({ products, clickCurrent }) => {
 //     );
 //   }
 // }
-
-export default ProductCard;
