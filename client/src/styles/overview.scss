@@ -41,9 +41,29 @@
 
 
     }
+
   }
 
 }
+
+.row1Of1 {
+  display: flex;
+  grid-template-columns: repeat(1fr, 4);
+  grid-gap: 5px;
+
+  img {
+    width: 80px;
+    height: 80px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+  }
+}
+
+
+
+
+
 
 
 
