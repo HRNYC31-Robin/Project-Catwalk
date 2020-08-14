@@ -39,8 +39,9 @@ const ReviewList = (props) => {
       }
       {
         props.visibleReviews.length === props.reviews.length ? null :
-          <button onClick={handleMoreClick}>MORE</button>
+          <button className='review-list-buttons' onClick={handleMoreClick}>MORE REVIEWS</button>
       }
+      <button className='review-list-buttons' >ADD A REVIEW +</button>
     </div>
   );
 };
