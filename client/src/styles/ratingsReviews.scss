@@ -1,10 +1,23 @@
 @import './common/layout.scss';
 
+
 #ratings-reviews {
   display: grid;
   grid-template-columns: 1fr 2fr;
   height: 100vh;
   width: 100%;
+
+  button {
+    border: 0;
+    border-radius: 0;
+    background-color: inherit;
+    font-family: inherit;
+    white-space: nowrap;
+    text-decoration: none;
+    padding: 0;
+    margin: 0.25rem;
+    cursor: pointer;
+  }
 
   #breakdown {
     grid-column: 1;
@@ -63,6 +76,15 @@
   #review-list {
     display: grid;
     grid-column: 2;
+    height: 100%;
+    overflow-y: auto;
+    padding-bottom: 10px;
+
+    .review-list-buttons {
+      height: 40px;
+      padding: 0 10px;
+      border: solid 1px black;
+    }
   }
 
 }
@@ -71,6 +93,8 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr;
+  padding-bottom: 0px;
+  border-bottom: solid 1px black;
 
   #stars {
     grid-column: 1 / 2;
@@ -80,6 +104,15 @@
   #date {
     grid-row: 1 / 2;
     grid-column: 3 / 4;
+  }
+
+  #helpful-prompt {
+    margin: 0;
+    align-self: center;
+
+    button {
+      color: coral;
+    }
   }
 
   h3 {

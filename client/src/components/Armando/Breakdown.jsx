@@ -2,6 +2,7 @@ import React from 'react';
 import StarRating from '../common/StarRating.jsx';
 import RatingBar from './RatingBar.jsx';
 import CharacteristicBar from './CharacteristicBar.jsx';
+import {ratingAverageHelper} from '../../../../helpers/ratingAverageHelper.js';
 
 const Breakdown = (props) => {
   // set a default
@@ -13,15 +14,13 @@ const Breakdown = (props) => {
     ratings = Object.assign({}, ratings, props.ratings);
   }
 
-  console.log('characteristics', characteristics);
-
   return (
     <div id='breakdown'>
       <span id='starAverage'>
         <p>
           {props.starAverage.toFixed(1)}
         </p>
-        <StarRating starAverage={props.starAverage} />
+        <StarRating starCount={props.starAverage} />
       </span>
 
       <div id='bars'>

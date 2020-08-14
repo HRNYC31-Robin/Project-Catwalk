@@ -17,6 +17,7 @@ class RatingsReviews extends React.Component {
         this.props.handleRatingsUpdate(results.data);
       })
       .catch(err => console.log(err));
+
   }
 
   render() {

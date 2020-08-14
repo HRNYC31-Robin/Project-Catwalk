@@ -13,7 +13,7 @@ const mapDispatchToProps = (dispatch) => ({
   handleRatingsUpdate: (ratings) => {
     dispatch(ratingsReviewsActions.getRatingsMeta(ratings));
     dispatch(ratingsReviewsActions.setTotalRatings(ratings));
-    dispatch(ratingsReviewsActions.setTotalRatings(ratings));
+    // dispatch(ratingsReviewsActions.setTotalRatings(ratings));
   }
 });
 

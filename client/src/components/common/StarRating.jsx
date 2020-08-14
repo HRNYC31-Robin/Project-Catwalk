@@ -3,14 +3,26 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {fas} from '@fortawesome/free-solid-svg-icons';
 import { faStar as farFaStar } from '@fortawesome/free-regular-svg-icons';
+import {ratingAverageHelper} from '../../../../helpers/ratingAverageHelper.js';
 
 library.add(farFaStar, fas);
 
-const StarRating = ({starAverage}) => {
+// use prodId if fetching data from the API
+
+const StarRating = ({prodId, starCount}) => {
+  const [starAverage, setStarAverage] = React.useState(0);
   const empty = <FontAwesomeIcon icon={farFaStar} />;
   const stars = [empty, empty, empty, empty, empty];
-  const decimal = starAverage % 1;
-  const integer = parseInt(starAverage);
+  const decimal = prodId ? starAverage % 1 : starCount % 1;
+  const integer = prodId ? parseInt(starAverage) : parseInt(starCount);
+
+  // call helper to get average
+  if (prodId) {
+    ratingAverageHelper(prodId)
+      .then(average => setStarAverage(average))
+      .then(() => console.log('this is in StarRating after update', starAverage))
+      .catch(err => console.log(err));
+  }
 
   // push full stars
   for (let i = 0; i < integer; i++) {
@@ -28,7 +40,7 @@ const StarRating = ({starAverage}) => {
   }
 
   return (
-    <span>[ {stars} ]</span>
+    <span>{stars}</span>
   );
 };
 
