@@ -109,9 +109,16 @@
   #helpful-prompt {
     margin: 0;
     align-self: center;
+    font-size: 0.75em;
 
     button {
       color: coral;
+    }
+
+    #report-button {
+      border-left: solid 1px grey;
+      margin: 10px;
+      padding: 10px;
     }
   }
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import ReviewReport from './ReviewReport.jsx';
 
 const Helpful = ({helpfulness, reviewId}) => {
   // api put request
@@ -10,7 +11,12 @@ const Helpful = ({helpfulness, reviewId}) => {
   };
 
   // single line component with Yes and Report
-  return <p id='helpful-prompt'>Was this review helpful? <button onClick={handleYesClick}>Yes</button>({helpfulness})</p>;
+  return (
+    <p id='helpful-prompt'>
+      Was this review helpful?
+      <button onClick={handleYesClick}>Yes</button>({helpfulness})
+      <ReviewReport reviewId={reviewId}/>
+    </p>);
 };
 
 export default Helpful;
