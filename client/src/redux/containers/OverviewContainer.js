@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Overview from '../../components/Liam/Overview.jsx';
-import changeProduct from '../actions/changeProductAction.js';
+import changeProduct from '../actions/ProductActions/changeProductAction.js';
 
 var mapStateToProps = (state) => ({
   currentProduct: state.currentProduct,

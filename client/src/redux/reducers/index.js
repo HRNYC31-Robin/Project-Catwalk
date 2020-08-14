@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
-import productReducer from '../reducers/productsReducers/productReducer.js';
+import productReducer from './productsReducers/productReducer.js';
 import relatedProductReducer from './productsReducers/relatedProductReducer.js';
+import outFitReducer from './productsReducers/outFitReducer.js';
 
 // import reducers
 import reviews from './ratingsReviews/reviewListReducer.js';
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   totalRatings: ratingsReviewsReducers.totalRatingsReducer,
   currentProduct: productReducer.currentProductReducer,
   relatedProducts: relatedProductReducer.productReducer,
+  userOutFits: outFitReducer.outfitReducer,
   starAverage: ratingsReviewsReducers.starAverageReducer,
 });
 

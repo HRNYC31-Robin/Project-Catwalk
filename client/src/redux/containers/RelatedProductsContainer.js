@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import RelatedProductCard from '../../components/Deo/RelatedProductCard.jsx';
-import updateRelatedProducts from '../actions/relatedProductAction.js';
-import changeCurrentProduct from '../actions/changeProductAction.js';
+import updateRelatedProducts from '../actions/ProductActions/relatedProductAction.js';
+import changeCurrentProduct from '../actions/ProductActions/changeProductAction.js';
 
 const mapStateToProps = (state) => ({
   currentProduct: state.currentProduct,
@@ -14,7 +14,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
   handleChangeProductClick: (product) => {
     dispatch(changeCurrentProduct(product));
-  }
+  },
 });
 
 const RelatedProductContainer = connect(
