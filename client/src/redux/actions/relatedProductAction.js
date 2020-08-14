@@ -1,6 +1,6 @@
-const relatedProduct = (relateProducts) => ({
+const relatedProduct = (relatedProducts) => ({
   type: 'UPDATE_RELATED_PRODUCTS',
-  relateProducts: relateProducts,
+  relatedProducts: relatedProducts,
 });
 
 export default relatedProduct;

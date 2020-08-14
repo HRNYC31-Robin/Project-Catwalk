@@ -52,7 +52,7 @@ const ProductComparison = ({ displayModal, closeModalFunc }) => {
         </Modal.Header>
         <Modal.Header>
           <Modal.Title>
-            <table id='classTable' class='table table-borderless'>
+            <table id='classTable' className='table table-borderless'>
               <thead>
                 <tr>
                   <th className='firstProduct'>ProductName</th>
@@ -64,7 +64,7 @@ const ProductComparison = ({ displayModal, closeModalFunc }) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <table id='classTable' class='table table-bordered'>
+          <table id='classTable' className='table table-bordered'>
             <tbody>{product.map(renderProduct)}</tbody>
           </table>
         </Modal.Body>
