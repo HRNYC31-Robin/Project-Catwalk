@@ -12,7 +12,7 @@ const ReviewTile = (props) => {
 
   return (
     <div id='review-tile' key={props.review.review_id}>
-      <StarRating id='stars' starAverage={props.review.rating}/>
+      <StarRating id='stars' starCount={props.review.rating}/>
       <p id='date'>{dateToRender}</p>
       <h3>{props.review.summary}</h3>
       <p>{props.review.body}</p>
