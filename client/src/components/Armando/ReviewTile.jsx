@@ -1,6 +1,8 @@
 import React from 'react';
 import StarRating from '../common/StarRating.jsx';
 import Helpful from './Helpful.jsx';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faCheck} from '@fortawesome/free-solid-svg-icons';
 
 
 const ReviewTile = (props) => {
@@ -16,6 +18,10 @@ const ReviewTile = (props) => {
       <p id='date'>{dateToRender}</p>
       <h3>{props.review.summary}</h3>
       <p>{props.review.body}</p>
+      {
+        !props.review.recommend ? null :
+          <p><FontAwesomeIcon icon={faCheck}/> I recommend this product</p>
+      }
       <Helpful helpfulness={props.review.helpfulness} reviewId={props.review.review_id}/>
     </div>
   );
