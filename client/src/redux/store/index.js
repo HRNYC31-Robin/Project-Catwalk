@@ -12,8 +12,8 @@ import data from '../../../data/data.js';
 const initialState = {
   currentProduct: data[3],
   relateProducts: [],
-  reviews: reviewsData.results,
-  visibleReviews: reviewsData.results.slice(0, 2),
+  reviews: [],
+  visibleReviews: [],
   ratingsMeta: {},
   totalRatings: 0,
   starAverage: 0

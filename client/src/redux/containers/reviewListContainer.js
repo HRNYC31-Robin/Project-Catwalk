@@ -20,3 +20,4 @@ const mapDispatchToProps = (dispatch) => ({
 const ReviewListContainer = connect(mapStateToProps, mapDispatchToProps)(ReviewList);
 
 export default ReviewListContainer;
+
