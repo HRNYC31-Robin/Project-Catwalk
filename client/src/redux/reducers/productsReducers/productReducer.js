@@ -6,15 +6,7 @@ const productReducer = {
     default:
       return state;
     }
-  },
-  relatedProductReducer: (state = 0, action) => {
-    switch (action.type) {
-    case 'UPDATE_RELATED_PRODUCTS':
-      return action.relateProducts;
-    default:
-      return state;
-    }
-  },
+  }
 };
 
 export default productReducer;
