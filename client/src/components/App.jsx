@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Button from 'react-bootstrap/Button';
-import ProductContainer from '../redux/containers/ProductsContainer.js';
+import RelatedProductContainer from '../redux/containers/RelatedProductsContainer.js';
 import OverviewContainer from '../redux/containers/OverviewContainer.js';
 import RatingsReviewsContainer from '../redux/containers/ratingsReviewsContainer.js';
 import Container from 'react-bootstrap/Container';
@@ -16,7 +16,7 @@ class App extends React.Component {
           <OverviewContainer />
         </Row>
         <Row>
-          <ProductContainer />
+          <RelatedProductContainer />
         </Row>
         <Row>
           <RatingsReviewsContainer />

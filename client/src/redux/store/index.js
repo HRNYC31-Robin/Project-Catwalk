@@ -11,7 +11,7 @@ import data from '../../../data/data.js';
 // define initial state for the store
 const initialState = {
   currentProduct: data[3],
-  relateProducts: [],
+  relatedProducts: [],
   reviews: reviewsData.results,
   visibleReviews: reviewsData.results.slice(0, 2),
   ratingsMeta: {},
