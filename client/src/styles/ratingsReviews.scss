@@ -85,6 +85,58 @@
       padding: 0 10px;
       border: solid 1px black;
     }
+
+    #review-modal {
+      display: grid;
+      grid-template-rows: repeat(10, 1fr);
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      height: 50vh;
+      width: 50vw;
+      border: solid 1px black;
+      background-color: white;
+
+      #close {
+        grid-row: 1 / 2;
+        justify-self: right;
+      }
+
+      #star-form {
+        display: inline-flex;
+
+        .star-radio {
+          display: none;
+        }
+
+        p {
+          padding-right: 5px;
+          padding-left: 5px;
+        }
+      }
+
+      .characteristic-form {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+
+        .labels {
+          display: grid;
+          grid-template-rows: 1fr 1fr;
+          font-size: 0.7em;
+          padding: 5px;
+          color: cornflowerblue;
+
+          .char-radio{
+            justify-self: center;
+          }
+
+          label {
+            justify-self: center;
+          }
+        }
+      }
+    }
   }
 
 }

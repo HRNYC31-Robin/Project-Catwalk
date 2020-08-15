@@ -1,10 +1,11 @@
 import React from 'react';
 import ReviewTile from './ReviewTile.jsx';
 import axios from 'axios';
+import ReviewForm from './ReviewForm.jsx';
 
 const ReviewList = (props) => {
   const prodId = props.currentProduct.id;
-  // const [reviews, setReviews] = React.useState([]);
+  const [reviewModal, setReviewModal] = React.useState(false);
 
   if (props.reviews.length === 0) {
     axios.get(`http://18.224.200.47/reviews/${prodId}/list`)
@@ -30,8 +31,16 @@ const ReviewList = (props) => {
     props.handleMoreReviewsClick(reviewsToAdd);
   };
 
+  const handleAddReviewClick = () => {
+    setReviewModal(true);
+  };
+
   return (
     <div>
+      {
+        reviewModal ? <ReviewForm metaData={props.ratingsMeta} handleClose={() => setReviewModal(false)} /> : null
+      }
+
       {
         props.visibleReviews.map(review => (
           <ReviewTile review={review} />
@@ -41,7 +50,7 @@ const ReviewList = (props) => {
         props.visibleReviews.length === props.reviews.length ? null :
           <button className='review-list-buttons' onClick={handleMoreClick}>MORE REVIEWS</button>
       }
-      <button className='review-list-buttons' >ADD A REVIEW +</button>
+      <button className='review-list-buttons' onClick={handleAddReviewClick}>ADD A REVIEW +</button>
     </div>
   );
 };

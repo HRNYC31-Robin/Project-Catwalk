@@ -5,7 +5,8 @@ import reviewListActions from '../actions/ReviewsActions/reviewListAction.js';
 const mapStateToProps = (state) => ({
   currentProduct: state.currentProduct,
   reviews: state.reviews,
-  visibleReviews: state.visibleReviews
+  visibleReviews: state.visibleReviews,
+  ratingsMeta: state.ratingsMeta
 });
 
 const mapDispatchToProps = (dispatch) => ({
