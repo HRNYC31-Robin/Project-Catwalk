@@ -17,6 +17,7 @@ const OutfitProductCard = (props) => {
   };
 
   const [products, setOutFit] = useState([placeHolder]);
+
   const updateOutfit = () => {
     setOutFit((prevState) => {
       prevState.unshift(props.currentProduct);
@@ -35,9 +36,26 @@ const OutfitProductCard = (props) => {
       setOutFit((prev) => {
         return JSON.parse(localData);
       });
+    } else {
+      return;
     }
     //localStorage.setItem('FEC', JSON.stringify(products));
   }, []);
+
+  const [leftCount, setLeftCount] = useState(0);
+  const increment = () => {
+    setLeftCount((prev) => prev + 1);
+  };
+  const [rightCount, setRightCount] = useState(products.length);
+  const decrement = () => {
+    setLeftCount((prev) => {
+      if (prev !== 0) {
+        return leftCount - 1;
+      } else {
+        return 0;
+      }
+    });
+  };
 
   return (
     <div>
@@ -45,7 +63,16 @@ const OutfitProductCard = (props) => {
       <h6 className='relatedProductTitle'>YOUR OUTFIT</h6>
       <div className='productWrapper'>
         <div className='productCardContainer'>
-          <i className='arrow left' onClick={() => {}}></i>
+          {leftCount !== 0 ? (
+            <i
+              className='arrow left'
+              onClick={() => {
+                decrement();
+              }}
+            ></i>
+          ) : (
+            ''
+          )}
           {products.map((item, index) => {
             if (index < 4) {
               return (
@@ -74,7 +101,16 @@ const OutfitProductCard = (props) => {
               );
             }
           })}
-          <i className='arrow right' onClick={() => {}}></i>
+          {leftCount !== rightCount - 1 ? (
+            <i
+              className='arrow right'
+              onClick={() => {
+                increment();
+              }}
+            ></i>
+          ) : (
+            ''
+          )}
         </div>
       </div>
     </div>
