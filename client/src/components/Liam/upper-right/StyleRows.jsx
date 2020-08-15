@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
-import Image from 'react-bootstrap/Image';
+import StyleImg from './StyleImg.jsx';
 
 
 const StyleRows = function({ row1, row2, row3, currIndex }) {
@@ -10,12 +10,13 @@ const StyleRows = function({ row1, row2, row3, currIndex }) {
     // 1 row
     return (
       <div className="oneRows">
-        <div className="row1Of1">
+        <div className="row1Or2">
           {row1.map((styleObj, ind) => {
             return (
-              <img
-                className="rowImg"
-                src={styleObj.photos[0].thumbnail_url}
+              <StyleImg
+                key={ind}
+                styleObj={styleObj}
+                ind={ind}
               />
             );
           })}
@@ -27,12 +28,24 @@ const StyleRows = function({ row1, row2, row3, currIndex }) {
     // 2 rows
     return (
       <div className="twoRows">
-        <div className="row1Of1">
+        <div className="row1Or2">
           {row1.map((styleObj, ind) => {
             return (
-              <img
-                className="rowImg"
-                src={styleObj.photos[0].thumbnail_url}
+              <StyleImg
+                key={ind}
+                styleObj={styleObj}
+                ind={ind}
+              />
+            );
+          })}
+        </div>
+        <div className="row1Or2 row2">
+          {row2.map((styleObj, ind) => {
+            return (
+              <StyleImg
+                key={ind}
+                styleObj={styleObj}
+                ind={ind}
               />
             );
           })}
@@ -43,13 +56,35 @@ const StyleRows = function({ row1, row2, row3, currIndex }) {
     // 3 rows
     return (
       <div className="threeRows">
-        <div className="row1Of1">
+        <div className="row3">
           {row1.map((styleObj, ind) => {
             return (
-              <img
+              <StyleImg
                 key={ind}
-                className="rowImg"
-                src={styleObj.photos[0].thumbnail_url}
+                styleObj={styleObj}
+                ind={ind}
+              />
+            );
+          })}
+        </div>
+        <div className="row3 r2or3">
+          {row2.map((styleObj, ind) => {
+            return (
+              <StyleImg
+                key={ind}
+                styleObj={styleObj}
+                ind={ind}
+              />
+            );
+          })}
+        </div>
+        <div className="row3 r2or3">
+          {row3.map((styleObj, ind) => {
+            return (
+              <StyleImg
+                key={ind}
+                styleObj={styleObj}
+                ind={ind}
               />
             );
           })}

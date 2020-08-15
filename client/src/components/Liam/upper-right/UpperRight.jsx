@@ -17,6 +17,8 @@ const UpperRight = function ({
     <div className="upper-right">
       <ProductInfo
         category={currentProduct.category}
+        name={currentProduct.name}
+        currStyle={styleList[styleIndex]}
       />
 
       <StyleSelector

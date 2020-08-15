@@ -18,6 +18,15 @@ const Overview = function ({currentProduct}) {
     !expanded ? changeExpand(true) : changeExpand(false);
   };
 
+  const findDefaultStyle = (styList) => {
+    for (let i = 0; i < styList.length; i++) {
+      if (styList[i]['default?'] === 1) {
+        changeCurrStyle(i);
+        break;
+      }
+    }
+  };
+
 
   // On mount or update (current product has to change), get styles
   useEffect(() => {
@@ -30,6 +39,7 @@ const Overview = function ({currentProduct}) {
       .then(({ data }) => {
         console.log('Styles: ', data.results);
         updateStyleList(data.results);
+        findDefaultStyle(data.results);
       })
       .catch(err => {
         console.log('Error in retrieving styles: ', err);

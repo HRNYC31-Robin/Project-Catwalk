@@ -8,9 +8,9 @@ const StyleSelector = function ({ styleList, styleIndex }) {
 
   return (
     <div className="style-selector">
-      <p>
-        Style-Selector
-      </p>
+      <div>
+        Style-Selector:
+      </div>
       <div className="styleIMGS">
         {styleList.length <= 4 ? (
           // 1 row

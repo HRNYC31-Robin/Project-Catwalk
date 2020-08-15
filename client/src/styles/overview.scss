@@ -1,3 +1,4 @@
+/* Normal Gallery Styling */
 .overviewContainer-normal {
 
   background-color: lightgrey;
@@ -31,7 +32,7 @@
       grid-gap: 10px;
 
       div {
-        background-color: red;
+        background-color: palevioletred;
       }
 
       .prodName-pi {
@@ -39,6 +40,19 @@
         font-weight: bold;
       }
 
+      .origPrice {
+        font-weight: bold;
+      }
+
+      .old {
+        text-decoration: line-through;
+        text-decoration-style: solid;
+      }
+
+      .salePrice {
+        font-weight: bold;
+        color: blue;
+      }
 
     }
 
@@ -46,27 +60,59 @@
 
 }
 
-.row1Of1 {
+
+
+
+/* Row Styling */
+.row1Or2 {
   display: flex;
   grid-template-columns: repeat(1fr, 4);
   grid-gap: 5px;
+  padding-left: 10px;
 
-  img {
+  .rowImg {
     width: 80px;
     height: 80px;
     position: relative;
     overflow: hidden;
     border-radius: 50%;
+    border-style: solid;
+    border-color: lightslategray;
   }
+}
+
+.row2 {
+  padding-top: 10px;
+}
+
+
+.row3 {
+  display: flex;
+  grid-template-columns: repeat(1fr, 4);
+  grid-gap: 15px;
+  padding-left: 20px;
+
+  .rowImg {
+    width: 65px;
+    height: 65px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    border-style: solid;
+    border-color: lightslategray;
+  }
+
+
+}
+
+.r2or3 {
+  padding-top: 3px;
 }
 
 
 
 
-
-
-
-
+/* Expanded View Styling */
 .overviewContainer-expanded {
 
   background-color: lightgrey;
