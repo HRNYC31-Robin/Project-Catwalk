@@ -93,7 +93,6 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      height: 50vh;
       width: 50vw;
       border: solid 1px black;
       background-color: white;
@@ -124,14 +123,16 @@
           display: grid;
           grid-template-rows: 1fr 1fr;
           font-size: 0.7em;
-          padding: 5px;
+          padding: 0;
           color: cornflowerblue;
 
           .char-radio{
+            align-self: center;
             justify-self: center;
           }
 
           label {
+            align-self: center;
             justify-self: center;
           }
         }
