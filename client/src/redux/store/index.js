@@ -12,11 +12,12 @@ import data from '../../../data/data.js';
 const initialState = {
   currentProduct: data[3],
   relatedProducts: [],
+  userOutFits: [],
   reviews: [],
   visibleReviews: [],
   ratingsMeta: {},
   totalRatings: 0,
-  starAverage: 0
+  starAverage: 0,
 };
 
 const store = createStore(

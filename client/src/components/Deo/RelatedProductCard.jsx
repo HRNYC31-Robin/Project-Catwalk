@@ -13,6 +13,7 @@ const RelatedProductCard = (props) => {
     return false;
   });
   const [products, setProducts] = useState([]);
+
   const closeModal = () => {
     setModal(false);
   };
@@ -22,14 +23,16 @@ const RelatedProductCard = (props) => {
   */
   const [leftCount, setLeftCount] = useState(0);
   const increment = () => {
-    setLeftCount((leftCount) => {
-      return leftCount + 1;
-    });
+    setLeftCount((prev) => prev + 1);
   };
   const [rightCount, setRightCount] = useState(props.relatedProducts.length);
   const decrement = () => {
-    setRightCount((rightCount) => {
-      return rightCount - 1;
+    setLeftCount((prev) => {
+      if (prev !== 0) {
+        return leftCount - 1;
+      } else {
+        return 0;
+      }
     });
   };
 
@@ -68,21 +71,25 @@ const RelatedProductCard = (props) => {
     });
     return Promise.all(arrayOfPromise);
   };
-  console.log(rightCount, ' value of right');
-  console.log(products.length);
+
   return (
     <div>
       <h6 className='relatedProductTitle'>RELATED PRODUCTS</h6>
       <div className='productWrapper'>
         <div className='productCardContainer'>
-          <i
-            className='arrow left'
-            onClick={() => {
-              console.log('Clicked Left: ', rightCount);
-              decrement();
-            }}
-          ></i>
-          {products.map((item, index) => {
+          {leftCount !== 0 ? (
+            <i
+              className='arrow left'
+              onClick={() => {
+                console.log('Clicked Left: (leftCount)', leftCount);
+                console.log('Clicked right: (rightCount)', rightCount);
+                decrement();
+              }}
+            ></i>
+          ) : (
+            ''
+          )}
+          {products.slice(leftCount, rightCount).map((item, index) => {
             if (index < 4) {
               return (
                 <div className='productCard' key={index}>
@@ -112,7 +119,8 @@ const RelatedProductCard = (props) => {
           <i
             className='arrow right'
             onClick={() => {
-              console.log('Clicked right: ', leftCount);
+              console.log('Clicked right (leftCount): ', leftCount);
+              console.log('Clicked right (rightCount): ', rightCount);
               increment();
             }}
           ></i>
