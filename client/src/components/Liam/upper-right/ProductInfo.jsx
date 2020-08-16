@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 // import 'bootstrap/dist/css/bootstrap.min.css'; don't need?
+import StarRating from '../../common/StarRating.jsx';
 
 
-const ProductInfo = function ({category, name, currStyle}) {
+const ProductInfo = function ({ category, name, currStyle, prodId }) {
   if (!currStyle) {
     return (
       <div className="product-info">
         <div className="stars-pi">
-          STAR PLACE-HOLDER
+          Rendering Style
         </div>
         <div className="category-pi">
-          Category: {category}
+          {category}
         </div>
         <div className="prodName-pi">
           {name}
@@ -25,13 +26,16 @@ const ProductInfo = function ({category, name, currStyle}) {
 
   let onSale = currStyle.sale_price === '0' ? false : true;
 
+
   return (
     <div className="product-info">
       <div className="stars-pi">
-        STAR PLACE-HOLDER
+        <StarRating
+          prodId={prodId}
+        />
       </div>
       <div className="category-pi">
-        Category: {category}
+        {category}
       </div>
       <div className="prodName-pi">
         {name}

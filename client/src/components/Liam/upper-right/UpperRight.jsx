@@ -10,7 +10,8 @@ import AddToCart from './AddToCart.jsx';
 const UpperRight = function ({
   currentProduct,
   styleList,
-  styleIndex
+  styleIndex,
+  changeStyle
 }) {
 
   return (
@@ -19,11 +20,13 @@ const UpperRight = function ({
         category={currentProduct.category}
         name={currentProduct.name}
         currStyle={styleList[styleIndex]}
+        prodId={currentProduct.id}
       />
 
       <StyleSelector
         styleList={styleList}
         styleIndex={styleIndex}
+        changeStyle={changeStyle}
       />
 
       <AddToCart />

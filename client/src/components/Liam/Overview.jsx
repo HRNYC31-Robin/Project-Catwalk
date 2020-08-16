@@ -60,6 +60,7 @@ const Overview = function ({currentProduct}) {
           currentProduct={currentProduct}
           styleList={styleList}
           styleIndex={styleIndex}
+          changeStyle={changeCurrStyle}
         />
 
         <ProductBlurb />

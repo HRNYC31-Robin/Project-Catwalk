@@ -64,6 +64,10 @@
 
 
 /* Row Styling */
+.selector-text {
+  font-weight: bold;
+}
+
 .row1Or2 {
   display: flex;
   grid-template-columns: repeat(1fr, 4);
@@ -109,6 +113,21 @@
   padding-top: 3px;
 }
 
+.selectedContainer {
+  position: relative;
+}
+
+.rowOverlay {
+  display: block;
+  position: absolute;
+  bottom: 0px;
+  right: -60px;
+  height: 100%;
+  width: 100%;
+  opacity: 1;
+  color: orangered;
+}
+
 
 
 
@@ -118,7 +137,6 @@
   background-color: lightgrey;
   height: 850px;
   width: 100%;
-
 
   display: grid;
   grid-template-rows: 5fr 1fr;

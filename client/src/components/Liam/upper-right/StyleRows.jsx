@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import StyleImg from './StyleImg.jsx';
 
 
-const StyleRows = function({ row1, row2, row3, currIndex }) {
+const StyleRows = function({ row1, row2, row3, currIndex, changeStyle }) {
   // Have to check if out of stock as well!
 
   if (!row2 & !row3) {
@@ -17,6 +17,8 @@ const StyleRows = function({ row1, row2, row3, currIndex }) {
                 key={ind}
                 styleObj={styleObj}
                 ind={ind}
+                currIndex={currIndex}
+                changeStyle={changeStyle}
               />
             );
           })}
@@ -35,6 +37,8 @@ const StyleRows = function({ row1, row2, row3, currIndex }) {
                 key={ind}
                 styleObj={styleObj}
                 ind={ind}
+                currIndex={currIndex}
+                changeStyle={changeStyle}
               />
             );
           })}
@@ -45,7 +49,9 @@ const StyleRows = function({ row1, row2, row3, currIndex }) {
               <StyleImg
                 key={ind}
                 styleObj={styleObj}
-                ind={ind}
+                ind={ind + 4}
+                currIndex={currIndex}
+                changeStyle={changeStyle}
               />
             );
           })}
@@ -63,6 +69,8 @@ const StyleRows = function({ row1, row2, row3, currIndex }) {
                 key={ind}
                 styleObj={styleObj}
                 ind={ind}
+                currIndex={currIndex}
+                changeStyle={changeStyle}
               />
             );
           })}
@@ -73,7 +81,9 @@ const StyleRows = function({ row1, row2, row3, currIndex }) {
               <StyleImg
                 key={ind}
                 styleObj={styleObj}
-                ind={ind}
+                ind={ind + 4}
+                currIndex={currIndex}
+                changeStyle={changeStyle}
               />
             );
           })}
@@ -84,7 +94,9 @@ const StyleRows = function({ row1, row2, row3, currIndex }) {
               <StyleImg
                 key={ind}
                 styleObj={styleObj}
-                ind={ind}
+                ind={ind + 8}
+                currIndex={currIndex}
+                changeStyle={changeStyle}
               />
             );
           })}
