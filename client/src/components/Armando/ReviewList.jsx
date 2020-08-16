@@ -38,7 +38,7 @@ const ReviewList = (props) => {
   return (
     <div>
       {
-        reviewModal ? <ReviewForm metaData={props.ratingsMeta} handleClose={() => setReviewModal(false)} /> : null
+        reviewModal ? <ReviewForm metaData={props.ratingsMeta} prodName={props.currentProduct.name} handleClose={() => setReviewModal(false)} /> : null
       }
 
       {

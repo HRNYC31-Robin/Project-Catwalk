@@ -31,6 +31,8 @@ class ReviewForm extends React.Component {
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleStarChoice = this.handleStarChoice.bind(this);
+    this.handleCharacteristicChoice = this.handleCharacteristicChoice.bind(this);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
   handleInputChange(e) {
@@ -46,17 +48,51 @@ class ReviewForm extends React.Component {
     this.setState({rating: star});
   }
 
+  handleCharacteristicChoice(choice) {
+    // copy characteristic object
+    const newChars = JSON.parse(JSON.stringify(this.state.characteristics));
+    newChars[choice.char] = {id: choice.id, value: choice.value};
+    // update characteristics state
+    this.setState({
+      characteristics: newChars
+    });
+  }
+
+  handleFormSubmit(e) {
+    const prodId = this.props.metaData.product_id;
+    e.preventDefault();
+    if (validateForm(this.props.metaData.characteristics, this.state)) {
+      console.log(this.state);
+      axios.post(`http://18.224.200.47/reviews/${prodId}`, this.state)
+        .then(result => console.log(result))
+        .catch(err => console.log(err));
+    }
+  }
+
   render() {
     return (
-      <div id='review-modal'>
-        <button id='close' onClick={this.props.handleClose}>X</button>
+      <form id='review-modal' onSubmit={this.handleFormSubmit}>
+        <div id='form-top'>
+          <h3>Write Your Review</h3>
+          <button id='close' onClick={this.props.handleClose}>X</button>
+        </div>
+
+        <h5>About the: {this.props.prodName}</h5>
         <RatingInput handleChoice={this.handleStarChoice} />
+        <span id='recommend-form'>
+          <p>Recommend</p>
+          <label for='radio-yes'>Yes: </label>
+          <input type='radio' id='radio-yes' name='recommend' className='rec-radio' onClick={() => this.setState({recommend: true})}/>
+          <label for='radio-no'>No: </label>
+          <input type='radio' id='radio-no' name='recommend' className='rec-radio' onClick={() => this.setState({recommend: false})}/>
+        </span>
         <input type='text' name='name' placeholder='name' onChange={this.handleInputChange}/>
         <input type='email' name='email' placeholder='email' onChange={this.handleInputChange}/>
-        <input type='text' name='summary' placeholder='summary' onChange={this.handleInputChange}/>
-        <input type='text' name='body' placeholder='body' onChange={this.handleInputChange}/>
-        <Characteristic metaData={this.props.metaData} />
-      </div>
+        <input type='text' name='summary' placeholder='summary' maxlength='60' onChange={this.handleInputChange}/>
+        <textarea id='body' type='text' name='body' placeholder='body' maxlength='1000' Rows='4' onChange={this.handleInputChange}/>
+        <Characteristic metaData={this.props.metaData} handleChar={this.handleCharacteristicChoice}/>
+        <input type='submit'/>
+      </form>
     );
   }
 }
@@ -120,7 +156,7 @@ const RatingInput = ({ handleChoice }) => {
  *        Characteristic Component
 *********************************************/
 
-const Characteristic = ({metaData}) => {
+const Characteristic = ({metaData, handleChar}) => {
   const characteristics = metaData.characteristics;
   const labels = {
     Size: [
@@ -167,13 +203,25 @@ const Characteristic = ({metaData}) => {
     ]
   };
 
+  const handleCharClick = (e) => {
+    const char = e.target.name;
+    const id = characteristics[char].id;
+    const value = Number(e.target.dataset.value);
+
+    console.log('this is charChoice', char, id, value);
+    const choice = {id, value, char};
+
+    handleChar(choice);
+  };
+
 
   return Object.keys(characteristics).map(char => (
     <div className='characteristic-form'>
+      <p>{char}</p>
       {
-        labels[char].map(label => (
+        labels[char].map((label, i) => (
           <div className='labels'>
-            <input id={label} type='radio' className='char-radio'/>
+            <input id={label} type='radio' name={char} data-value={i + 1} className='char-radio' onClick={handleCharClick}/>
             <label htmlFor={label} >{label}</label>
           </div>
         ))
@@ -183,3 +231,41 @@ const Characteristic = ({metaData}) => {
 };
 
 
+/******************************************
+ *      Form validation
+******************************************/
+
+const validateForm = (metaChar, state) => {
+  // check that each value is valid
+  if (Object.keys(metaChar).length !== Object.keys(state.characteristics).length) {
+    console.log('chars');
+    return false;
+  }
+
+  if (state.rating < 1) {
+    console.log('rates');
+    return false;
+  }
+
+  if (state.summary.trim() === '') {
+    console.log('sum');
+    return false;
+  }
+
+  if (state.body.trim() === '') {
+    console.log('body');
+    return false;
+  }
+
+  if (state.name.trim() === '') {
+    console.log('name');
+    return false;
+  }
+
+  if (state.email.trim() === '' || state.email.indexOf('@') < 1 ) {
+    console.log('email');
+    return false;
+  }
+
+  return true;
+};
