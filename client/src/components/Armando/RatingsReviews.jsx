@@ -11,7 +11,7 @@ class RatingsReviews extends React.Component {
   componentDidMount() {
     // get meta data for ratings
     const prodId = this.props.currentProduct.id;
-    axios.get(`http://18.224.200.47/reviews/${prodId}/meta`)
+    axios.get(`http://18.224.37.110/reviews/meta/?product_id=${prodId}`)
       .then(results => {
         console.log(results.data);
         this.props.handleRatingsUpdate(results.data);

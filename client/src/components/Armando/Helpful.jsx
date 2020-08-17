@@ -5,7 +5,7 @@ import ReviewReport from './ReviewReport.jsx';
 const Helpful = ({helpfulness, reviewId}) => {
   // api put request
   const handleYesClick = () => {
-    axios.put(`http://18.224.200.47/reviews/helpful/${reviewId}`)
+    axios.put(`http://18.224.37.110/reviews/helpful/${reviewId}`)
       .then(result => console.log(result))
       .catch(err => console.log(err));
   };
