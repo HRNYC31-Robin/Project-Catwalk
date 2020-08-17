@@ -85,6 +85,93 @@
       padding: 0 10px;
       border: solid 1px black;
     }
+
+    #review-modal {
+      display: grid;
+      grid-template-rows: 35px 25px 25px 25px 25px 25px 25px 100px;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60vw;
+      border: solid 1px black;
+      background-color: white;
+
+      #form-top {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        h3 {
+          justify-self: left;
+        }
+
+        #close {
+          margin-top: 2px;
+          justify-self: right;
+        }
+      }
+
+      p{
+        padding-left: 5px;
+      }
+
+
+      #star-form {
+        display: inline-flex;
+
+        .star-radio {
+          display: none;
+        }
+
+        p {
+          padding-right: 5px;
+          padding-left: 5px;
+        }
+      }
+
+      #recommend-form {
+        p {
+          display: inline;
+        }
+        .rec-radio {
+          display: inline;
+          padding-left: 5px;
+          margin-left: 5px;
+        }
+
+        label {
+          padding-left: 10px;
+        }
+
+      }
+
+      textarea {
+        resize: none;
+      }
+
+      .characteristic-form {
+        display: grid;
+        grid-template-columns: 75px repeat(5, 1fr);
+
+        .labels {
+          display: grid;
+          grid-template-rows: 1fr 1fr;
+          font-size: 0.7em;
+          padding: 0;
+          color: cornflowerblue;
+
+          .char-radio{
+            align-self: center;
+            justify-self: center;
+          }
+
+          label {
+            align-self: center;
+            justify-self: center;
+          }
+        }
+      }
+    }
   }
 
 }

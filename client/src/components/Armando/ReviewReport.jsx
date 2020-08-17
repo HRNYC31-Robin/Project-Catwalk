@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const ReviewReport = ({reviewId}) => {
   const handleReport = () => {
-    axios.put(`http://18.224.200.47/reviews/report/${reviewId}`)
+    axios.put(`http://18.224.37.110/reviews/report/${reviewId}`)
       .then(result => console.log(result))
       .catch(err => console.log(err));
   };

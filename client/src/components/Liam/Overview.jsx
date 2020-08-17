@@ -33,7 +33,7 @@ const Overview = function ({currentProduct}) {
     console.log('Current product: (overview useEffect) ', currentProduct);
     axios({
       method: 'get',
-      url: `http://18.224.200.47/products/${currentProduct.id}/styles`
+      url: `http://18.224.37.110/products/${currentProduct.id}/styles`
       //url: 'http://18.224.200.47/products/3/styles'
     })
       .then(({ data }) => {
