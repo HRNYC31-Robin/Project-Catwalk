@@ -15,11 +15,6 @@ app.get('*', (req, res) => {
   res.sendFile('index.html', { root: path.join(__dirname, '/../client/dist') });
 });
 
-// app.get('/product/:id', (req, res) => {
-//   // Handles any requests that don't match the ones above
-//   res.sendFile('index.html', { root: path.join(__dirname, '/../client/dist') });
-// });
-
 app.listen(3000, function () {
   console.log('listening on port 3000!');
 });

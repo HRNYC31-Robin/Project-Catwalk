@@ -12,7 +12,6 @@ ReactDOM.render(
   <Provider store={store}>
     <Router>
       <Route path={'/products/:id'} component={AppContainer} />
-      {/* <App /> */}
     </Router>
   </Provider>,
   document.getElementById('app')

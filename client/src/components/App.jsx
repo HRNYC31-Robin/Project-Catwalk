@@ -16,7 +16,6 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props, ' Inside the app');
     let productID = Number(this.props.match.params.id);
     console.log('match: ', productID);
     axios
