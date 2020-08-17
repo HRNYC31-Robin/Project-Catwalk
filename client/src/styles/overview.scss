@@ -1,3 +1,4 @@
+/* Normal Gallery Styling */
 .overviewContainer-normal {
 
   background-color: lightgrey;
@@ -31,7 +32,7 @@
       grid-gap: 10px;
 
       div {
-        background-color: red;
+        background-color: palevioletred;
       }
 
       .prodName-pi {
@@ -39,6 +40,19 @@
         font-weight: bold;
       }
 
+      .origPrice {
+        font-weight: bold;
+      }
+
+      .old {
+        text-decoration: line-through;
+        text-decoration-style: solid;
+      }
+
+      .salePrice {
+        font-weight: bold;
+        color: blue;
+      }
 
     }
 
@@ -46,33 +60,83 @@
 
 }
 
-.row1Of1 {
+
+
+
+/* Row Styling */
+.selector-text {
+  font-weight: bold;
+}
+
+.row1Or2 {
   display: flex;
   grid-template-columns: repeat(1fr, 4);
   grid-gap: 5px;
+  padding-left: 10px;
 
-  img {
+  .rowImg {
     width: 80px;
     height: 80px;
     position: relative;
     overflow: hidden;
     border-radius: 50%;
+    border-style: solid;
+    border-color: lightslategray;
   }
+}
+
+.row2 {
+  padding-top: 10px;
+}
+
+
+.row3 {
+  display: flex;
+  grid-template-columns: repeat(1fr, 4);
+  grid-gap: 15px;
+  padding-left: 20px;
+
+  .rowImg {
+    width: 65px;
+    height: 65px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    border-style: solid;
+    border-color: lightslategray;
+  }
+
+
+}
+
+.r2or3 {
+  padding-top: 3px;
+}
+
+.selectedContainer {
+  position: relative;
+}
+
+.rowOverlay {
+  display: block;
+  position: absolute;
+  bottom: 0px;
+  right: -60px;
+  height: 100%;
+  width: 100%;
+  opacity: 1;
+  color: orangered;
 }
 
 
 
 
-
-
-
-
+/* Expanded View Styling */
 .overviewContainer-expanded {
 
   background-color: lightgrey;
   height: 850px;
   width: 100%;
-
 
   display: grid;
   grid-template-rows: 5fr 1fr;
