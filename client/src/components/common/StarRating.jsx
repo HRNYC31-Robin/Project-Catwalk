@@ -11,7 +11,7 @@ library.add(farFaStar, fas);
 
 const StarRating = ({prodId, starCount}) => {
   const [starAverage, setStarAverage] = React.useState(0);
-  const empty = <FontAwesomeIcon icon={farFaStar} />;
+  const empty = <span>&#9734;</span>;
   const stars = [empty, empty, empty, empty, empty];
   const decimal = prodId ? starAverage % 1 : starCount % 1;
   const integer = prodId ? parseInt(starAverage) : parseInt(starCount);
@@ -26,7 +26,7 @@ const StarRating = ({prodId, starCount}) => {
 
   // push full stars
   for (let i = 0; i < integer; i++) {
-    stars[i] = <FontAwesomeIcon icon={['fas', 'star']} />;
+    stars[i] = <span>&#9733;</span>;
   }
   // deal with decimal
   if (decimal > 0) {
@@ -35,7 +35,7 @@ const StarRating = ({prodId, starCount}) => {
     } else if (decimal < 0.51) {
       stars[integer] = <FontAwesomeIcon icon={['fas', 'star-half-alt']} />;
     } else {
-      stars[integer] = '3q';
+      stars[integer] = <span id='3qrStar'>&#9733;</span>;
     }
   }
 
