@@ -7,6 +7,7 @@ import outFitReducer from './productsReducers/outFitReducer.js';
 import reviews from './ratingsReviews/reviewListReducer.js';
 import visibleReviews from './ratingsReviews/addVisibleReviews.js';
 import ratingsReviewsReducers from './ratingsReviews/ratingsReducer.js';
+import URLReducer from './URLReducer.js';
 
 // combine reducers
 const rootReducer = combineReducers({
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   relatedProducts: relatedProductReducer.productReducer,
   userOutFits: outFitReducer.outfitReducer,
   starAverage: ratingsReviewsReducers.starAverageReducer,
+  URL: URLReducer,
 });
 
 export default rootReducer;
