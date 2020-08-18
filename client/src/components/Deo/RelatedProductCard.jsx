@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { faStar as farFaStar } from '@fortawesome/free-regular-svg-icons';
+import StarRating from '../common/StarRating.jsx';
 
 library.add(farFaStar, fas);
 
@@ -146,7 +147,7 @@ const RelatedProductCard = (props) => {
                   <p className='productCat'>{item.category}</p>
                   <p className='productTitle'>{item.name}</p>
                   <p className='productPrice'>${item.default_price}</p>
-                  <p> STAR PLACEHOLDER</p>
+                  <StarRating prodId={item.id} />
                 </div>
               );
             }
