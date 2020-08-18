@@ -10,6 +10,7 @@ const ReviewList = (props) => {
   if (props.reviews.length === 0) {
     axios.get(`http://18.224.37.110/reviews/?product_id=${prodId}`)
       .then(results => {
+        console.log('This is first get in ReviewList', results.data.results);
         props.addMoreReviews(results.data.results);
         props.handleMoreReviewsClick(results.data.results.slice(0, 2));
       })
