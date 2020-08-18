@@ -106,6 +106,12 @@ const RelatedProductCard = (props) => {
                     alt='ProductImage'
                     onClick={() => {
                       props.handleChangeProductClick(item);
+                      console.log(props, 'INSIDE RELATED PRODUCT CARD');
+                      window.history.replaceState(
+                        null,
+                        '',
+                        `/products/${item.id}`
+                      );
                     }}
                   />
                   <p className='productCat'>{item.category}</p>
