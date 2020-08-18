@@ -18,6 +18,7 @@ const initialState = {
   ratingsMeta: {},
   totalRatings: 0,
   starAverage: 0,
+  URL: '',
 };
 
 const store = createStore(

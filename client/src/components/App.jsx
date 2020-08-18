@@ -8,8 +8,26 @@ import RatingsReviewsContainer from '../redux/containers/ratingsReviewsContainer
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import axios from 'axios';
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount() {
+    let productID = Number(this.props.match.params.id);
+    console.log('match: ', productID);
+    axios
+      .get(`http://18.224.37.110/products/${productID}`)
+      .then((row) => {
+        console.log(row.data);
+        this.props.handleChangeProductClick(row.data);
+        this.props.handleChangeURLClick(this.props.match.url);
+      })
+      .catch((error) => console.log(error));
+  }
+
   render() {
     return (
       <Container>
