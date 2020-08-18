@@ -13,6 +13,9 @@ const Overview = function ({currentProduct}) {
   const [ expanded, changeExpand ] = useState(false);
   const [ styleList, updateStyleList ] = useState([]);
   const [ styleIndex, changeCurrStyle ] = useState(0);
+  const [ currSize, changeCurrSize ] = useState('SELECT SIZE');
+  const [ sizeList, updateSizeList ] = useState([]);
+  const [ currQty, updateQty ] = useState(0);
 
   const toggleExpand = () => {
     !expanded ? changeExpand(true) : changeExpand(false);
