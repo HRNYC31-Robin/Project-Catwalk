@@ -106,8 +106,6 @@ const RelatedProductCard = (props) => {
             <i
               className='arrow left'
               onClick={() => {
-                console.log('Clicked Left: (leftCount)', leftCount);
-                console.log('Clicked right: (rightCount)', rightCount);
                 decrement();
               }}
             ></i>
