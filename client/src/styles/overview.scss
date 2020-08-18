@@ -128,6 +128,31 @@
   color: orangered;
 }
 
+/* Dropdowns and Add-to-cart */
+.dropDowns-addtoCart {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 10px;
+
+  .sizeAndQty {
+    display: grid;
+    grid-template-columns: 7fr 4fr;
+    grid-gap: 20px;
+    padding: 20px
+  }
+
+  .addToCartAndStar {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-gap: 5px;
+
+    div {
+      background-color: white;
+    }
+  }
+
+}
+
 
 
 

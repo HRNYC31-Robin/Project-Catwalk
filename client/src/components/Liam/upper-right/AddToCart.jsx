@@ -6,12 +6,22 @@ import ReactDOM from 'react-dom';
 const AddToCart = function () {
 
   return (
-    <div className="add-to-cart">
+    <div className="dropDowns-addtoCart">
       <div className="sizeAndQty">
-        size - qty
+        <select className="sizeSelecct">
+          <option value="select-size"> Select size </option>
+        </select>
+        <select className="qtySelect">
+          <option value="1"> 1 </option>
+        </select>
       </div>
-      <div className="addToCart">
-        add to cart
+      <div className="addToCartAndStar">
+        <div className="cartButtonContainer">
+          Add to Cart
+        </div>
+        <div className="starContainer">
+          Star
+        </div>
       </div>
     </div>
   );
