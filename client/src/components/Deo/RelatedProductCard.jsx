@@ -122,14 +122,16 @@ const RelatedProductCard = (props) => {
               );
             }
           })}
-          <i
-            className='arrow right'
-            onClick={() => {
-              console.log('Clicked right (leftCount): ', leftCount);
-              console.log('Clicked right (rightCount): ', rightCount);
-              increment();
-            }}
-          ></i>
+          {leftCount !== rightCount - 1 ? (
+            <i
+              className='arrow right'
+              onClick={() => {
+                increment();
+              }}
+            ></i>
+          ) : (
+            ''
+          )}
           <ProductComparison
             displayModal={modalDisplay}
             closeModalFunc={closeModal}
