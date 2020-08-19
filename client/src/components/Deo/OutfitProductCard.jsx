@@ -3,7 +3,6 @@ import axios from 'axios';
 import StarRating from '../common/StarRating.jsx';
 
 const OutfitProductCard = (props) => {
-  console.log('INSIDE OUTFIT (PROPS) ', props);
 
   // Place holder object for add
   const placeHolder = {
@@ -29,14 +28,11 @@ const OutfitProductCard = (props) => {
     axios
       .get(`http://18.224.37.110/products/${props.currentProduct.id}/styles`)
       .then((productImage) => {
-        console.log('LOADING IMAGE:', productImage.data);
         // Merge current object and image data
         let temp = Object.assign({}, productImage.data, props.currentProduct);
-        //console.log('New Product Image obj: ', temp);
         return temp;
       })
       .then((newObject) => {
-        console.log('RENDEDERING');
         setOutFit((previousState) => {
           previousState.unshift(newObject);
           const unique = [
@@ -67,12 +63,9 @@ const OutfitProductCard = (props) => {
   }, [props.userOutFits]);
 
   const removedOutfit = (index) => {
-    console.log('USER Clicked: ', index);
     setOutFit((previousState) => {
-      console.log('CURRENT: ', previousState);
       let tempState = previousState.slice();
       tempState.splice(index, 1);
-      console.log(tempState);
       localStorage.setItem('FEC', JSON.stringify(tempState));
       return tempState;
     });
@@ -124,20 +117,26 @@ const OutfitProductCard = (props) => {
                   ) : (
                     ''
                   )}
-                  {console.log('IN OUTFIT LOOP:', item)}
                   <img
                     style={{ height: '300px', width: '250px' }}
-                    src={item.results[0].photos[0].thumbnail_url}
+                    src={
+                      item.results[0].photos[0].thumbnail_url !== null
+                        ? item.results[0].photos[0].thumbnail_url
+                        : 'https://img.icons8.com/fluent/96/000000/not-applicable.png'
+                    }
                     //src={''}
                     alt='ProductImage'
-                    onClick={() => {
-                      updateOutfit();
-                      console.log('Product.length: ', products.length);
-                      setRightArrow((prev) => {
-                        return prev + 1;
-                      });
-                      //props.handleOutFitAddition(props.currentProduct);
-                    }}
+                    onClick={
+                      item.id === 'NA'
+                        ? () => {
+                          updateOutfit();
+                          console.log('Product.length: ', products.length);
+                          setRightArrow((prev) => {
+                            return prev + 1;
+                          });
+                        }
+                        : () => {}
+                    }
                   />
                   <p className='productCat'>{item.category}</p>
                   <p className='productTitle'>{item.name}</p>
@@ -155,10 +154,6 @@ const OutfitProductCard = (props) => {
             <i
               className='arrow right'
               onClick={() => {
-                console.log('THE CLICKED RIGHT: ', rightArrow);
-                console.log('THE CLICKED LEFT: ', leftArrow);
-                console.log('THE PRODUCT LENGTH: ', products.length);
-
                 setLeftArrow((prev) => {
                   return prev + 1;
                 });
