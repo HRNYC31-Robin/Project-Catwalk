@@ -32,15 +32,23 @@ const StarRating = ({prodId, starCount}) => {
   if (decimal > 0) {
     if (decimal < 0.26) {
       stars[integer] = 'q';
-    } else if (decimal < 0.51) {
-      stars[integer] = <FontAwesomeIcon icon={['fas', 'star-half-alt']} />;
+    } else if (decimal < 0.75) {
+      stars[integer] =
+        <div id='3qrStar' style={{position: 'relative', display: 'inline-flex', width: '15px'}}>
+          <span style={{position: 'relative', display: 'flex', 'z-index': 0}}>&#9734;</span>
+          <div style={{position: 'absolute', display: 'flex', width: '52%', 'z-index': 1, overflow: 'hidden'}}>&#9733;</div>
+        </div>;
     } else {
-      stars[integer] = <span id='3qrStar'>&#9733;</span>;
+      stars[integer] =
+        <div id='3qrStar' style={{position: 'relative', display: 'inline-flex', width: '15px'}}>
+          <span style={{position: 'relative', display: 'flex', 'z-index': 0}}>&#9734;</span>
+          <div style={{position: 'absolute', display: 'flex', width: '65%', 'z-index': 1, overflow: 'hidden'}}>&#9733;</div>
+        </div>;
     }
   }
 
   return (
-    <span>{stars}</span>
+    <div>{stars}</div>
   );
 };
 
