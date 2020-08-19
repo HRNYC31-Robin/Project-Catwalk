@@ -42,26 +42,32 @@ const ReviewList = (props) => {
   };
 
   return (
-    <div>
-      <select onChange={(e) => setSortList(e.target.value)}>
-        <option key='relevant' value='relevant'>Relevant</option>
-        <option key='helpful' value='helpful'>Helpful</option>
-        <option key='newest' value='newest'>Newest</option>
-      </select>
+    <div id='review-list'>
+      <div id='review-dropdown'>
+        <select onChange={(e) => setSortList(e.target.value)}>
+          <option key='relevant' value='relevant'>Relevant</option>
+          <option key='helpful' value='helpful'>Helpful</option>
+          <option key='newest' value='newest'>Newest</option>
+        </select>
+      </div>
       {
         reviewModal ? <ReviewForm metaData={props.ratingsMeta} prodName={props.currentProduct.name} handleClose={() => setReviewModal(false)} /> : null
       }
 
-      {
-        props.visibleReviews.map(review => (
-          <ReviewTile review={review} />
-        ))
-      }
-      {
-        props.visibleReviews.length === props.reviews.length ? null :
-          <button className='review-list-buttons' onClick={handleMoreClick}>MORE REVIEWS</button>
-      }
-      <button className='review-list-buttons' onClick={handleAddReviewClick}>ADD A REVIEW +</button>
+      <div id='inner-review-list'>
+        {
+          props.visibleReviews.map(review => (
+            <ReviewTile review={review} />
+          ))
+        }
+      </div>
+      <div id='review-list-bottom'>
+        {
+          props.visibleReviews.length === props.reviews.length ? null :
+            <button className='review-list-buttons' onClick={handleMoreClick}>MORE REVIEWS</button>
+        }
+        <button className='review-list-buttons' onClick={handleAddReviewClick}>ADD A REVIEW +</button>
+      </div>
     </div>
   );
 };
