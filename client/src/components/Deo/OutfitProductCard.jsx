@@ -120,6 +120,7 @@ const OutfitProductCard = (props) => {
                   <img
                     style={{ height: '300px', width: '250px' }}
                     src={
+                      item.results.length !== 0 &&
                       item.results[0].photos[0].thumbnail_url !== null
                         ? item.results[0].photos[0].thumbnail_url
                         : 'https://img.icons8.com/fluent/96/000000/not-applicable.png'
