@@ -17,6 +17,7 @@ const OutfitProductCard = (props) => {
   };
 
   const [products, setOutFit] = useState([placeHolder]);
+
   const updateOutfit = () => {
     setOutFit((prevState) => {
       prevState.unshift(props.currentProduct);

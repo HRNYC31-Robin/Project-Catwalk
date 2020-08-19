@@ -1,23 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
-const ProductComparison = ({ displayModal, closeModalFunc }) => {
+const ProductComparison = (props) => {
+  //console.log('INSIDE MODAL: ', props);
+  const productFeature = props.clickedProduct.features;
+  //console.log(productFeature[0]);
+  //console.log('INIDEF FEATURE: ', productFeature);
+
+  const [compareFeature, setCompareFeature] = useState([]);
+
+  useEffect(() => {
+    if (props.clickedProduct.length !== 0) {
+      //console.log('INSIDE MODAL USE EFFECT');
+      //console.log('INSIDE MODAL USE EFFECT', props.clickedProduct.features);
+      let combinedFeature = Object.assign(
+        {},
+        props.clickedProduct.features,
+        props.currentProduct.features
+      );
+
+      let combinedData = Object.keys(combinedFeature).map((key) => {
+        return combinedFeature[key];
+      });
+
+      console.log(
+        'INSIDE Current : ',
+        props.currentProduct.features,
+        'INSIDE CLICKED : ',
+        props.clickedProduct.features,
+        ' COMBINDED :',
+        combinedData,
+        ' COMbined Feature: ',
+        combinedFeature
+      );
+
+      setCompareFeature(combinedData);
+    }
+  }, [props.clickedProduct]);
+
   const product = [
-    {
-      productName: 'Product',
-      features: 'GMddddddssdfsdfO',
-      secondProduct: 'Name',
-    },
-    { productName: 'Product', features: 'GMO', secondProduct: 'Name' },
-    { productName: 'Product', features: 'GMO', secondProduct: 'Name' },
-    { productName: 'Product', features: 'GMO', secondProduct: 'Name' },
-    { productName: 'Product', features: 'GMO', secondProduct: 'Name' },
-    { productName: 'Product', features: 'GMO', secondProduct: 'Name' },
-    { productName: 'Product', features: 'GMO', secondProduct: 'Name' },
-    { productName: 'Product', features: 'GMO', secondProduct: 'Name' },
-    { productName: 'Product', features: 'GMO', secondProduct: 'Name' },
-    { productName: 'Product', features: 'GMO', secondProduct: 'Name' },
     { productName: 'Product', features: 'GMO', secondProduct: 'Name' },
     { productName: 'Product', features: 'GMO', secondProduct: 'Name' },
     { productName: 'Product', features: 'GMO', secondProduct: 'Name' },
@@ -26,12 +48,18 @@ const ProductComparison = ({ displayModal, closeModalFunc }) => {
     { productName: 'Product', features: 'GMO', secondProduct: 'Name' },
   ];
 
-  const renderProduct = (product, index) => {
+  const renderProduct = (compareFeature, index) => {
     return (
       <tr key={index}>
-        <td>{product.productName}</td>
-        <td>{product.features}</td>
-        <td style={{ textAlign: 'right' }}>{product.secondProduct}</td>
+        <td style={{ textAlign: 'left' }}>
+          {props.currentProduct.features.find(
+            (obj) => obj.features === compareFeature.feature
+          )
+            ? ' Y'
+            : 'N'}
+        </td>
+        <td style={{ textAlign: 'center' }}>{compareFeature.feature}</td>
+        <td style={{ textAlign: 'right' }}>{''}</td>
       </tr>
     );
   };
@@ -39,8 +67,8 @@ const ProductComparison = ({ displayModal, closeModalFunc }) => {
   return (
     <React.Fragment>
       <Modal
-        show={displayModal}
-        onHide={closeModalFunc}
+        show={props.displayModal}
+        onHide={props.closeModalFunc}
         backdrop='static'
         keyboard={false}
         size='lg'
@@ -55,24 +83,28 @@ const ProductComparison = ({ displayModal, closeModalFunc }) => {
             <table id='classTable' className='table table-borderless'>
               <thead>
                 <tr>
-                  <th className='firstProduct'>ProductName</th>
+                  <th className='firstProduct'>{props.currentProduct.name}</th>
                   <th className='middleProduct'></th>
-                  <th className='secondProduct'>SecondName</th>
+                  <th className='secondProduct'>
+                    {props.clickedProduct.length !== 0
+                      ? props.clickedProduct.name
+                      : ''}
+                  </th>
                 </tr>
               </thead>
             </table>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <table id='classTable' className='table table-bordered'>
-            <tbody>{product.map(renderProduct)}</tbody>
+          <table id='classTable' className='table table-borderless'>
+            <tbody>{compareFeature.map(renderProduct)}</tbody>
           </table>
         </Modal.Body>
         <Modal.Footer>
           <Button
             variant='secondary'
             onClick={() => {
-              closeModalFunc();
+              props.closeModalFunc();
             }}
           >
             Close
