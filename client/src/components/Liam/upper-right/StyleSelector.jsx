@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 // import 'bootstrap/dist/css/bootstrap.min.css'; don't need?
-import StyleRows from './StyleRows.jsx';
+import StyleRows from './StyleSelectorFiles/StyleRows.jsx';
 
 
 const StyleSelector = function ({ styleList, styleIndex, changeStyle }) {
