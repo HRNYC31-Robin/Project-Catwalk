@@ -36,6 +36,7 @@ const OutfitProductCard = (props) => {
         return temp;
       })
       .then((newObject) => {
+        console.log('RENDEDERING');
         setOutFit((previousState) => {
           previousState.unshift(newObject);
           const unique = [
@@ -53,8 +54,6 @@ const OutfitProductCard = (props) => {
       });
   };
 
-  const [outFitOb, userOutSet] = useState([]);
-
   useEffect(() => {
     if (localStorage.getItem('FEC') !== null) {
       const localData = localStorage.getItem('FEC');
@@ -64,24 +63,46 @@ const OutfitProductCard = (props) => {
     }
   }, [props.userOutFits]);
 
+  const removedOutfit = (index) => {
+    console.log('USER Clicked: ', index);
+    setOutFit((previousState) => {
+      console.log('CURRENT: ', previousState);
+      let tempState = previousState.slice();
+      tempState.splice(index, 1);
+      console.log(tempState);
+      localStorage.setItem('FEC', JSON.stringify(tempState));
+      return tempState;
+    });
+    // console.log(products.splice(id, 1));
+  };
+
   return (
     <div>
       <h6 className='relatedProductTitle'>YOUR OUTFIT</h6>
       <div className='productWrapper'>
         <div className='productCardContainer'>
-          <i className='arrow left' onClick={() => {}}></i>
+          {products.length > 4 ? (
+            <i className='arrow left' onClick={() => {}}></i>
+          ) : (
+            ''
+          )}
           {products.map((item, index) => {
             if (index < 4) {
               return (
                 <div className='productCard' key={index}>
-                  <span
-                    className='productStarIconRelatedProd'
-                    onClick={() => {
-                      // Remove product from outfit
-                    }}
-                  >
-                    &#10005;
-                  </span>
+                  {item.id !== 'NA' ? (
+                    <span
+                      className='productStarIconRelatedProd'
+                      onClick={() => {
+                        // Remove product from outfit
+                        removedOutfit(index);
+                      }}
+                    >
+                      &#10005;
+                    </span>
+                  ) : (
+                    ''
+                  )}
                   {console.log('IN OUTFIT LOOP:', item)}
                   <img
                     style={{ height: '300px', width: '250px' }}
@@ -90,9 +111,7 @@ const OutfitProductCard = (props) => {
                     alt='ProductImage'
                     onClick={() => {
                       updateOutfit();
-                      //props.handleOutFitAddition(item);
-                      props.handleOutFitAddition(props.currentProduct);
-                      // console.log(outFitOb);
+                      //props.handleOutFitAddition(props.currentProduct);
                     }}
                   />
                   <p className='productCat'>{item.category}</p>
@@ -107,7 +126,11 @@ const OutfitProductCard = (props) => {
               );
             }
           })}
-          <i className='arrow right' onClick={() => {}}></i>
+          {products.length > 4 ? (
+            <i className='arrow right' onClick={() => {}}></i>
+          ) : (
+            ''
+          )}
         </div>
       </div>
     </div>
