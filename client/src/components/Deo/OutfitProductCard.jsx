@@ -10,23 +10,25 @@ library.add(farFaStar, fas);
 const OutfitProductCard = (props) => {
   const placeHolder = {
     category: '',
+    id: 'NA',
     name: 'ADD TO OUTFIT',
     // eslint-disable-next-line camelcase
     default_price: '',
     image: 'https://img.icons8.com/nolan/64/plus-math.png',
   };
-  console.log('INSIDE the OUTFIT CART: (PROPS)', props);
 
   const [products, setOutFit] = useState([placeHolder]);
 
   const updateOutfit = () => {
     setOutFit((prevState) => {
       prevState.unshift(props.currentProduct);
-      var uniqueOutfit = prevState.filter(function (item, index) {
-        return prevState.indexOf(item) === index;
-      });
-      localStorage.setItem('FEC', JSON.stringify(uniqueOutfit));
-      return uniqueOutfit;
+      // ES6 Magic to prevent duplicates
+      const unique = [
+        ...new Map(prevState.map((item) => [item['id'], item])).values(),
+      ];
+
+      localStorage.setItem('FEC', JSON.stringify(unique));
+      return unique;
     });
   };
 
@@ -34,13 +36,45 @@ const OutfitProductCard = (props) => {
     if (localStorage.getItem('FEC') !== null) {
       const localData = localStorage.getItem('FEC');
       console.log('STORAGE: ', JSON.parse(localData));
+      let newData = [];
+      // MAke API call to get the images based on local state
+      JSON.parse(localData).forEach((item) => {
+        if (typeof item.id === 'number') {
+          newData.push(item.id);
+        }
+      });
+
+      console.log('STORAGE ID: ', newData);
+
+      /// Axios
+      getRelatedProductsImage(newData)
+        .then((result) => {
+          let newState = result.data.map((item) => {
+            return object.assign({}, item, JSON.parse(localData));
+          });
+
+          console.log('THE NEWS STATE ', newState);
+        })
+        .catch((error) => {
+          console.log('Error getting Image');
+        });
 
       setOutFit((prev) => {
         return JSON.parse(localData);
       });
     }
     //localStorage.setItem('FEC', JSON.stringify(products));
-  }, []);
+  }, [products]);
+
+  const getRelatedProductsImage = function (relatedProducts) {
+    const arrayOfPromiseImage = relatedProducts.map((id) => {
+      return axios
+        .get(`http://18.224.37.110/products/${id}/styles`)
+        .then()
+        .catch();
+    });
+    return Promise.all(arrayOfPromiseImage);
+  };
 
   return (
     <div>
@@ -54,25 +88,18 @@ const OutfitProductCard = (props) => {
                 <div className='productCard' key={index}>
                   <FontAwesomeIcon
                     icon={['fas', 'star']}
-                    className='productStarIconRelatedProd'
+                    className='productStarIcon'
                     onClick={() => {
                       // Remove product from outfit
                     }}
                   />
                   <img
                     style={{ height: '300px', width: '250px' }}
-                    src={
-                      ''
-                      // // Ensure result is not empty
-                      // item.results.length !== 0 &&
-                      // item.results[0].photos[0].thumbnail_url !== null
-                      //   ? item.results[0].photos[0].thumbnail_url
-                      //   : 'https://img.icons8.com/fluent/96/000000/not-applicable.png'
-                    }
+                    src={item.image}
                     alt='ProductImage'
                     onClick={() => {
                       updateOutfit();
-                      props.handleOutFitAddition(props.currentProduct);
+                      // props.handleOutFitAddition(props.currentProduct);
                     }}
                   />
                   <p className='productCat'>{item.category}</p>
