@@ -64,7 +64,7 @@ class ReviewForm extends React.Component {
     e.preventDefault();
     if (validateForm(this.props.metaData.characteristics, this.state)) {
       console.log(this.state);
-      axios.post(`http://18.224.37.110/reviews`, this.state)
+      axios.post('http://18.224.37.110/reviews', this.state)
         .then(result => console.log(result))
         .catch(err => console.log(err));
     }
