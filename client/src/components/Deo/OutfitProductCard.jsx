@@ -84,7 +84,7 @@ const OutfitProductCard = (props) => {
       <h6 className='relatedProductTitle'>YOUR OUTFIT</h6>
       <div className='productWrapper'>
         <div className='productCardContainer'>
-          {products.length > 4 ? (
+          {products.length > 4 && leftArrow !== 0 ? (
             <i
               className='arrow left'
               onClick={() => {
