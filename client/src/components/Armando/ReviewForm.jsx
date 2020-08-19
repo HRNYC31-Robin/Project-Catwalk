@@ -19,6 +19,7 @@ class ReviewForm extends React.Component {
     // submit button
 
     this.state = {
+      'product_id': this.props.metaData.product_id,
       rating: 0,
       summary: '',
       body: '',
@@ -37,7 +38,7 @@ class ReviewForm extends React.Component {
 
   handleInputChange(e) {
     const newChars = Object.assign({}, this.state.characteristics);
-    const newState = Object.assign({characteristics: newChars}, this.state);
+    const newState = Object.assign({}, this.state, {characteristics: newChars});
 
     //update the relevant property
     newState[e.target.name] = e.target.value;
@@ -51,7 +52,7 @@ class ReviewForm extends React.Component {
   handleCharacteristicChoice(choice) {
     // copy characteristic object
     const newChars = JSON.parse(JSON.stringify(this.state.characteristics));
-    newChars[choice.char] = {id: choice.id, value: choice.value};
+    newChars[choice.id] = choice.value;
     // update characteristics state
     this.setState({
       characteristics: newChars
@@ -63,8 +64,8 @@ class ReviewForm extends React.Component {
     e.preventDefault();
     if (validateForm(this.props.metaData.characteristics, this.state)) {
       console.log(this.state);
-      axios.post(`http://18.224.37.110/reviews/?product_id=${prodId}`, this.state)
-        .then(result => console.log(result))
+      axios.post('http://18.224.37.110/reviews', this.state)
+        .then(() => this.props.handleClose())
         .catch(err => console.log(err));
     }
   }
@@ -81,15 +82,15 @@ class ReviewForm extends React.Component {
         <RatingInput handleChoice={this.handleStarChoice} />
         <span id='recommend-form'>
           <p>Recommend</p>
-          <label for='radio-yes'>Yes: </label>
+          <label htmlFor='radio-yes'>Yes: </label>
           <input type='radio' id='radio-yes' name='recommend' className='rec-radio' onClick={() => this.setState({recommend: true})}/>
-          <label for='radio-no'>No: </label>
+          <label htmlFor='radio-no'>No: </label>
           <input type='radio' id='radio-no' name='recommend' className='rec-radio' onClick={() => this.setState({recommend: false})}/>
         </span>
         <input type='text' name='name' placeholder='name' onChange={this.handleInputChange}/>
         <input type='email' name='email' placeholder='email' onChange={this.handleInputChange}/>
-        <input type='text' name='summary' placeholder='summary' maxlength='60' onChange={this.handleInputChange}/>
-        <textarea id='body' type='text' name='body' placeholder='body' maxlength='1000' Rows='4' onChange={this.handleInputChange}/>
+        <input type='text' name='summary' placeholder='summary' maxLength='60' onChange={this.handleInputChange}/>
+        <textarea id='body' type='text' name='body' placeholder='body' maxLength='1000' rows='4' onChange={this.handleInputChange}/>
         <Characteristic metaData={this.props.metaData} handleChar={this.handleCharacteristicChoice}/>
         <input type='submit'/>
       </form>
@@ -216,13 +217,18 @@ const Characteristic = ({metaData, handleChar}) => {
 
 
   return Object.keys(characteristics).map(char => (
-    <div className='characteristic-form'>
+    <div className='characteristic-form' key={char}>
       <p>{char}</p>
       {
         labels[char].map((label, i) => (
-          <div className='labels'>
-            <input id={label} type='radio' name={char} data-value={i + 1} className='char-radio' onClick={handleCharClick}/>
-            <label htmlFor={label} >{label}</label>
+          <div className='labels' key={`${label}${i}`}>
+            <input id={label}
+              key={`${label}${char}`}
+              type='radio' name={char}
+              data-value={i + 1}
+              className='char-radio'
+              onClick={handleCharClick}/>
+            <label htmlFor={label} key={`${char}${label}`}>{label}</label>
           </div>
         ))
       }
