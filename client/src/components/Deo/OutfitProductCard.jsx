@@ -8,6 +8,8 @@ import { faStar as farFaStar } from '@fortawesome/free-regular-svg-icons';
 library.add(farFaStar, fas);
 
 const OutfitProductCard = (props) => {
+  console.log('INSIDE OUTFIT (PROPS) ', props);
+
   const placeHolder = {
     category: '',
     id: 'NA',
@@ -32,6 +34,8 @@ const OutfitProductCard = (props) => {
     });
   };
 
+  const [outFitOb, userOutSet] = useState([]);
+
   useEffect(() => {
     if (localStorage.getItem('FEC') !== null) {
       const localData = localStorage.getItem('FEC');
@@ -43,35 +47,33 @@ const OutfitProductCard = (props) => {
           newData.push(item.id);
         }
       });
-
       console.log('STORAGE ID: ', newData);
-
-      /// Axios
-      getRelatedProductsImage(newData)
-        .then((result) => {
-          let newState = result.data.map((item) => {
-            return object.assign({}, item, JSON.parse(localData));
-          });
-
-          console.log('THE NEWS STATE ', newState);
-        })
-        .catch((error) => {
-          console.log('Error getting Image');
-        });
 
       setOutFit((prev) => {
         return JSON.parse(localData);
       });
+    } else {
+      axios
+        .get(`http://18.224.37.110/products/${props.currentProduct.id}/styles`)
+        .then((productImage) => {
+          console.log('LOADING IMAGE:', productImage.data);
+          let temp = Object.assign({}, productImage.data, props.currentProduct);
+          //console.log('New Product Image obj: ', temp);
+          return temp;
+        })
+        .then((newObj) => {
+          userOutSet(newObj);
+        })
+        .catch((error) => {
+          console.log('Error on image load: ', error);
+        });
     }
     //localStorage.setItem('FEC', JSON.stringify(products));
-  }, [products]);
+  }, [props.userOutFits]);
 
-  const getRelatedProductsImage = function (relatedProducts) {
-    const arrayOfPromiseImage = relatedProducts.map((id) => {
-      return axios
-        .get(`http://18.224.37.110/products/${id}/styles`)
-        .then()
-        .catch();
+  const getProductsImage = function (imageID) {
+    const arrayOfPromiseImage = imageID.map((id) => {
+      return axios.get(`http://18.224.37.110/products/${id}/styles`);
     });
     return Promise.all(arrayOfPromiseImage);
   };
@@ -86,20 +88,24 @@ const OutfitProductCard = (props) => {
             if (index < 4) {
               return (
                 <div className='productCard' key={index}>
-                  <FontAwesomeIcon
-                    icon={['fas', 'star']}
-                    className='productStarIcon'
+                  <span
+                    className='productStarIconRelatedProd'
                     onClick={() => {
                       // Remove product from outfit
                     }}
-                  />
+                  >
+                    {' '}
+                    &#10005;
+                  </span>
                   <img
                     style={{ height: '300px', width: '250px' }}
                     src={item.image}
                     alt='ProductImage'
                     onClick={() => {
                       updateOutfit();
-                      // props.handleOutFitAddition(props.currentProduct);
+                      //props.handleOutFitAddition(item);
+                      props.handleOutFitAddition(props.currentProduct);
+                      console.log(outFitOb);
                     }}
                   />
                   <p className='productCat'>{item.category}</p>
