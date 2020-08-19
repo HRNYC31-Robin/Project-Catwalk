@@ -64,6 +64,7 @@ const RelatedProductCard = (props) => {
                 return newState;
               })
               .then((resultArray) => {
+                props.updateRelatedProductList(resultArray);
                 setProducts(resultArray);
                 setRightCount(results.length);
               })

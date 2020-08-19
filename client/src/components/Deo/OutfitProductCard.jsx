@@ -15,8 +15,10 @@ const OutfitProductCard = (props) => {
     default_price: '',
     image: 'https://img.icons8.com/nolan/64/plus-math.png',
   };
+  console.log('INSIDE the OUTFIT CART: (PROPS)', props);
 
   const [products, setOutFit] = useState([placeHolder]);
+
   const updateOutfit = () => {
     setOutFit((prevState) => {
       prevState.unshift(props.currentProduct);
@@ -32,6 +34,7 @@ const OutfitProductCard = (props) => {
     if (localStorage.getItem('FEC') !== null) {
       const localData = localStorage.getItem('FEC');
       console.log('STORAGE: ', JSON.parse(localData));
+
       setOutFit((prev) => {
         return JSON.parse(localData);
       });
@@ -58,11 +61,18 @@ const OutfitProductCard = (props) => {
                   />
                   <img
                     style={{ height: '300px', width: '250px' }}
-                    src={item.image}
+                    src={
+                      ''
+                      // // Ensure result is not empty
+                      // item.results.length !== 0 &&
+                      // item.results[0].photos[0].thumbnail_url !== null
+                      //   ? item.results[0].photos[0].thumbnail_url
+                      //   : 'https://img.icons8.com/fluent/96/000000/not-applicable.png'
+                    }
                     alt='ProductImage'
                     onClick={() => {
                       updateOutfit();
-                      // props.handleOutFitAddition(props.currentProduct);
+                      props.handleOutFitAddition(props.currentProduct);
                     }}
                   />
                   <p className='productCat'>{item.category}</p>
