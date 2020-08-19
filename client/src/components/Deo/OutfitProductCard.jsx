@@ -130,7 +130,6 @@ const OutfitProductCard = (props) => {
                       item.id === 'NA'
                         ? () => {
                           updateOutfit();
-                          console.log('Product.length: ', products.length);
                           setRightArrow((prev) => {
                             return prev + 1;
                           });
