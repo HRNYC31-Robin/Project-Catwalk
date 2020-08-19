@@ -48,7 +48,7 @@ class RatingsReviews extends React.Component {
             characteristics={this.props.ratingsMeta.characteristics}
           />
         </div>
-        <div id='review-list'>
+        <div>
           <ReviewListContainer totalRatings={this.props.totalRatings} prevId={this.state.prevId}/>
         </div>
       </div>
