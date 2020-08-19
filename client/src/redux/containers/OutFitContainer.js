@@ -5,6 +5,7 @@ import outfitActions from '../actions/ProductActions/addOutfitActions.js';
 const mapStateToProps = (state) => ({
   userOutFits: state.userOutFits,
   currentProduct: state.currentProduct,
+  relatedProducts: state.relatedProducts,
 });
 
 const mapDispatchToProps = (dispatch) => ({

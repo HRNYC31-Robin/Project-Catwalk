@@ -17,7 +17,6 @@ class App extends React.Component {
 
   componentDidMount() {
     let productID = Number(this.props.match.params.id);
-    console.log('match: ', productID);
     axios
       .get(`http://18.224.37.110/products/${productID}`)
       .then((row) => {
