@@ -140,6 +140,7 @@ const RelatedProductCard = (props) => {
                         '',
                         `/products/${item.id}`
                       );
+                      props.handleChangeURLClick(`/products/${item.id}`);
                     }}
                   />
                   <p className='productCat'>{item.category}</p>
@@ -163,6 +164,7 @@ const RelatedProductCard = (props) => {
           <ProductComparison
             displayModal={modalDisplay}
             closeModalFunc={closeModal}
+            currentProduct={props.currentProduct}
           />
         </div>
       </div>
