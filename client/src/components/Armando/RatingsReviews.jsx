@@ -1,5 +1,5 @@
 import React from 'react';
-import ReviewListContainer from '../../redux/containers/ReviewListContainer.js';
+import ReviewListContainer from '../../redux/containers/reviewListContainer.js';
 import Breakdown from './Breakdown';
 import axios from 'axios';
 
