@@ -1,11 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { fas } from '@fortawesome/free-solid-svg-icons';
-import { faStar as farFaStar } from '@fortawesome/free-regular-svg-icons';
-
-library.add(farFaStar, fas);
 
 const OutfitProductCard = (props) => {
   const placeHolder = {
@@ -17,6 +11,7 @@ const OutfitProductCard = (props) => {
   };
 
   const [products, setOutFit] = useState([placeHolder]);
+
   const updateOutfit = () => {
     setOutFit((prevState) => {
       prevState.unshift(props.currentProduct);
@@ -49,13 +44,14 @@ const OutfitProductCard = (props) => {
             if (index < 4) {
               return (
                 <div className='productCard' key={index}>
-                  <FontAwesomeIcon
-                    icon={['fas', 'star']}
-                    className='productStarIcon'
+                  <span
+                    className='productStarIconRelatedProd'
                     onClick={() => {
                       // Remove product from outfit
                     }}
-                  />
+                  >
+                    &#9733;
+                  </span>
                   <img
                     style={{ height: '300px', width: '250px' }}
                     src={item.image}
