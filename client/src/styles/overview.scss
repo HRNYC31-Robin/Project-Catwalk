@@ -140,13 +140,14 @@
     grid-gap: 20px;
     padding: 15px;
 
-    div {
+    /*div {
       background-color: white;
       border-width: medium;
       border-color: black;
       border-style: solid;
       text-align: center;
-    }
+      align-self: center;
+    }*/
   }
 
   .addToCartAndStar {

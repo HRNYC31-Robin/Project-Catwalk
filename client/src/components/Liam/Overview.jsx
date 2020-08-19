@@ -15,7 +15,8 @@ const Overview = function ({currentProduct}) {
   const [ styleIndex, changeCurrStyle ] = useState(0);
   const [ currSize, changeCurrSize ] = useState('SELECT SIZE');
   const [ sizeList, updateSizeList ] = useState([]);
-  const [ currQty, updateQty ] = useState(0);
+  const [ totalQty, updateTotalQty ] = useState(0); // How much of one qty
+  const [ selectedQty, updateSelectedQty ] = useState(0); // Which quantity is selected
 
   const toggleExpand = () => {
     !expanded ? changeExpand(true) : changeExpand(false);
@@ -28,6 +29,14 @@ const Overview = function ({currentProduct}) {
         break;
       }
     }
+  };
+
+  const handleChangeStyle = (ind) => {
+    // Update style
+    changeCurrStyle(ind);
+
+    // Update currSize, sizeList, totalQty, currQty
+
   };
 
 
@@ -63,7 +72,8 @@ const Overview = function ({currentProduct}) {
           currentProduct={currentProduct}
           styleList={styleList}
           styleIndex={styleIndex}
-          changeStyle={changeCurrStyle}
+          changeStyle={handleChangeStyle}
+          currSize={currSize}
         />
 
         <ProductBlurb />
