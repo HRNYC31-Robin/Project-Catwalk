@@ -1,24 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ReviewTile from './ReviewTile.jsx';
 import axios from 'axios';
 import ReviewForm from './ReviewForm.jsx';
 
 const ReviewList = (props) => {
   const prodId = props.currentProduct.id;
-  const [reviewModal, setReviewModal] = React.useState(false);
+  const [reviewModal, setReviewModal] = useState(false);
+  const [sortList, setSortList] = useState('helpful');
 
-  if (props.reviews.length === 0) {
-    axios.get(`http://18.224.37.110/reviews/?product_id=${prodId}`)
+
+  // updated the reviews if product Id changes
+  useEffect(() => {
+    axios.get(`http://18.224.37.110/reviews/?product_id=${prodId}&sort=${sortList}`)
       .then(results => {
+        console.log('This is first get in ReviewList prodId', props.totalRatings);
         props.addMoreReviews(results.data.results);
         props.handleMoreReviewsClick(results.data.results.slice(0, 2));
       })
       .catch(err => console.log(err));
-  }
+  }, [prodId]);
 
   const handleMoreClick = () => {
     if (props.reviews.length <= props.totalRatings) {
-      axios.get(`http://18.224.37.110/reviews/?product_id=${prodId}&count=${props.totalRatings}`)
+      axios.get(`http://18.224.37.110/reviews/?product_id=${prodId}&count=${props.totalRatings}&sort=${sortList}`)
         .then(results => props.addMoreReviews(results.data.results))
         .catch(err => console.log(err));
     }
