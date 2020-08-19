@@ -1,31 +1,56 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import StarRating from '../common/StarRating.jsx';
 
 const OutfitProductCard = (props) => {
   console.log('INSIDE OUTFIT (PROPS) ', props);
 
+  // Place holder object for add
   const placeHolder = {
     category: '',
     id: 'NA',
     name: 'ADD TO OUTFIT',
     // eslint-disable-next-line camelcase
     default_price: '',
-    image: 'https://img.icons8.com/nolan/64/plus-math.png',
+    results: [
+      {
+        photos: [
+          // eslint-disable-next-line camelcase
+          { thumbnail_url: 'https://img.icons8.com/nolan/64/plus-math.png' },
+        ],
+      },
+    ],
   };
 
   const [products, setOutFit] = useState([placeHolder]);
 
   const updateOutfit = () => {
-    setOutFit((prevState) => {
-      prevState.unshift(props.currentProduct);
-      // ES6 Magic to prevent duplicates
-      const unique = [
-        ...new Map(prevState.map((item) => [item['id'], item])).values(),
-      ];
-
-      localStorage.setItem('FEC', JSON.stringify(unique));
-      return unique;
-    });
+    // API call to get Image url based on current product
+    axios
+      .get(`http://18.224.37.110/products/${props.currentProduct.id}/styles`)
+      .then((productImage) => {
+        console.log('LOADING IMAGE:', productImage.data);
+        // Merge current object and image data
+        let temp = Object.assign({}, productImage.data, props.currentProduct);
+        //console.log('New Product Image obj: ', temp);
+        return temp;
+      })
+      .then((newObject) => {
+        setOutFit((previousState) => {
+          previousState.unshift(newObject);
+          const unique = [
+            ...new Map(
+              previousState.map((item) => [item['id'], item])
+            ).values(),
+          ];
+          //userOutSet(newObj);
+          localStorage.setItem('FEC', JSON.stringify(unique));
+          return unique;
+        });
+      })
+      .catch((error) => {
+        console.log('Error on image load: ', error);
+      });
   };
 
   const [outFitOb, userOutSet] = useState([]);
@@ -33,44 +58,11 @@ const OutfitProductCard = (props) => {
   useEffect(() => {
     if (localStorage.getItem('FEC') !== null) {
       const localData = localStorage.getItem('FEC');
-      console.log('STORAGE: ', JSON.parse(localData));
-      let newData = [];
-      // MAke API call to get the images based on local state
-      JSON.parse(localData).forEach((item) => {
-        if (typeof item.id === 'number') {
-          newData.push(item.id);
-        }
-      });
-      console.log('STORAGE ID: ', newData);
-
       setOutFit((prev) => {
         return JSON.parse(localData);
       });
-    } else {
-      axios
-        .get(`http://18.224.37.110/products/${props.currentProduct.id}/styles`)
-        .then((productImage) => {
-          console.log('LOADING IMAGE:', productImage.data);
-          let temp = Object.assign({}, productImage.data, props.currentProduct);
-          //console.log('New Product Image obj: ', temp);
-          return temp;
-        })
-        .then((newObj) => {
-          userOutSet(newObj);
-        })
-        .catch((error) => {
-          console.log('Error on image load: ', error);
-        });
     }
-    //localStorage.setItem('FEC', JSON.stringify(products));
   }, [props.userOutFits]);
-
-  const getProductsImage = function (imageID) {
-    const arrayOfPromiseImage = imageID.map((id) => {
-      return axios.get(`http://18.224.37.110/products/${id}/styles`);
-    });
-    return Promise.all(arrayOfPromiseImage);
-  };
 
   return (
     <div>
@@ -90,21 +82,27 @@ const OutfitProductCard = (props) => {
                   >
                     &#10005;
                   </span>
+                  {console.log('IN OUTFIT LOOP:', item)}
                   <img
                     style={{ height: '300px', width: '250px' }}
-                    src={item.image}
+                    src={item.results[0].photos[0].thumbnail_url}
+                    //src={''}
                     alt='ProductImage'
                     onClick={() => {
                       updateOutfit();
                       //props.handleOutFitAddition(item);
                       props.handleOutFitAddition(props.currentProduct);
-                      console.log(outFitOb);
+                      // console.log(outFitOb);
                     }}
                   />
                   <p className='productCat'>{item.category}</p>
                   <p className='productTitle'>{item.name}</p>
-                  <p className='productPrice'>${item.default_price}</p>
-                  <p> STAR PLACEHOLDER</p>
+                  {item.id !== 'NA' ? (
+                    <p className='productPrice'>${item.default_price}</p>
+                  ) : (
+                    ''
+                  )}
+                  {item.id !== 'NA' ? <StarRating prodId={item.id} /> : ''}
                 </div>
               );
             }
