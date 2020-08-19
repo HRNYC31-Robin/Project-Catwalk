@@ -1,13 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ProductComparison from './ProductComparison.jsx';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { fas } from '@fortawesome/free-solid-svg-icons';
-import { faStar as farFaStar } from '@fortawesome/free-regular-svg-icons';
-import StarRating from '../common/StarRating.jsx';
 
-library.add(farFaStar, fas);
+import StarRating from '../common/StarRating.jsx';
 
 const RelatedProductCard = (props) => {
   const [modalDisplay, setModal] = useState(() => {
@@ -117,7 +112,7 @@ const RelatedProductCard = (props) => {
             if (index < 4) {
               return (
                 <div className='productCard' key={index}>
-                  <FontAwesomeIcon
+                  {/* <FontAwesomeIcon
                     icon={['fas', 'star']}
                     className='productStarIconRelatedProd'
                     onClick={() => {
@@ -125,7 +120,17 @@ const RelatedProductCard = (props) => {
                       //Using item.id to get display product
                       setClickProduct(item);
                     }}
-                  />
+                  /> */}
+                  <span
+                    className='productStarIconRelatedProd'
+                    onClick={() => {
+                      setModal(true);
+                      //Using item.id to get display product
+                      setClickProduct(item);
+                    }}
+                  >
+                    &#9733;
+                  </span>
                   <img
                     style={{ height: '300px', width: '250px' }}
                     src={
