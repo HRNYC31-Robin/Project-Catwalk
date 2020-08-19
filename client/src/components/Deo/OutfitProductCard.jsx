@@ -57,6 +57,9 @@ const OutfitProductCard = (props) => {
   useEffect(() => {
     if (localStorage.getItem('FEC') !== null) {
       const localData = localStorage.getItem('FEC');
+      setRightArrow(() => {
+        return JSON.parse(localData).length;
+      });
       setOutFit((prev) => {
         return JSON.parse(localData);
       });
@@ -76,17 +79,35 @@ const OutfitProductCard = (props) => {
     // console.log(products.splice(id, 1));
   };
 
+  /*
+    controllers for right and left arrows
+  */
+
+  const [leftArrow, setLeftArrow] = useState(0);
+  const [rightArrow, setRightArrow] = useState(products.length);
+
   return (
     <div>
       <h6 className='relatedProductTitle'>YOUR OUTFIT</h6>
       <div className='productWrapper'>
         <div className='productCardContainer'>
           {products.length > 4 ? (
-            <i className='arrow left' onClick={() => {}}></i>
+            <i
+              className='arrow left'
+              onClick={() => {
+                setLeftArrow((prev) => {
+                  if (prev !== 0) {
+                    return prev - 1;
+                  } else {
+                    return 0;
+                  }
+                });
+              }}
+            ></i>
           ) : (
             ''
           )}
-          {products.map((item, index) => {
+          {products.slice(leftArrow, rightArrow).map((item, index) => {
             if (index < 4) {
               return (
                 <div className='productCard' key={index}>
@@ -111,6 +132,10 @@ const OutfitProductCard = (props) => {
                     alt='ProductImage'
                     onClick={() => {
                       updateOutfit();
+                      console.log('Product.length: ', products.length);
+                      setRightArrow((prev) => {
+                        return prev + 1;
+                      });
                       //props.handleOutFitAddition(props.currentProduct);
                     }}
                   />
@@ -126,8 +151,19 @@ const OutfitProductCard = (props) => {
               );
             }
           })}
-          {products.length > 4 ? (
-            <i className='arrow right' onClick={() => {}}></i>
+          {products.length > 4 && leftArrow < products.length - 1 ? (
+            <i
+              className='arrow right'
+              onClick={() => {
+                console.log('THE CLICKED RIGHT: ', rightArrow);
+                console.log('THE CLICKED LEFT: ', leftArrow);
+                console.log('THE PRODUCT LENGTH: ', products.length);
+
+                setLeftArrow((prev) => {
+                  return prev + 1;
+                });
+              }}
+            ></i>
           ) : (
             ''
           )}
