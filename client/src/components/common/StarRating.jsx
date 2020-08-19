@@ -11,8 +11,8 @@ library.add(farFaStar, fas);
 
 const StarRating = ({prodId, starCount}) => {
   const [starAverage, setStarAverage] = React.useState(0);
-  const empty = <FontAwesomeIcon icon={farFaStar} />;
-  const stars = [empty, empty, empty, empty, empty];
+  const empty = <span>&#9734;</span>;
+  const stars = [];
   const decimal = prodId ? starAverage % 1 : starCount % 1;
   const integer = prodId ? parseInt(starAverage) : parseInt(starCount);
 
@@ -20,27 +20,42 @@ const StarRating = ({prodId, starCount}) => {
   if (prodId) {
     ratingAverageHelper(prodId)
       .then(average => setStarAverage(average))
-      .then(() => console.log('this is in StarRating after update', starAverage))
       .catch(err => console.log(err));
   }
 
   // push full stars
-  for (let i = 0; i < integer; i++) {
-    stars[i] = <FontAwesomeIcon icon={['fas', 'star']} />;
+  for (let i = 0; i < 5; i++) {
+    if (i < integer) {
+      stars[i] = <span key={i}>&#9733;</span>;
+    } else {
+      stars[i] = <span key={i}>&#9734;</span>;
+    }
   }
   // deal with decimal
   if (decimal > 0) {
     if (decimal < 0.26) {
-      stars[integer] = 'q';
-    } else if (decimal < 0.51) {
-      stars[integer] = <FontAwesomeIcon icon={['fas', 'star-half-alt']} />;
+      stars[integer] =
+        <div key='quarterStar' id='quarterStar' style={{position: 'relative', display: 'inline-flex', width: '15px'}}>
+          <span style={{position: 'relative', display: 'flex', zIndex: 0}}>&#9734;</span>
+          <div style={{position: 'absolute', display: 'flex', width: '25%', zIndex: 1, overflow: 'hidden'}}>&#9733;</div>
+        </div>;
+    } else if (decimal < 0.75) {
+      stars[integer] =
+        <div key='halfStar' id='halfStar' style={{position: 'relative', display: 'inline-flex', width: '15px'}}>
+          <span style={{position: 'relative', display: 'flex', zIndex: 0}}>&#9734;</span>
+          <div style={{position: 'absolute', display: 'flex', width: '52%', zIndex: 1, overflow: 'hidden'}}>&#9733;</div>
+        </div>;
     } else {
-      stars[integer] = '3q';
+      stars[integer] =
+        <div key='3qrStar' id='3qrStar' style={{position: 'relative', display: 'inline-flex', width: '15px'}}>
+          <span style={{position: 'relative', display: 'flex', zIndex: 0}}>&#9734;</span>
+          <div style={{position: 'absolute', display: 'flex', width: '65%', zIndex: 1, overflow: 'hidden'}}>&#9733;</div>
+        </div>;
     }
   }
 
   return (
-    <span>{stars}</span>
+    <div>{stars}</div>
   );
 };
 
