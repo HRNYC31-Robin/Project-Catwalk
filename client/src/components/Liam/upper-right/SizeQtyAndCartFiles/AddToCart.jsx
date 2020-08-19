@@ -8,9 +8,11 @@ const AddToCart = function () {
 
   return (
 
-    <Button variant="light">
-      Add to Cart
-    </Button>
+    <div>
+      <Button variant="outline-secondary">
+        Add to Cart
+      </Button>
+    </div>
 
   );
 };

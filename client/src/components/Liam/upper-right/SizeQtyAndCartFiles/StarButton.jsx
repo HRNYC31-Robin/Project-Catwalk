@@ -7,10 +7,11 @@ import Button from 'react-bootstrap/Button';
 const StarButton = function () {
 
   return (
-
-    <Button variant="light">
-      Star
-    </Button>
+    <div>
+      <Button variant="outline-secondary">
+        Star
+      </Button>
+    </div>
 
   );
 };

@@ -139,6 +139,7 @@
     grid-template-columns: 7fr 4fr;
     grid-gap: 20px;
     padding: 15px;
+    padding-top: 40px;
 
     /*div {
       background-color: white;
@@ -148,6 +149,18 @@
       text-align: center;
       align-self: center;
     }*/
+
+    div {
+      background-color: white;
+      align-self: center;
+    }
+
+    .dropdown-toggle {
+      width: 100%;
+      height: 60px;
+    }
+
+
   }
 
   .addToCartAndStar {
@@ -159,9 +172,12 @@
 
     div {
       background-color: white;
-      border-width: medium;
-      border-color: black;
-      border-style: solid;
+      align-self: center;
+    }
+
+    .btn {
+      width: 100%;
+      height: 60px;
     }
   }
 
