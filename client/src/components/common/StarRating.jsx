@@ -20,7 +20,6 @@ const StarRating = ({prodId, starCount}) => {
   if (prodId) {
     ratingAverageHelper(prodId)
       .then(average => setStarAverage(average))
-      .then(() => console.log('this is in StarRating after update', starAverage))
       .catch(err => console.log(err));
   }
 
