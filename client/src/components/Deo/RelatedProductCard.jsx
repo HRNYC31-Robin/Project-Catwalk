@@ -119,7 +119,7 @@ const RelatedProductCard = (props) => {
                 <div className='productCard' key={index}>
                   <FontAwesomeIcon
                     icon={['fas', 'star']}
-                    className='productStarIcon'
+                    className='productStarIconRelatedProd'
                     onClick={() => {
                       setModal(true);
                       //Using item.id to get display product

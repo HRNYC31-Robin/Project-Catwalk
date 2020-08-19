@@ -1,19 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
 
 const ProductComparison = (props) => {
-  //console.log('INSIDE MODAL: ', props);
   const productFeature = props.clickedProduct.features;
-  //console.log(productFeature[0]);
-  //console.log('INIDEF FEATURE: ', productFeature);
-
   const [compareFeature, setCompareFeature] = useState([]);
 
   useEffect(() => {
     if (props.clickedProduct.length !== 0) {
-      //console.log('INSIDE MODAL USE EFFECT');
-      //console.log('INSIDE MODAL USE EFFECT', props.clickedProduct.features);
       let combinedFeature = Object.assign(
         {},
         props.clickedProduct.features,
@@ -24,42 +20,32 @@ const ProductComparison = (props) => {
         return combinedFeature[key];
       });
 
-      console.log(
-        'INSIDE Current : ',
-        props.currentProduct.features,
-        'INSIDE CLICKED : ',
-        props.clickedProduct.features,
-        ' COMBINDED :',
-        combinedData,
-        ' COMbined Feature: ',
-        combinedFeature
-      );
-
       setCompareFeature(combinedData);
     }
   }, [props.clickedProduct]);
-
-  const product = [
-    { productName: 'Product', features: 'GMO', secondProduct: 'Name' },
-    { productName: 'Product', features: 'GMO', secondProduct: 'Name' },
-    { productName: 'Product', features: 'GMO', secondProduct: 'Name' },
-    { productName: 'Product', features: 'GMO', secondProduct: 'Name' },
-    { productName: 'Product', features: 'GMO', secondProduct: 'Name' },
-    { productName: 'Product', features: 'GMO', secondProduct: 'Name' },
-  ];
 
   const renderProduct = (compareFeature, index) => {
     return (
       <tr key={index}>
         <td style={{ textAlign: 'left' }}>
           {props.currentProduct.features.find(
-            (obj) => obj.features === compareFeature.feature
-          )
-            ? ' Y'
-            : 'N'}
+            (obj) => obj.value === compareFeature.value
+          ) ? (
+              <FontAwesomeIcon icon={faCheck} className='checkMark' />
+            ) : (
+              ''
+            )}
         </td>
-        <td style={{ textAlign: 'center' }}>{compareFeature.feature}</td>
-        <td style={{ textAlign: 'right' }}>{''}</td>
+        <td style={{ textAlign: 'center' }}>{compareFeature.value}</td>
+        <td style={{ textAlign: 'right' }}>
+          {props.clickedProduct.features.find(
+            (obj) => obj.value === compareFeature.value
+          ) ? (
+              <FontAwesomeIcon icon={faCheck} className='checkMark' />
+            ) : (
+              ''
+            )}
+        </td>
       </tr>
     );
   };
