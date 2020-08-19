@@ -12,7 +12,7 @@ library.add(farFaStar, fas);
 const StarRating = ({prodId, starCount}) => {
   const [starAverage, setStarAverage] = React.useState(0);
   const empty = <span>&#9734;</span>;
-  const stars = [empty, empty, empty, empty, empty];
+  const stars = [];
   const decimal = prodId ? starAverage % 1 : starCount % 1;
   const integer = prodId ? parseInt(starAverage) : parseInt(starCount);
 
@@ -25,24 +25,32 @@ const StarRating = ({prodId, starCount}) => {
   }
 
   // push full stars
-  for (let i = 0; i < integer; i++) {
-    stars[i] = <span>&#9733;</span>;
+  for (let i = 0; i < 5; i++) {
+    if (i < integer) {
+      stars[i] = <span key={i}>&#9733;</span>;
+    } else {
+      stars[i] = <span key={i}>&#9734;</span>;
+    }
   }
   // deal with decimal
   if (decimal > 0) {
     if (decimal < 0.26) {
-      stars[integer] = 'q';
+      stars[integer] =
+        <div key='quarterStar' id='quarterStar' style={{position: 'relative', display: 'inline-flex', width: '15px'}}>
+          <span style={{position: 'relative', display: 'flex', zIndex: 0}}>&#9734;</span>
+          <div style={{position: 'absolute', display: 'flex', width: '25%', zIndex: 1, overflow: 'hidden'}}>&#9733;</div>
+        </div>;
     } else if (decimal < 0.75) {
       stars[integer] =
-        <div id='3qrStar' style={{position: 'relative', display: 'inline-flex', width: '15px'}}>
-          <span style={{position: 'relative', display: 'flex', 'z-index': 0}}>&#9734;</span>
-          <div style={{position: 'absolute', display: 'flex', width: '52%', 'z-index': 1, overflow: 'hidden'}}>&#9733;</div>
+        <div key='halfStar' id='halfStar' style={{position: 'relative', display: 'inline-flex', width: '15px'}}>
+          <span style={{position: 'relative', display: 'flex', zIndex: 0}}>&#9734;</span>
+          <div style={{position: 'absolute', display: 'flex', width: '52%', zIndex: 1, overflow: 'hidden'}}>&#9733;</div>
         </div>;
     } else {
       stars[integer] =
-        <div id='3qrStar' style={{position: 'relative', display: 'inline-flex', width: '15px'}}>
-          <span style={{position: 'relative', display: 'flex', 'z-index': 0}}>&#9734;</span>
-          <div style={{position: 'absolute', display: 'flex', width: '65%', 'z-index': 1, overflow: 'hidden'}}>&#9733;</div>
+        <div key='3qrStar' id='3qrStar' style={{position: 'relative', display: 'inline-flex', width: '15px'}}>
+          <span style={{position: 'relative', display: 'flex', zIndex: 0}}>&#9734;</span>
+          <div style={{position: 'absolute', display: 'flex', width: '65%', zIndex: 1, overflow: 'hidden'}}>&#9733;</div>
         </div>;
     }
   }
