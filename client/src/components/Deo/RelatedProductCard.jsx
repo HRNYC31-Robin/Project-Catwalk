@@ -112,15 +112,6 @@ const RelatedProductCard = (props) => {
             if (index < 4) {
               return (
                 <div className='productCard' key={index}>
-                  {/* <FontAwesomeIcon
-                    icon={['fas', 'star']}
-                    className='productStarIconRelatedProd'
-                    onClick={() => {
-                      setModal(true);
-                      //Using item.id to get display product
-                      setClickProduct(item);
-                    }}
-                  /> */}
                   <span
                     className='productStarIconRelatedProd'
                     onClick={() => {
