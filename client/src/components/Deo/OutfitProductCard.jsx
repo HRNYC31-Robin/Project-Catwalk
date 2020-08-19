@@ -54,7 +54,7 @@ const OutfitProductCard = (props) => {
                 <div className='productCard' key={index}>
                   <FontAwesomeIcon
                     icon={['fas', 'star']}
-                    className='productStarIcon'
+                    className='productStarIconRelatedProd'
                     onClick={() => {
                       // Remove product from outfit
                     }}

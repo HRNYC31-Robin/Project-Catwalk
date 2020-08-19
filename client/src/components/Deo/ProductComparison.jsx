@@ -1,37 +1,51 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
 
-const ProductComparison = ({ displayModal, closeModalFunc }) => {
-  const product = [
-    {
-      productName: 'Product',
-      features: 'GMddddddssdfsdfO',
-      secondProduct: 'Name',
-    },
-    { productName: 'Product', features: 'GMO', secondProduct: 'Name' },
-    { productName: 'Product', features: 'GMO', secondProduct: 'Name' },
-    { productName: 'Product', features: 'GMO', secondProduct: 'Name' },
-    { productName: 'Product', features: 'GMO', secondProduct: 'Name' },
-    { productName: 'Product', features: 'GMO', secondProduct: 'Name' },
-    { productName: 'Product', features: 'GMO', secondProduct: 'Name' },
-    { productName: 'Product', features: 'GMO', secondProduct: 'Name' },
-    { productName: 'Product', features: 'GMO', secondProduct: 'Name' },
-    { productName: 'Product', features: 'GMO', secondProduct: 'Name' },
-    { productName: 'Product', features: 'GMO', secondProduct: 'Name' },
-    { productName: 'Product', features: 'GMO', secondProduct: 'Name' },
-    { productName: 'Product', features: 'GMO', secondProduct: 'Name' },
-    { productName: 'Product', features: 'GMO', secondProduct: 'Name' },
-    { productName: 'Product', features: 'GMO', secondProduct: 'Name' },
-    { productName: 'Product', features: 'GMO', secondProduct: 'Name' },
-  ];
+const ProductComparison = (props) => {
+  const productFeature = props.clickedProduct.features;
+  const [compareFeature, setCompareFeature] = useState([]);
 
-  const renderProduct = (product, index) => {
+  useEffect(() => {
+    if (props.clickedProduct.length !== 0) {
+      let combinedFeature = Object.assign(
+        {},
+        props.clickedProduct.features,
+        props.currentProduct.features
+      );
+
+      let combinedData = Object.keys(combinedFeature).map((key) => {
+        return combinedFeature[key];
+      });
+
+      setCompareFeature(combinedData);
+    }
+  }, [props.clickedProduct]);
+
+  const renderProduct = (compareFeature, index) => {
     return (
       <tr key={index}>
-        <td>{product.productName}</td>
-        <td>{product.features}</td>
-        <td style={{ textAlign: 'right' }}>{product.secondProduct}</td>
+        <td style={{ textAlign: 'left' }}>
+          {props.currentProduct.features.find(
+            (obj) => obj.value === compareFeature.value
+          ) ? (
+              <FontAwesomeIcon icon={faCheck} className='checkMark' />
+            ) : (
+              ''
+            )}
+        </td>
+        <td style={{ textAlign: 'center' }}>{compareFeature.value}</td>
+        <td style={{ textAlign: 'right' }}>
+          {props.clickedProduct.features.find(
+            (obj) => obj.value === compareFeature.value
+          ) ? (
+              <FontAwesomeIcon icon={faCheck} className='checkMark' />
+            ) : (
+              ''
+            )}
+        </td>
       </tr>
     );
   };
@@ -39,8 +53,8 @@ const ProductComparison = ({ displayModal, closeModalFunc }) => {
   return (
     <React.Fragment>
       <Modal
-        show={displayModal}
-        onHide={closeModalFunc}
+        show={props.displayModal}
+        onHide={props.closeModalFunc}
         backdrop='static'
         keyboard={false}
         size='lg'
@@ -55,24 +69,28 @@ const ProductComparison = ({ displayModal, closeModalFunc }) => {
             <table id='classTable' className='table table-borderless'>
               <thead>
                 <tr>
-                  <th className='firstProduct'>ProductName</th>
+                  <th className='firstProduct'>{props.currentProduct.name}</th>
                   <th className='middleProduct'></th>
-                  <th className='secondProduct'>SecondName</th>
+                  <th className='secondProduct'>
+                    {props.clickedProduct.length !== 0
+                      ? props.clickedProduct.name
+                      : ''}
+                  </th>
                 </tr>
               </thead>
             </table>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <table id='classTable' className='table table-bordered'>
-            <tbody>{product.map(renderProduct)}</tbody>
+          <table id='classTable' className='table table-borderless'>
+            <tbody>{compareFeature.map(renderProduct)}</tbody>
           </table>
         </Modal.Body>
         <Modal.Footer>
           <Button
             variant='secondary'
             onClick={() => {
-              closeModalFunc();
+              props.closeModalFunc();
             }}
           >
             Close

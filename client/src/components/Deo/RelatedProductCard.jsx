@@ -14,6 +14,7 @@ const RelatedProductCard = (props) => {
     return false;
   });
   const [products, setProducts] = useState([]);
+  const [clickedProduct, setClickProduct] = useState([]);
 
   const closeModal = () => {
     setModal(false);
@@ -119,9 +120,11 @@ const RelatedProductCard = (props) => {
                 <div className='productCard' key={index}>
                   <FontAwesomeIcon
                     icon={['fas', 'star']}
-                    className='productStarIcon'
+                    className='productStarIconRelatedProd'
                     onClick={() => {
                       setModal(true);
+                      //Using item.id to get display product
+                      setClickProduct(item);
                     }}
                   />
                   <img
@@ -166,6 +169,7 @@ const RelatedProductCard = (props) => {
             displayModal={modalDisplay}
             closeModalFunc={closeModal}
             currentProduct={props.currentProduct}
+            clickedProduct={clickedProduct}
           />
         </div>
       </div>
