@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck } from '@fortawesome/free-solid-svg-icons';
+
 
 const ProductComparison = (props) => {
   const productFeature = props.clickedProduct.features;
@@ -31,7 +30,7 @@ const ProductComparison = (props) => {
           {props.currentProduct.features.find(
             (obj) => obj.value === compareFeature.value
           ) ? (
-              <FontAwesomeIcon icon={faCheck} className='checkMark' />
+              <span className='checkMark'>&#10003;</span>
             ) : (
               ''
             )}
@@ -41,7 +40,7 @@ const ProductComparison = (props) => {
           {props.clickedProduct.features.find(
             (obj) => obj.value === compareFeature.value
           ) ? (
-              <FontAwesomeIcon icon={faCheck} className='checkMark' />
+              <span className='checkMark'>&#10003;</span>
             ) : (
               ''
             )}

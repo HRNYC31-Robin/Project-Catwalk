@@ -1,11 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { fas } from '@fortawesome/free-solid-svg-icons';
-import { faStar as farFaStar } from '@fortawesome/free-regular-svg-icons';
-
-library.add(farFaStar, fas);
 
 const OutfitProductCard = (props) => {
   console.log('INSIDE OUTFIT (PROPS) ', props);
@@ -94,7 +88,6 @@ const OutfitProductCard = (props) => {
                       // Remove product from outfit
                     }}
                   >
-                    {' '}
                     &#10005;
                   </span>
                   <img
