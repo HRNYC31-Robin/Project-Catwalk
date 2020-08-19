@@ -4,7 +4,7 @@ import axios from 'axios';
 // import 'bootstrap/dist/css/bootstrap.min.css'; don't need?
 import ProductInfo from './ProductInfo.jsx';
 import StyleSelector from './StyleSelector.jsx';
-import AddToCart from './AddToCart.jsx';
+import SizeQtyAndCart from './SizeQtyAndCart.jsx';
 
 
 const UpperRight = function ({
@@ -29,7 +29,7 @@ const UpperRight = function ({
         changeStyle={changeStyle}
       />
 
-      <AddToCart />
+      <SizeQtyAndCart />
     </div>
   );
 };
