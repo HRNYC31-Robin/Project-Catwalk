@@ -49,7 +49,7 @@ const CharacteristicBar = ({characteristic, charRating}) => {
       <p>{characteristic}</p>
       <div id='char-empty-bar' style={emptyBar}>
         <div style={innerBar}></div>
-        <span id='rating-pointer'>A</span>
+        <span id='rating-pointer'>&#9650;</span>
       </div>
       <p className='charMeaning'>{meaningLow}</p>
       <p id='char-high' className='charMeaning'>{meaningHigh}</p>
