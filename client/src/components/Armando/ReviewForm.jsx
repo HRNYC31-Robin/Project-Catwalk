@@ -38,7 +38,7 @@ class ReviewForm extends React.Component {
 
   handleInputChange(e) {
     const newChars = Object.assign({}, this.state.characteristics);
-    const newState = Object.assign({characteristics: newChars}, this.state);
+    const newState = Object.assign({}, this.state, {characteristics: newChars});
 
     //update the relevant property
     newState[e.target.name] = e.target.value;
@@ -52,7 +52,7 @@ class ReviewForm extends React.Component {
   handleCharacteristicChoice(choice) {
     // copy characteristic object
     const newChars = JSON.parse(JSON.stringify(this.state.characteristics));
-    newChars[choice.char] = {id: choice.id, value: choice.value};
+    newChars[choice.id] = choice.value;
     // update characteristics state
     this.setState({
       characteristics: newChars
@@ -65,7 +65,7 @@ class ReviewForm extends React.Component {
     if (validateForm(this.props.metaData.characteristics, this.state)) {
       console.log(this.state);
       axios.post('http://18.224.37.110/reviews', this.state)
-        .then(result => console.log(result))
+        .then(() => this.props.handleClose())
         .catch(err => console.log(err));
     }
   }
@@ -222,7 +222,11 @@ const Characteristic = ({metaData, handleChar}) => {
       {
         labels[char].map((label, i) => (
           <div className='labels'>
-            <input id={label} type='radio' name={char} data-value={i + 1} className='char-radio' onClick={handleCharClick}/>
+            <input id={`${label}${char}`}
+              type='radio' name={char}
+              data-value={i + 1}
+              className='char-radio'
+              onClick={handleCharClick}/>
             <label htmlFor={label} >{label}</label>
           </div>
         ))
