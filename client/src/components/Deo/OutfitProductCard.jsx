@@ -41,7 +41,6 @@ const OutfitProductCard = (props) => {
 
   return (
     <div>
-      {console.log('Rendering')}
       <h6 className='relatedProductTitle'>YOUR OUTFIT</h6>
       <div className='productWrapper'>
         <div className='productCardContainer'>
