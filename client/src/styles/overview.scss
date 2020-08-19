@@ -132,22 +132,52 @@
 .dropDowns-addtoCart {
   display: grid;
   grid-template-rows: 1fr 1fr;
-  grid-gap: 10px;
+
 
   .sizeAndQty {
     display: grid;
     grid-template-columns: 7fr 4fr;
     grid-gap: 20px;
-    padding: 20px
+    padding: 15px;
+    padding-top: 40px;
+
+    /*div {
+      background-color: white;
+      border-width: medium;
+      border-color: black;
+      border-style: solid;
+      text-align: center;
+      align-self: center;
+    }*/
+
+    div {
+      background-color: white;
+      align-self: center;
+    }
+
+    .dropdown-toggle {
+      width: 100%;
+      height: 60px;
+    }
+
+
   }
 
   .addToCartAndStar {
     display: grid;
     grid-template-columns: 3fr 1fr;
-    grid-gap: 5px;
+    grid-gap: 20px;
+    padding: 15px;
+    padding-bottom: 20px;
 
     div {
       background-color: white;
+      align-self: center;
+    }
+
+    .btn {
+      width: 100%;
+      height: 60px;
     }
   }
 
