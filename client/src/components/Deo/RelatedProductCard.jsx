@@ -1,19 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ProductComparison from './ProductComparison.jsx';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { fas } from '@fortawesome/free-solid-svg-icons';
-import { faStar as farFaStar } from '@fortawesome/free-regular-svg-icons';
-import StarRating from '../common/StarRating.jsx';
 
-library.add(farFaStar, fas);
+import StarRating from '../common/StarRating.jsx';
 
 const RelatedProductCard = (props) => {
   const [modalDisplay, setModal] = useState(() => {
     return false;
   });
   const [products, setProducts] = useState([]);
+  const [clickedProduct, setClickProduct] = useState([]);
 
   const closeModal = () => {
     setModal(false);
@@ -116,13 +112,16 @@ const RelatedProductCard = (props) => {
             if (index < 4) {
               return (
                 <div className='productCard' key={index}>
-                  <FontAwesomeIcon
-                    icon={['fas', 'star']}
-                    className='productStarIcon'
+                  <span
+                    className='productStarIconRelatedProd'
                     onClick={() => {
                       setModal(true);
+                      //Using item.id to get display product
+                      setClickProduct(item);
                     }}
-                  />
+                  >
+                    &#9733;
+                  </span>
                   <img
                     style={{ height: '300px', width: '250px' }}
                     src={
@@ -165,6 +164,7 @@ const RelatedProductCard = (props) => {
             displayModal={modalDisplay}
             closeModalFunc={closeModal}
             currentProduct={props.currentProduct}
+            clickedProduct={clickedProduct}
           />
         </div>
       </div>
