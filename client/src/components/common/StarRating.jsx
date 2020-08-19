@@ -40,7 +40,7 @@ const StarRating = ({prodId, starCount}) => {
   }
 
   return (
-    <span>{stars}</span>
+    <span key={`stars`}>{stars}</span>
   );
 };
 
