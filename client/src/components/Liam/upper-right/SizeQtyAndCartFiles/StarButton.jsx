@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
-// import 'bootstrap/dist/css/bootstrap.min.css'; don't need?
 import Button from 'react-bootstrap/Button';
 
 
@@ -8,8 +7,11 @@ const StarButton = function () {
 
   return (
     <div>
-      <Button variant="outline-secondary">
-        Star
+      <Button
+        variant="outline-secondary"
+        style={{fontSize: '20px' }}
+      >
+        &#9734;
       </Button>
     </div>
 
