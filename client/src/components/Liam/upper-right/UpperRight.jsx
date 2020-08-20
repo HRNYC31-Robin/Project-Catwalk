@@ -11,7 +11,7 @@ const UpperRight = function ({
   currentProduct,
   styleList,
   styleIndex,
-  changeStyle
+  changeStyle,
 }) {
 
   return (
@@ -29,7 +29,8 @@ const UpperRight = function ({
         changeStyle={changeStyle}
       />
 
-      <SizeQtyAndCart />
+      <SizeQtyAndCart
+      />
     </div>
   );
 };
