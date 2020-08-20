@@ -3,7 +3,6 @@ import axios from 'axios';
 import StarRating from '../common/StarRating.jsx';
 
 const OutfitProductCard = (props) => {
-
   // Place holder object for add
   const placeHolder = {
     category: '',

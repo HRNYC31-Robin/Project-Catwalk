@@ -3,7 +3,6 @@ import { mount } from 'enzyme';
 import Enzyme from './index.js';
 import StarRating from '../client/src/components/common/StarRating.jsx';
 
-
 test('StarRating Component output 1 star', () => {
   const rating = 1;
   const empty = <span>&#9734;</span>;
@@ -96,4 +95,3 @@ test('StarRating Component output 5', () => {
 //   expect(Stars.contains(testRating)).toBe(true);
 //   Stars.unmount();
 // });
-

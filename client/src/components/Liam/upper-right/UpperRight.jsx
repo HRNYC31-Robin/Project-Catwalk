@@ -12,6 +12,7 @@ const UpperRight = function ({
   styleList,
   styleIndex,
   changeStyle,
+  sizeQtyObj,
 }) {
 
   return (
@@ -30,6 +31,7 @@ const UpperRight = function ({
       />
 
       <SizeQtyAndCart
+        sizeQtyObj={sizeQtyObj}
       />
     </div>
   );

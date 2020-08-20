@@ -6,7 +6,7 @@ import AddToCart from './SizeQtyAndCartFiles/AddToCart.jsx';
 import StarButton from './SizeQtyAndCartFiles/StarButton.jsx';
 
 
-const SizeQtyAndCart = function () {
+const SizeQtyAndCart = function ({ sizeQtyObj }) {
   //console.log(sizeQtyObj);
 
   return (
@@ -14,9 +14,9 @@ const SizeQtyAndCart = function () {
 
       <div className="sizeAndQty">
 
-        <SelectSize />
+        <SelectSize sizeQtyObj={sizeQtyObj}/>
 
-        <SelectQty />
+        <SelectQty sizeQtyObj={sizeQtyObj}/>
 
       </div>
 

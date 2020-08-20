@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ProductComparison from './ProductComparison.jsx';
-
 import StarRating from '../common/StarRating.jsx';
 
 const RelatedProductCard = (props) => {
