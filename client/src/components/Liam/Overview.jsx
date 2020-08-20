@@ -13,10 +13,22 @@ const Overview = function ({currentProduct}) {
   const [ expanded, changeExpand ] = useState(false);
   const [ styleList, updateStyleList ] = useState([]);
   const [ styleIndex, changeCurrStyle ] = useState(0);
+
   const [ currSize, changeCurrSize ] = useState('SELECT SIZE');
   const [ sizeList, updateSizeList ] = useState([]);
-  const [ totalQty, updateTotalQty ] = useState(0); // How much of one qty
-  const [ selectedQty, updateSelectedQty ] = useState(0); // Which quantity is selected
+
+  const [ selectedQty, updateSelectedQty ] = useState('-'); // Which quantity is selected
+  const [ qtyList, updateTotalQty ] = useState([]); // How much of one qty
+
+  let sizeQtyObj = {
+    currSize,
+    sizeList,
+    selectedQty,
+    qtyList,
+    changeCurrSize,
+    updateSelectedQty,
+    updateTotalQty,
+  };
 
   const toggleExpand = () => {
     !expanded ? changeExpand(true) : changeExpand(false);
@@ -26,7 +38,7 @@ const Overview = function ({currentProduct}) {
     for (let i = 0; i < styList.length; i++) {
       if (styList[i]['default?'] === 1) {
         changeCurrStyle(i);
-        break;
+        return i;
       }
     }
   };
@@ -37,6 +49,29 @@ const Overview = function ({currentProduct}) {
 
     // Update currSize, sizeList, totalQty, currQty
 
+    // Reset current size back and
+    changeCurrSize('SELECT SIZE');
+    updateSelectedQty('-');
+
+    // Update size List and totalquantity
+    const currStyle = styleList[ind];
+    const skus = currStyle.skus;
+    const newSizeList = [];
+    for (var skuID in skus) {
+      if (skus[skuID].quantity > 0) {
+        newSizeList.push(skus[skuID].size);
+      }
+    }
+
+    if (newSizeList.length === 0) {
+      // No quantity for any styles
+      updateSelectedQty('OUT OF STOCK');
+    }
+
+
+    updateSizeList(newSizeList);
+
+
   };
 
 
@@ -46,12 +81,12 @@ const Overview = function ({currentProduct}) {
     axios({
       method: 'get',
       url: `http://18.224.37.110/products/${currentProduct.id}/styles`
-      //url: 'http://18.224.200.47/products/3/styles'
     })
       .then(({ data }) => {
         console.log('Styles: ', data.results);
         updateStyleList(data.results);
-        findDefaultStyle(data.results);
+        let currInd = findDefaultStyle(data.results);
+        handleChangeStyle(currInd);
       })
       .catch(err => {
         console.log('Error in retrieving styles: ', err);
@@ -74,6 +109,7 @@ const Overview = function ({currentProduct}) {
           styleIndex={styleIndex}
           changeStyle={handleChangeStyle}
           currSize={currSize}
+          sizeQtyObj={sizeQtyObj}
         />
 
         <ProductBlurb />
