@@ -4,20 +4,50 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 
 
-const SelectQty = function () {
+const SelectQty = function ({ sizeQtyObj }) {
+  console.log('sizeQtyObj: ', sizeQtyObj);
+
+  if (Object.keys(sizeQtyObj).length === 0) {
+    return (
+
+      <div>
+        <Dropdown>
+          <Dropdown.Toggle variant="outline-secondary" id="dropdown-basic">
+            -
+          </Dropdown.Toggle>
+
+          <Dropdown.Menu>
+          </Dropdown.Menu>
+        </Dropdown>
+      </div>
+
+    );
+  }
 
   return (
 
     <div>
-      <DropdownButton
-        variant="outline-secondary"
-        id="dropdown-variants-outline-secondary"
-        title="1"
-      >
-        <Dropdown.Item>2</Dropdown.Item>
-        <Dropdown.Item>3</Dropdown.Item>
-        <Dropdown.Item>4</Dropdown.Item>
-      </DropdownButton>
+      <Dropdown>
+        <Dropdown.Toggle variant="outline-secondary" id="dropdown-basic">
+          {sizeQtyObj.selectedQty}
+        </Dropdown.Toggle>
+
+        <Dropdown.Menu>
+          {[... Array(sizeQtyObj.qtyList + 1).keys()].slice(1, 16).map((val, ind) => {
+            return (
+              <Dropdown.Item
+                key={ind}
+                value={val}
+                onClick={() => {
+                  console.log(val);
+                }}
+              >
+                {val}
+              </Dropdown.Item>
+            );
+          })}
+        </Dropdown.Menu>
+      </Dropdown>
     </div>
 
   );

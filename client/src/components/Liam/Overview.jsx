@@ -18,17 +18,8 @@ const Overview = function ({currentProduct}) {
   const [ sizeList, updateSizeList ] = useState([]);
 
   const [ selectedQty, updateSelectedQty ] = useState('-'); // Which quantity is selected
-  const [ qtyList, updateTotalQty ] = useState([]); // How much of one qty
+  const [ qtyList, updateTotalQty ] = useState(0); // How much of one qty
 
-  let sizeQtyObj = {
-    currSize,
-    sizeList,
-    selectedQty,
-    qtyList,
-    changeCurrSize,
-    updateSelectedQty,
-    updateTotalQty,
-  };
 
   const toggleExpand = () => {
     !expanded ? changeExpand(true) : changeExpand(false);
@@ -41,6 +32,8 @@ const Overview = function ({currentProduct}) {
         return i;
       }
     }
+    changeCurrStyle(0);
+    return 0;
   };
 
   const handleChangeStyle = (ind) => {
@@ -54,8 +47,17 @@ const Overview = function ({currentProduct}) {
     updateSelectedQty('-');
 
     // Update size List and totalquantity
+    /* ATTEMPT AT FIXING EMPTY STYLE LIST :
+
+    var i = 0;
+    while (styleList.length === 0 || i < 100000) {
+      console.log('Style List: ', styleList);
+      updateProduct();
+      i++;
+    }*/
+
     const currStyle = styleList[ind];
-    const skus = currStyle.skus;
+    const skus = currStyle ? currStyle.skus : {};
     const newSizeList = [];
     for (var skuID in skus) {
       if (skus[skuID].quantity > 0) {
@@ -66,24 +68,56 @@ const Overview = function ({currentProduct}) {
     if (newSizeList.length === 0) {
       // No quantity for any styles
       updateSelectedQty('OUT OF STOCK');
+
     }
 
-
     updateSizeList(newSizeList);
-
 
   };
 
 
-  // On mount or update (current product has to change), get styles
-  useEffect(() => {
-    console.log('Current product: (overview useEffect) ', currentProduct);
+  const handleChangeCurrSize = (size) => {
+    // Change current size selected
+    changeCurrSize(size);
+
+    // Also need to update quantity based on size
+    const currStyle = styleList[styleIndex];
+    const skus = currStyle ? currStyle.skus : {};
+
+    for (var skuID in skus) {
+      if (skus[skuID].size === size) {
+        updateTotalQty(skus[skuID].quantity);
+      }
+    }
+  };
+
+
+  const updateProduct = () => {
     axios({
       method: 'get',
       url: `http://18.224.37.110/products/${currentProduct.id}/styles`
     })
       .then(({ data }) => {
-        console.log('Styles: ', data.results);
+        //console.log('Styles: ', data.results);
+        updateStyleList(data.results);
+        let currInd = findDefaultStyle(data.results);
+        handleChangeStyle(currInd);
+      })
+      .catch(err => {
+        console.log('Error in retrieving styles: ', err);
+      });
+  };
+
+
+  // On mount or update (current product has to change), get styles
+  useEffect(() => {
+    console.log('Product changed!');
+    axios({
+      method: 'get',
+      url: `http://18.224.37.110/products/${currentProduct.id}/styles`
+    })
+      .then(({ data }) => {
+        //console.log('Styles: ', data.results);
         updateStyleList(data.results);
         let currInd = findDefaultStyle(data.results);
         handleChangeStyle(currInd);
@@ -93,6 +127,17 @@ const Overview = function ({currentProduct}) {
       });
   }, [currentProduct]);
 
+
+  // Put all info for dropdowns together
+  const sizeQtyObj = {
+    currSize,
+    sizeList,
+    selectedQty,
+    qtyList,
+    handleChangeCurrSize,
+    updateSelectedQty,
+    updateTotalQty,
+  };
 
   // Rendering
   if (!expanded) {
