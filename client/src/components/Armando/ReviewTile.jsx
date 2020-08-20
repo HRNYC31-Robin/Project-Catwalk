@@ -1,8 +1,6 @@
 import React from 'react';
 import StarRating from '../common/StarRating.jsx';
 import Helpful from './Helpful.jsx';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faCheck} from '@fortawesome/free-solid-svg-icons';
 
 
 const ReviewTile = (props) => {
@@ -20,7 +18,7 @@ const ReviewTile = (props) => {
       <p>{props.review.body}</p>
       {
         !props.review.recommend ? null :
-          <p><FontAwesomeIcon icon={faCheck}/> I recommend this product</p>
+          <p><span className='checkmark-review'>&#10003;</span> I recommend this product</p>
       }
       <Helpful helpfulness={props.review.helpfulness} reviewId={props.review.review_id}/>
     </div>

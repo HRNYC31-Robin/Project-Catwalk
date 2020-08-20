@@ -1,11 +1,7 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import {fas} from '@fortawesome/free-solid-svg-icons';
-import { faStar as farFaStar } from '@fortawesome/free-regular-svg-icons';
+
 import {ratingAverageHelper} from '../../../../helpers/ratingAverageHelper.js';
 
-library.add(farFaStar, fas);
 
 // use prodId if fetching data from the API
 
@@ -26,9 +22,9 @@ const StarRating = ({prodId, starCount}) => {
   // push full stars
   for (let i = 0; i < 5; i++) {
     if (i < integer) {
-      stars[i] = <span key={i}>&#9733;</span>;
+      stars[i] = <span key={`${i}full`}>&#9733;</span>;
     } else {
-      stars[i] = <span key={i}>&#9734;</span>;
+      stars[i] = <span key={`${i}empty`}>&#9734;</span>;
     }
   }
   // deal with decimal
