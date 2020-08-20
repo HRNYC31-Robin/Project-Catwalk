@@ -7,9 +7,10 @@ import testData from '../../client/data/data.js';
 import reviewsData from '../../client/data/reviews.js';
 
 const reviewsTest = reviewsData.results;
+console.log(reviewsTest);
 
 test('Should have reviewTiles', () => {
-  const wrapper = shallow(<ReviewList ratingsMeta={{}} currentProduct={testData[0]} reviews={reviewsTest} visibleReviews={reviewsTest[0]}/>);
+  const wrapper = shallow(<ReviewList ratingsMeta={{}} currentProduct={testData[0]} reviews={reviewsTest} visibleReviews={reviewsTest.slice(0, 2)}/>);
   console.log(wrapper.debug());
-  expect(wrapper.find('ReviewTile').length).toEqual(5);
+  expect(wrapper.find('ReviewTile').length).toEqual(2);
 });
