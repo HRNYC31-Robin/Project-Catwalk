@@ -130,7 +130,6 @@ const OutfitProductCard = (props) => {
                       item.id === 'NA'
                         ? () => {
                           updateOutfit();
-                          props.handleOutFitAddition(props.currentProduct);
                           setRightArrow((prev) => {
                             return prev + 1;
                           });
