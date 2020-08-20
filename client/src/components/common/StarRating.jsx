@@ -26,9 +26,9 @@ const StarRating = ({prodId, starCount}) => {
   // push full stars
   for (let i = 0; i < 5; i++) {
     if (i < integer) {
-      stars[i] = <span key={i}>&#9733;</span>;
+      stars[i] = <span key={`${i}full`}>&#9733;</span>;
     } else {
-      stars[i] = <span key={i}>&#9734;</span>;
+      stars[i] = <span key={`${i}empty`}>&#9734;</span>;
     }
   }
   // deal with decimal
