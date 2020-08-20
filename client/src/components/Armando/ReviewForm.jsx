@@ -1,8 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar as fasFaStar } from '@fortawesome/free-solid-svg-icons';
-import { faStar as farFaStar } from '@fortawesome/free-regular-svg-icons';
+
 
 class ReviewForm extends React.Component {
   constructor(props) {
@@ -108,8 +106,10 @@ export default ReviewForm;
 
 
 const RatingInput = ({ handleChoice }) => {
+  const emptyStar = <span>&#9734;</span>;
+  const fullStar = <span>&#9733;</span>;
   const [label, setLabel] = React.useState('');
-  const [stars, setStars] = React.useState([farFaStar, farFaStar, farFaStar, farFaStar, farFaStar]);
+  const [stars, setStars] = React.useState([emptyStar, emptyStar, emptyStar, emptyStar, emptyStar]);
   const labels = ['Poor', 'Fair', 'Average', 'Good', 'Great'];
 
   const handleStar = (e) => {
@@ -120,9 +120,9 @@ const RatingInput = ({ handleChoice }) => {
 
     stars.forEach((star, i) => {
       if (i <= starIndex) {
-        newStars.push(fasFaStar);
+        newStars.push(fullStar);
       } else {
-        newStars.push(farFaStar);
+        newStars.push(emptyStar);
       }
     });
 
@@ -136,15 +136,16 @@ const RatingInput = ({ handleChoice }) => {
       <p>Rating:</p>
       {
         stars.map((star, i) => (
-          <div>
+          <div key={`${star}Container${i}`}>
             <input type='radio'
               id={`star${i}`}
+              key={`star${i}`}
               className='star-radio'
               name='star-radio'
               data-rating={i}
               onClick={handleStar}
             />
-            <label htmlFor={`star${i}`} ><FontAwesomeIcon icon={star} /></label>
+            <label htmlFor={`star${i}`} key={`${i}star`}>{star}</label>
           </div>
         ))
       }
