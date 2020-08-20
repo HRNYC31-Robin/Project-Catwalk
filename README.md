@@ -3,7 +3,7 @@ Front End Capstone Project at Hack Reactor (Team Robin !)
 
 ## Installation
 
-TODO: Describe the installation process
+Describe the installation process
 To start application run:
 - npm install
 - npm run start ("Start express server")
@@ -11,7 +11,7 @@ To start application run:
 
 ## Usage
 
-TODO: Write usage instructions
+To use application navigate to localhost:3000/products/${productID}
 
 ## Contributing
 1. Fork it!
@@ -26,7 +26,7 @@ TODO: Write history
 
 ## Credits
 
-TODO: Write credits
+TEAM ROBIN
 
 ## License
 
