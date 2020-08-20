@@ -7,6 +7,7 @@ import RatingsReviewsContainer from '../redux/containers/ratingsReviewsContainer
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import axios from 'axios';
+import NavBar from '../components/common/Navbar.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -27,6 +28,7 @@ class App extends React.Component {
   render() {
     return (
       <Container>
+        <NavBar />
         <Row>
           <OverviewContainer data-test='OverviewContainer' />
         </Row>
