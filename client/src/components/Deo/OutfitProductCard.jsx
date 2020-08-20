@@ -3,7 +3,6 @@ import axios from 'axios';
 import StarRating from '../common/StarRating.jsx';
 
 const OutfitProductCard = (props) => {
-
   // Place holder object for add
   const placeHolder = {
     category: '',
@@ -131,6 +130,7 @@ const OutfitProductCard = (props) => {
                       item.id === 'NA'
                         ? () => {
                           updateOutfit();
+                          props.handleOutFitAddition(props.currentProduct);
                           setRightArrow((prev) => {
                             return prev + 1;
                           });
