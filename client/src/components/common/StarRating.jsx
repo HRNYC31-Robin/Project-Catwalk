@@ -1,11 +1,7 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import {fas} from '@fortawesome/free-solid-svg-icons';
-import { faStar as farFaStar } from '@fortawesome/free-regular-svg-icons';
+
 import {ratingAverageHelper} from '../../../../helpers/ratingAverageHelper.js';
 
-library.add(farFaStar, fas);
 
 // use prodId if fetching data from the API
 
