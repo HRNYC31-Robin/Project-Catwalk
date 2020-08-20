@@ -80,6 +80,9 @@ const Overview = function ({currentProduct}) {
     // Change current size selected
     changeCurrSize(size);
 
+    // update current qty to 1
+    updateSelectedQty('1');
+
     // Also need to update quantity based on size
     const currStyle = styleList[styleIndex];
     const skus = currStyle ? currStyle.skus : {};

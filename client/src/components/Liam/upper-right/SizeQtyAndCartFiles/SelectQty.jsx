@@ -39,7 +39,7 @@ const SelectQty = function ({ sizeQtyObj }) {
                 key={ind}
                 value={val}
                 onClick={() => {
-                  console.log(val);
+                  sizeQtyObj.updateSelectedQty(val);
                 }}
               >
                 {val}
