@@ -25,15 +25,15 @@ const Breakdown = (props) => {
 
       <div id='bars'>
         {
-          Object.keys(ratings).map(star => (
-            <RatingBar starNum={star} starRating={ratings[star]} totalRatings={props.totalRatings}/>
+          Object.keys(ratings).map((star, i) => (
+            <RatingBar key={`${star}-${i}`} starNum={star} starRating={ratings[star]} totalRatings={props.totalRatings}/>
           ))
         }
       </div>
       <div id='characterics'>
         {
-          Object.keys(characteristics).map(type => (
-            <CharacteristicBar characteristic={type} charRating={characteristics[type].value}/>
+          Object.keys(characteristics).map((type, i) => (
+            <CharacteristicBar key={`${type}-${i}`} characteristic={type} charRating={characteristics[type].value}/>
           ))
 
         }

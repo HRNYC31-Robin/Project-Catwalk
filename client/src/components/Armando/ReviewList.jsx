@@ -56,8 +56,8 @@ const ReviewList = (props) => {
 
       <div id='inner-review-list'>
         {
-          props.visibleReviews.map(review => (
-            <ReviewTile review={review} />
+          props.visibleReviews.map((review, i) => (
+            <ReviewTile review={review} key={i}/>
           ))
         }
       </div>
