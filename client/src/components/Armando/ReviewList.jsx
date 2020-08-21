@@ -22,9 +22,15 @@ const ReviewList = (props) => {
       .catch(err => console.log(err));
   }, [prodId, sortList]);
 
-  const handleMoreClick = () => {
-    if (props.reviews.length <= props.totalRatings) {
-      axios.get(`http://18.224.37.110/reviews/?product_id=${prodId}&count=${props.totalRatings}&sort=${sortList}`)
+  const handleMoreClick = (post) => {
+    let count = props.totalRatings;
+    if (post) {
+      console.log('triggered handleMoreClick');
+      count += 1;
+    }
+
+    if (post || props.reviews.length <= props.totalRatings) {
+      axios.get(`http://18.224.37.110/reviews/?product_id=${prodId}&count=${count}&sort=${sortList}`)
         .then(results => props.addMoreReviews(results.data.results))
         .catch(err => console.log(err));
     }
@@ -44,6 +50,7 @@ const ReviewList = (props) => {
   return (
     <div id='review-list'>
       <div id='review-dropdown'>
+        <h7>{props.totalRatings} reviews, sorted by</h7>
         <select onChange={(e) => setSortList(e.target.value)}>
           <option key='relevant' value='relevant'>Relevant</option>
           <option key='helpful' value='helpful'>Helpful</option>
@@ -51,7 +58,7 @@ const ReviewList = (props) => {
         </select>
       </div>
       {
-        reviewModal ? <ReviewForm metaData={props.ratingsMeta} prodName={props.currentProduct.name} handleClose={() => setReviewModal(false)} /> : null
+        reviewModal ? <ReviewForm metaData={props.ratingsMeta} prodName={props.currentProduct.name} handleClose={() => setReviewModal(false)} handlePostReview={handleMoreClick} /> : null
       }
 
       <div id='inner-review-list'>
