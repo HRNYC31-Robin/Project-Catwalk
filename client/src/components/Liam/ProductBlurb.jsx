@@ -9,6 +9,7 @@ const ProductBlurb = function ({ slogan, description }) {
     <div className="product-blurb">
       <div className="slogan"> {slogan} </div>
       <div className="prodDesc"> {description} </div>
+      <div className="vertBar"></div>
     </div>
   );
 };

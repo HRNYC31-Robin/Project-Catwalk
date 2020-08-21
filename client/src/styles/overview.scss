@@ -96,7 +96,7 @@
   position: absolute;
   z-index: 1;
   padding: 20px;
-  top: 210px;
+  top: 200px;
 
   .littleImage {
     width: 70px;
@@ -256,6 +256,14 @@
   .prodDesc {
     font-size: 16px;
     padding-top: 5px;
+  }
+
+  .vertBar {
+    border-right: 2px solid black;
+    height: 120px;
+    position: relative;
+    top: -100px;
+    left: 10px;
   }
 }
 
