@@ -8,8 +8,8 @@ import UpperRight from './upper-right/UpperRight.jsx';
 import ProductBlurb from './ProductBlurb.jsx';
 import Links from './Links.jsx';
 
-const Overview = function ({ currentProduct, userOutFits }) {
-  // console.log('userOutFits:', userOutFits);
+const Overview = function ({ currentProduct }) {
+  // React Hooks setup
   const [ expanded, changeExpand ] = useState(false);
   const [ styleList, updateStyleList ] = useState([]);
   const [ styleIndex, changeCurrStyle ] = useState(0);
@@ -21,6 +21,7 @@ const Overview = function ({ currentProduct, userOutFits }) {
   const [ qtyList, updateTotalQty ] = useState(0); // How much of one qty
 
 
+  // React Hook Helper functions
   const toggleExpand = () => {
     !expanded ? changeExpand(true) : changeExpand(false);
   };
@@ -144,6 +145,7 @@ const Overview = function ({ currentProduct, userOutFits }) {
           changeStyle={handleChangeStyle}
           currSize={currSize}
           sizeQtyObj={sizeQtyObj}
+          prodID={currentProduct.id}
         />
 
         <ProductBlurb

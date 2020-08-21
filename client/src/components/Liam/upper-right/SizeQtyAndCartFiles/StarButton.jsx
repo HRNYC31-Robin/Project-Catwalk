@@ -3,7 +3,19 @@ import ReactDOM from 'react-dom';
 import Button from 'react-bootstrap/Button';
 
 
-const StarButton = function () {
+const StarButton = function ({ prodID }) {
+  // console.log('Prod ID: ', prodID);
+  /*const storage = localStorage.getItem('FEC');
+  const favProdIds = [];
+
+  if (storage !== null) {
+    for (let locObj of localStorage.getItem('FEC')) {
+      //if (locObj.product_id) {
+        console.log(locObj);
+      //}
+    }
+  }
+  console.log('STORAGE: ', favProdIds);*/
 
   return (
     <div>
