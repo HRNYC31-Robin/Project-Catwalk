@@ -8,7 +8,8 @@ import UpperRight from './upper-right/UpperRight.jsx';
 import ProductBlurb from './ProductBlurb.jsx';
 import Links from './Links.jsx';
 
-const Overview = function ({currentProduct}) {
+const Overview = function ({ currentProduct }) {
+  // React Hooks setup
   const [ expanded, changeExpand ] = useState(false);
   const [ styleList, updateStyleList ] = useState([]);
   const [ styleIndex, changeCurrStyle ] = useState(0);
@@ -20,6 +21,7 @@ const Overview = function ({currentProduct}) {
   const [ qtyList, updateTotalQty ] = useState(0); // How much of one qty
 
 
+  // React Hook Helper functions
   const toggleExpand = () => {
     !expanded ? changeExpand(true) : changeExpand(false);
   };
@@ -35,7 +37,7 @@ const Overview = function ({currentProduct}) {
     return 0;
   };
 
-  const handleChangeStyle = (ind) => {
+  const handleChangeStyle = (ind, list) => {
     // Update style
     changeCurrStyle(ind);
 
@@ -44,6 +46,7 @@ const Overview = function ({currentProduct}) {
     // Reset current size back and
     changeCurrSize('SELECT SIZE');
     updateSelectedQty('-');
+    updateTotalQty(0);
 
     // Update size List and totalquantity
     /* ATTEMPT AT FIXING EMPTY STYLE LIST :
@@ -67,7 +70,6 @@ const Overview = function ({currentProduct}) {
     if (newSizeList.length === 0) {
       // No quantity for any styles
       updateSelectedQty('NO STOCK');
-
     }
 
     updateSizeList(newSizeList);
@@ -104,8 +106,11 @@ const Overview = function ({currentProduct}) {
       .then(({ data }) => {
         //console.log('Styles: ', data.results);
         updateStyleList(data.results);
-        let currInd = findDefaultStyle(data.results);
-        handleChangeStyle(currInd);
+        const currInd = findDefaultStyle(data.results);
+        // Wait to update style until StyleList updated
+        useEffect(() => {
+          handleChangeStyle(currInd, styleList);
+        }, [styleList]);
       })
       .catch(err => {
         console.log('Error in retrieving styles: ', err);
@@ -140,6 +145,7 @@ const Overview = function ({currentProduct}) {
           changeStyle={handleChangeStyle}
           currSize={currSize}
           sizeQtyObj={sizeQtyObj}
+          prodID={currentProduct.id}
         />
 
         <ProductBlurb

@@ -28,6 +28,7 @@ const ImageGallery = function ({ toggle, currStyle }) {
         {currStyle.photos.slice(0, 7).map((photoObj, ind) => {
           return currPhotoInd !== ind ? (
             <img
+              key={ind}
               className="littleImage"
               src={photoObj.thumbnail_url}
               onClick={() => {
@@ -35,14 +36,16 @@ const ImageGallery = function ({ toggle, currStyle }) {
               }}
             />
           ) : (
-            <>
+            <div
+              key={ind}
+            >
               <img
                 className="littleImage selected"
                 src={photoObj.thumbnail_url}
               />
               <div className="horizontalLine">
               </div>
-            </>
+            </div>
           );
         })}
       </div>

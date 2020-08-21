@@ -1,3 +1,11 @@
+/* Navbar STYLING*/
+.navbar {
+
+  width: 1500px;
+  left: -18%;
+}
+
+
 /* Normal Gallery Styling */
 .overviewContainer-normal {
 
@@ -105,8 +113,8 @@
   position: absolute;
   z-index: 1;
   padding: 20px;
-  top: 200px;
-  left: 210px;
+  top: 160px;
+  left: 10%;
 
   .littleImage {
     width: 70px;
@@ -124,6 +132,7 @@
   }
 
   .horizontalLine {
+    padding-top: 5px;
     border-bottom: 6px solid black;
     width: 70px;
     position: relative;

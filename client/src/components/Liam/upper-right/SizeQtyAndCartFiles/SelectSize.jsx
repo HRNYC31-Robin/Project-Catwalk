@@ -6,7 +6,6 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 
 
 const SelectSize = function ({ sizeQtyObj }) {
-  console.log('sizeQtyObj: ', sizeQtyObj);
 
   if (Object.keys(sizeQtyObj).length === 0) {
     return (
