@@ -3,6 +3,7 @@ import Overview from '../../components/Liam/Overview.jsx';
 import changeProduct from '../actions/ProductActions/changeProductAction.js';
 
 var mapStateToProps = (state) => ({
+  userOutFits: state.userOutFits,
   currentProduct: state.currentProduct,
 });
 

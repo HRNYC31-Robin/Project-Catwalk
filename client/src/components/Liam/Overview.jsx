@@ -8,7 +8,8 @@ import UpperRight from './upper-right/UpperRight.jsx';
 import ProductBlurb from './ProductBlurb.jsx';
 import Links from './Links.jsx';
 
-const Overview = function ({currentProduct}) {
+const Overview = function ({ currentProduct, userOutFits }) {
+  // console.log('userOutFits:', userOutFits);
   const [ expanded, changeExpand ] = useState(false);
   const [ styleList, updateStyleList ] = useState([]);
   const [ styleIndex, changeCurrStyle ] = useState(0);
@@ -56,10 +57,6 @@ const Overview = function ({currentProduct}) {
       i++;
     }*/
 
-    console.log('Style list: ', styleList);
-    setTimeout(() => {
-      console.log('Style list after: ', list);
-    }, 2000);
     const currStyle = styleList[ind];
     const skus = currStyle ? currStyle.skus : {};
     const newSizeList = [];
@@ -74,7 +71,6 @@ const Overview = function ({currentProduct}) {
       updateSelectedQty('NO STOCK');
     }
 
-    console.log('newSizeList: ', newSizeList);
     updateSizeList(newSizeList);
 
   };
