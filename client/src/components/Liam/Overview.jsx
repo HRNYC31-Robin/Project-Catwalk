@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
-// import 'bootstrap/dist/css/bootstrap.min.css'; don't need?
 import Container from 'react-bootstrap/Container';
 import axios from 'axios';
 
@@ -95,23 +94,6 @@ const Overview = function ({currentProduct}) {
   };
 
 
-  const updateProduct = () => {
-    axios({
-      method: 'get',
-      url: `http://18.224.37.110/products/${currentProduct.id}/styles`
-    })
-      .then(({ data }) => {
-        //console.log('Styles: ', data.results);
-        updateStyleList(data.results);
-        let currInd = findDefaultStyle(data.results);
-        handleChangeStyle(currInd);
-      })
-      .catch(err => {
-        console.log('Error in retrieving styles: ', err);
-      });
-  };
-
-
   // On mount or update (current product has to change), get styles
   useEffect(() => {
     console.log('Product changed!');
@@ -165,7 +147,7 @@ const Overview = function ({currentProduct}) {
           description={currentProduct.description}
         />
 
-        <Links />
+        <Links features={currentProduct.features}/>
       </Container>
     );
   } else {
@@ -182,7 +164,7 @@ const Overview = function ({currentProduct}) {
             description={currentProduct.description}
           />
 
-          <Links />
+          <Links features={currentProduct.features}/>
         </div>
       </Container>
     );
