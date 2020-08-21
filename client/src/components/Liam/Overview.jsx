@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
-// import 'bootstrap/dist/css/bootstrap.min.css'; don't need?
 import Container from 'react-bootstrap/Container';
 import axios from 'axios';
 
@@ -67,7 +66,7 @@ const Overview = function ({currentProduct}) {
 
     if (newSizeList.length === 0) {
       // No quantity for any styles
-      updateSelectedQty('OUT OF STOCK');
+      updateSelectedQty('NO STOCK');
 
     }
 
@@ -92,23 +91,6 @@ const Overview = function ({currentProduct}) {
         updateTotalQty(skus[skuID].quantity);
       }
     }
-  };
-
-
-  const updateProduct = () => {
-    axios({
-      method: 'get',
-      url: `http://18.224.37.110/products/${currentProduct.id}/styles`
-    })
-      .then(({ data }) => {
-        //console.log('Styles: ', data.results);
-        updateStyleList(data.results);
-        let currInd = findDefaultStyle(data.results);
-        handleChangeStyle(currInd);
-      })
-      .catch(err => {
-        console.log('Error in retrieving styles: ', err);
-      });
   };
 
 
@@ -160,9 +142,12 @@ const Overview = function ({currentProduct}) {
           sizeQtyObj={sizeQtyObj}
         />
 
-        <ProductBlurb slogan={currentProduct.slogan}/>
+        <ProductBlurb
+          slogan={currentProduct.slogan}
+          description={currentProduct.description}
+        />
 
-        <Links />
+        <Links features={currentProduct.features}/>
       </Container>
     );
   } else {
@@ -174,9 +159,12 @@ const Overview = function ({currentProduct}) {
         />
 
         <div className="lower-portion">
-          <ProductBlurb />
+          <ProductBlurb
+            slogan={currentProduct.slogan}
+            description={currentProduct.description}
+          />
 
-          <Links />
+          <Links features={currentProduct.features}/>
         </div>
       </Container>
     );
