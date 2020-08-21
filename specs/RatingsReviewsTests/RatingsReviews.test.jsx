@@ -8,7 +8,7 @@ import reviewsData from '../../client/data/reviews.js';
 
 test('Should have Breakdown', () => {
   const wrapper = shallow(<RatingsReviews currentProduct={testData[0]} ratingsMeta={{}} totalRatings={0} starAverage={0}/>);
-  console.log(wrapper.debug());
+  // console.log(wrapper.debug());
   expect(wrapper.find('Breakdown')).toBeTruthy();
 });
 // Promise.resolve(shallow(<App match={match} />))
