@@ -7,7 +7,7 @@ const Links = function () {
 
   return (
     <div className="sm-links">
-      Social Media Links
+      <img className="linkPic" src="https://f0.pngfuel.com/png/574/729/facebook-logo-png-clip-art-thumbnail.png"/>
     </div>
   );
 };

@@ -67,7 +67,7 @@ const Overview = function ({currentProduct}) {
 
     if (newSizeList.length === 0) {
       // No quantity for any styles
-      updateSelectedQty('OUT OF STOCK');
+      updateSelectedQty('NO STOCK');
 
     }
 
@@ -160,7 +160,10 @@ const Overview = function ({currentProduct}) {
           sizeQtyObj={sizeQtyObj}
         />
 
-        <ProductBlurb slogan={currentProduct.slogan}/>
+        <ProductBlurb
+          slogan={currentProduct.slogan}
+          description={currentProduct.description}
+        />
 
         <Links />
       </Container>
@@ -174,7 +177,10 @@ const Overview = function ({currentProduct}) {
         />
 
         <div className="lower-portion">
-          <ProductBlurb />
+          <ProductBlurb
+            slogan={currentProduct.slogan}
+            description={currentProduct.description}
+          />
 
           <Links />
         </div>
