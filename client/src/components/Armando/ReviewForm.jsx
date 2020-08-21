@@ -90,7 +90,7 @@ class ReviewForm extends React.Component {
         <input type='text' name='summary' placeholder='summary' maxLength='60' onChange={this.handleInputChange}/>
         <textarea id='body' type='text' name='body' placeholder='body' maxLength='1000' rows='4' onChange={this.handleInputChange}/>
         <Characteristic metaData={this.props.metaData} handleChar={this.handleCharacteristicChoice}/>
-        <input type='submit'/>
+        <input id='submit' type='submit'/>
       </form>
     );
   }
