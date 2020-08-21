@@ -51,7 +51,7 @@ const StarRating = ({prodId, starCount}) => {
   }
 
   return (
-    <div>{stars}</div>
+    <div id='ratedStars'>{stars}</div>
   );
 };
 
