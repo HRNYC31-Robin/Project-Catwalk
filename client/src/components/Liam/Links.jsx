@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom';
 
 
 const Links = function ({ features }) {
-  console.log(features);
   if (!features || features.length === 0 ) {
     return (
       <div className="sm-links">

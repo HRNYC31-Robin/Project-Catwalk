@@ -5,7 +5,6 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 
 
 const SelectQty = function ({ sizeQtyObj }) {
-  console.log('sizeQtyObj: ', sizeQtyObj);
 
   if (Object.keys(sizeQtyObj).length === 0) {
     return (

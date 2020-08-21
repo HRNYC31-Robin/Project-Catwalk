@@ -35,7 +35,7 @@ const Overview = function ({currentProduct}) {
     return 0;
   };
 
-  const handleChangeStyle = (ind) => {
+  const handleChangeStyle = (ind, list) => {
     // Update style
     changeCurrStyle(ind);
 
@@ -56,6 +56,10 @@ const Overview = function ({currentProduct}) {
       i++;
     }*/
 
+    console.log('Style list: ', styleList);
+    setTimeout(() => {
+      console.log('Style list after: ', list);
+    }, 2000);
     const currStyle = styleList[ind];
     const skus = currStyle ? currStyle.skus : {};
     const newSizeList = [];
@@ -70,6 +74,7 @@ const Overview = function ({currentProduct}) {
       updateSelectedQty('NO STOCK');
     }
 
+    console.log('newSizeList: ', newSizeList);
     updateSizeList(newSizeList);
 
   };
@@ -104,10 +109,10 @@ const Overview = function ({currentProduct}) {
       .then(({ data }) => {
         //console.log('Styles: ', data.results);
         updateStyleList(data.results);
-        let currInd = findDefaultStyle(data.results);
+        const currInd = findDefaultStyle(data.results);
         // Wait to update style until StyleList updated
         useEffect(() => {
-          handleChangeStyle(currInd);
+          handleChangeStyle(currInd, styleList);
         }, [styleList]);
       })
       .catch(err => {
