@@ -160,7 +160,7 @@ const Overview = function ({currentProduct}) {
           sizeQtyObj={sizeQtyObj}
         />
 
-        <ProductBlurb />
+        <ProductBlurb slogan={currentProduct.slogan}/>
 
         <Links />
       </Container>

@@ -12,8 +12,27 @@
   grid-gap: 10px;
 
   div {
-    background-color: lightblue;
+    /*background-color: lightblue;*/
     color: black;
+  }
+
+  /* Image Gallery Normal */
+  .image-gallery {
+
+
+    .galleryImage {
+      width: auto;
+      max-height: 700px;
+      max-width: 650px;
+      margin: auto;
+      display: block;
+      padding: 30px;
+
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+
+    }
   }
 
   .upper-right {
@@ -24,6 +43,13 @@
     div {
       background-color: yellow;
     }
+
+
+    .btn {
+      font-weight: bold;
+      color: black;
+    }
+
 
 
     .product-info {
@@ -62,6 +88,40 @@
 
 
 
+/* Column Styling */
+.columnOfImages {
+  display: grid;
+  grid-template-rows: repeat(70px, 7);
+  grid-gap: 10px;
+  position: absolute;
+  z-index: 1;
+  padding: 20px;
+  top: 210px;
+
+  .littleImage {
+    width: 70px;
+    height: 70px;
+    position: relative;
+    overflow: hidden;
+    border-style: solid;
+    border-radius: 5%;
+    border-color: black;
+    border-width: thin;
+  }
+
+  .selected {
+    opacity: 50%;
+  }
+
+  .horizontalLine {
+    border-bottom: 6px solid black;
+    width: 70px;
+    position: relative;
+
+  }
+}
+
+
 
 /* Row Styling */
 .selector-text {
@@ -81,7 +141,8 @@
     overflow: hidden;
     border-radius: 50%;
     border-style: solid;
-    border-color: lightslategray;
+    border-color: black;
+    border-width: thin;
   }
 }
 
@@ -103,7 +164,8 @@
     overflow: hidden;
     border-radius: 50%;
     border-style: solid;
-    border-color: lightslategray;
+    border-color: black;
+    border-width: thin;
   }
 
 
@@ -145,15 +207,6 @@
     grid-gap: 20px;
     padding: 15px;
     padding-top: 40px;
-
-    /*div {
-      background-color: white;
-      border-width: medium;
-      border-color: black;
-      border-style: solid;
-      text-align: center;
-      align-self: center;
-    }*/
 
     div {
       background-color: white;
@@ -203,8 +256,27 @@
   grid-gap: 10px;
 
   div {
-    background-color: lightblue;
+    /*background-color: lightblue;*/
     color: black;
+  }
+
+  /* Image Gallery Expanded */
+  .image-gallery {
+
+
+    .galleryImage {
+      width: auto;
+      max-height: 700px;
+      max-width: 1100px;
+      margin: auto;
+      display: block;
+      padding: 30px;
+
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+
+    }
   }
 
   .lower-portion {
