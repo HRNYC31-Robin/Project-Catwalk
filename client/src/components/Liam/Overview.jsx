@@ -44,6 +44,7 @@ const Overview = function ({currentProduct}) {
     // Reset current size back and
     changeCurrSize('SELECT SIZE');
     updateSelectedQty('-');
+    updateTotalQty(0);
 
     // Update size List and totalquantity
     /* ATTEMPT AT FIXING EMPTY STYLE LIST :
@@ -67,7 +68,6 @@ const Overview = function ({currentProduct}) {
     if (newSizeList.length === 0) {
       // No quantity for any styles
       updateSelectedQty('NO STOCK');
-
     }
 
     updateSizeList(newSizeList);
@@ -105,7 +105,10 @@ const Overview = function ({currentProduct}) {
         //console.log('Styles: ', data.results);
         updateStyleList(data.results);
         let currInd = findDefaultStyle(data.results);
-        handleChangeStyle(currInd);
+        // Wait to update style until StyleList updated
+        useEffect(() => {
+          handleChangeStyle(currInd);
+        }, [styleList]);
       })
       .catch(err => {
         console.log('Error in retrieving styles: ', err);

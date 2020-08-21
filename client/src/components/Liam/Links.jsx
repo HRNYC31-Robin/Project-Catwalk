@@ -16,9 +16,9 @@ const Links = function ({ features }) {
 
   return (
     <div className="sm-links">
-      {features.map((featureObj) => {
+      {features.map((featureObj, ind) => {
         return (
-          <div className="feature">
+          <div key={ind} className="feature">
             <span className="featureCheck">&#10003;</span>
             <span className="featureText"> {featureObj.value} </span>
           </div>
