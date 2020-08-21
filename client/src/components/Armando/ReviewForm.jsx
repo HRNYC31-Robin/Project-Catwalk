@@ -63,6 +63,7 @@ class ReviewForm extends React.Component {
     if (validateForm(this.props.metaData.characteristics, this.state)) {
       console.log(this.state);
       axios.post('http://18.224.37.110/reviews', this.state)
+        .then(() => this.props.handlePostReview(true))
         .then(() => this.props.handleClose())
         .catch(err => console.log(err));
     }
@@ -223,7 +224,7 @@ const Characteristic = ({metaData, handleChar}) => {
       {
         labels[char].map((label, i) => (
           <div className='labels' key={`${label}${i}`}>
-            <input id={label}
+            <input id={`${label}${char}`}
               key={`${label}${char}`}
               type='radio' name={char}
               data-value={i + 1}
@@ -245,32 +246,32 @@ const Characteristic = ({metaData, handleChar}) => {
 const validateForm = (metaChar, state) => {
   // check that each value is valid
   if (Object.keys(metaChar).length !== Object.keys(state.characteristics).length) {
-    console.log('chars');
+    // console.log('chars');
     return false;
   }
 
   if (state.rating < 1) {
-    console.log('rates');
+    // console.log('rates');
     return false;
   }
 
   if (state.summary.trim() === '') {
-    console.log('sum');
+    // console.log('sum');
     return false;
   }
 
   if (state.body.trim() === '') {
-    console.log('body');
+    // console.log('body');
     return false;
   }
 
   if (state.name.trim() === '') {
-    console.log('name');
+    // console.log('name');
     return false;
   }
 
   if (state.email.trim() === '' || state.email.indexOf('@') < 1 ) {
-    console.log('email');
+    // console.log('email');
     return false;
   }
 
