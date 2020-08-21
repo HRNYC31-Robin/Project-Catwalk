@@ -24,7 +24,6 @@ const StyleImg = function({ styleObj, ind, currIndex, changeStyle }) {
           }}
         />
         <span className="rowOverlay">
-          {/*<FontAwesomeIcon icon={['fas', 'check-circle']} />*/}
           <span className="checkMark">&#10003;</span>
         </span>
       </div>
