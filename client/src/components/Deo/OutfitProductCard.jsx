@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import getProductImages from '../../../../helpers/relatedProductsHelper.js';
+import getImageAPIHelper from '../../../../helpers/getImageAPIHelper.js';
 import StarRating from '../common/StarRating.jsx';
 
 const OutfitProductCard = (props) => {
@@ -23,7 +23,7 @@ const OutfitProductCard = (props) => {
   const [products, setOutFit] = useState([placeHolder]);
 
   const updateOutfit = async () => {
-    const mergedObject = await getProductImages(props.currentProduct);
+    const mergedObject = await getImageAPIHelper(props.currentProduct);
     setOutFit((previousState) => {
       previousState.unshift(mergedObject);
       const unique = [
@@ -53,7 +53,6 @@ const OutfitProductCard = (props) => {
       localStorage.setItem('FEC', JSON.stringify(tempState));
       return tempState;
     });
-    // console.log(products.splice(id, 1));
   };
 
   /*
