@@ -1,8 +1,9 @@
 const axios = require('axios');
 const StarRating = require('../client/src/components/common/StarRating.jsx');
+const API_URL = process.env.API_URL;
 
 module.exports.ratingAverageHelper = (prodId) => {
-  return axios.get(`http://18.224.37.110/reviews/meta/?product_id=${prodId}`)
+  return axios.get(`${API_URL}/reviews/meta/?product_id=${prodId}`)
     .then(result => {
       const ratings = result.data.ratings;
       let totalVote = 0;
