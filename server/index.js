@@ -6,8 +6,6 @@ const compression = require('compression');
 var app = express();
 const { PORT } = require('../config');
 
-// const webpackDotenvPort = process.env.PORT;
-// console.log(webpackDotenvPort, 'this is webpack PORT');
 //Middleware
 app.use(compression());
 app.use(bodyParser.json());

@@ -50,7 +50,7 @@ const ReviewList = (props) => {
   return (
     <div id='review-list'>
       <div id='review-dropdown'>
-        <h7>{props.totalRatings} reviews, sorted by</h7>
+        <h6>{props.totalRatings} reviews, sorted by</h6>
         <select onChange={(e) => setSortList(e.target.value)}>
           <option key='relevant' value='relevant'>Relevant</option>
           <option key='helpful' value='helpful'>Helpful</option>

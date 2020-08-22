@@ -2,6 +2,7 @@ import React from 'react';
 import ReviewListContainer from '../../redux/containers/reviewListContainer.js';
 import Breakdown from './Breakdown';
 import axios from 'axios';
+import { getRatingsMeta } from '../../../../helpers/RatingsReviews/getRatingsMeta.js';
 
 class RatingsReviews extends React.Component {
   constructor(props) {
@@ -15,13 +16,9 @@ class RatingsReviews extends React.Component {
   componentDidMount() {
     // get meta data for ratings
     const prodId = this.props.currentProduct.id;
-    axios.get(`http://18.224.37.110/reviews/meta/?product_id=${prodId}`)
-      .then(results => {
-        console.log(results.data);
-        this.props.handleRatingsUpdate(results.data);
-      })
-      .catch(err => console.log(err));
 
+    // get API meta
+    getRatingsMeta(prodId, (data) => (data) => this.props.handleRatingsUpdate(data));
   }
 
   componentDidUpdate(prevProps) {
@@ -29,11 +26,8 @@ class RatingsReviews extends React.Component {
       // save previous id to state
       this.setState({prevId: prevProps.currentProduct.id});
       const prodId = this.props.currentProduct.id;
-      axios.get(`http://18.224.37.110/reviews/meta/?product_id=${prodId}`)
-        .then(results => {
-          this.props.handleRatingsUpdate(results.data);
-        })
-        .catch(err => console.log(err));
+
+      getRatingsMeta(prodId, (data) => this.props.handleRatingsUpdate(data));
     }
   }
 
