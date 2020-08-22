@@ -4,6 +4,7 @@ import ProductComparison from './ProductComparison.jsx';
 import StarRating from '../common/StarRating.jsx';
 
 const RelatedProductCard = (props) => {
+  console.log('Related:', props);
   const [modalDisplay, setModal] = useState(() => {
     return false;
   });
