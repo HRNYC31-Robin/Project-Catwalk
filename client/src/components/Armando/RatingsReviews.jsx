@@ -1,7 +1,6 @@
 import React from 'react';
 import ReviewListContainer from '../../redux/containers/reviewListContainer.js';
 import Breakdown from './Breakdown';
-import axios from 'axios';
 import { getRatingsMeta } from '../../../../helpers/RatingsReviews/getRatingsMeta.js';
 
 class RatingsReviews extends React.Component {
@@ -33,7 +32,7 @@ class RatingsReviews extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id='ratings-widget'>
         <h6>RATINGS & REVIEWS</h6>
         <div id='ratings-reviews'>
           <div>
