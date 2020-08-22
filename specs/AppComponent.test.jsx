@@ -1,10 +1,7 @@
 import React from 'react';
-import Enzyme from 'enzyme';
+import Enzyme from './index';
 import { shallow } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
 import AppComponent from '../client/src/components/App.jsx';
-
-Enzyme.configure({ adapter: new Adapter() });
 
 const setUp = (props = {}) => {
   const component = shallow(<AppComponent {...props} />);
