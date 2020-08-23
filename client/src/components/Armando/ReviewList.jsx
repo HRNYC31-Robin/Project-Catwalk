@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ReviewTile from './ReviewTile.jsx';
-import axios from 'axios';
 import ReviewForm from './ReviewForm.jsx';
+import { getReviews } from '../../../../helpers/RatingsReviews/getReviews.js';
 
 const ReviewList = (props) => {
   const prodId = props.currentProduct.id;
@@ -13,13 +13,14 @@ const ReviewList = (props) => {
   useEffect(() => {
     // set a default for count for first request
     const count = props.totalRatings || 5;
+    // get reviews
+    getReviews(
+      prodId,
+      sortList, count,
+      props.addMoreReviews,
+      props.handleMoreReviewsClick
+    );
 
-    axios.get(`http://18.224.37.110/reviews/?product_id=${prodId}&sort=${sortList}&count=${count}`)
-      .then(results => {
-        props.addMoreReviews(results.data.results);
-        props.handleMoreReviewsClick(results.data.results.slice(0, 2));
-      })
-      .catch(err => console.log(err));
   }, [prodId, sortList]);
 
   const handleMoreClick = (post) => {
@@ -30,9 +31,14 @@ const ReviewList = (props) => {
     }
 
     if (post || props.reviews.length <= props.totalRatings) {
-      axios.get(`http://18.224.37.110/reviews/?product_id=${prodId}&count=${count}&sort=${sortList}`)
-        .then(results => props.addMoreReviews(results.data.results))
-        .catch(err => console.log(err));
+      // call api helper to update reviews
+      getReviews(
+        prodId,
+        sortList,
+        count,
+        props.addMoreReviews,
+        () => {}
+      );
     }
 
     const currentPosition = Math.max(props.visibleReviews.length || 0);
@@ -50,7 +56,7 @@ const ReviewList = (props) => {
   return (
     <div id='review-list'>
       <div id='review-dropdown'>
-        <h7>{props.totalRatings} reviews, sorted by</h7>
+        <h6>{props.totalRatings} reviews, sorted by</h6>
         <select onChange={(e) => setSortList(e.target.value)}>
           <option key='relevant' value='relevant'>Relevant</option>
           <option key='helpful' value='helpful'>Helpful</option>

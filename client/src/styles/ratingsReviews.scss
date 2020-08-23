@@ -1,5 +1,8 @@
 @import './common/layout.scss';
 
+#ratings-widget {
+  width: 100vw;
+}
 
 #ratings-reviews {
   display: grid;
@@ -84,9 +87,10 @@
     #review-dropdown {
       grid-row: 1 / 2;
 
-      h7 {
+      h6 {
         font-weight: bold;
         margin-right: 5px;
+        display: inline-flex;
       }
 
       select {

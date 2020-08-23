@@ -4,6 +4,7 @@ var request = require('request');
 var path = require('path');
 const compression = require('compression');
 var app = express();
+const { PORT } = require('../config');
 
 //Middleware
 app.use(compression());
@@ -17,6 +18,6 @@ app.get('*', (req, res) => {
   res.sendFile('index.html', { root: path.join(__dirname, '/../client/dist') });
 });
 
-app.listen(3000, function () {
+app.listen(PORT, function () {
   console.log('listening on port 3000!');
 });

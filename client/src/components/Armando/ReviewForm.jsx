@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios';
+import { submitReviewPost } from '../../../../helpers/RatingsReviews/submitReviewPost.js';
 
 
 class ReviewForm extends React.Component {
@@ -61,11 +61,10 @@ class ReviewForm extends React.Component {
     const prodId = this.props.metaData.product_id;
     e.preventDefault();
     if (validateForm(this.props.metaData.characteristics, this.state)) {
-      console.log(this.state);
-      axios.post('http://18.224.37.110/reviews', this.state)
-        .then(() => this.props.handlePostReview(true))
-        .then(() => this.props.handleClose())
-        .catch(err => console.log(err));
+      // post review with helper function
+      submitReviewPost(this.props.handlePostReview,
+        this.props.handleClose,
+        this.state);
     }
   }
 
