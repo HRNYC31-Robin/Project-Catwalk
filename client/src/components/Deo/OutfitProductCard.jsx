@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import getImageAPIHelper from '../../../../helpers/getImageAPIHelper.js';
 import StarRating from '../common/StarRating.jsx';
 
 const OutfitProductCard = (props) => {
@@ -22,31 +22,16 @@ const OutfitProductCard = (props) => {
 
   const [products, setOutFit] = useState([placeHolder]);
 
-  const updateOutfit = () => {
-    // API call to get Image url based on current product
-    axios
-      .get(`http://18.224.37.110/products/${props.currentProduct.id}/styles`)
-      .then((productImage) => {
-        // Merge current object and image data
-        let temp = Object.assign({}, productImage.data, props.currentProduct);
-        return temp;
-      })
-      .then((newObject) => {
-        setOutFit((previousState) => {
-          previousState.unshift(newObject);
-          const unique = [
-            ...new Map(
-              previousState.map((item) => [item['id'], item])
-            ).values(),
-          ];
-          //userOutSet(newObj);
-          localStorage.setItem('FEC', JSON.stringify(unique));
-          return unique;
-        });
-      })
-      .catch((error) => {
-        console.log('Error on image load: ', error);
-      });
+  const updateOutfit = async () => {
+    const mergedObject = await getImageAPIHelper(props.currentProduct);
+    setOutFit((previousState) => {
+      previousState.unshift(mergedObject);
+      const unique = [
+        ...new Map(previousState.map((item) => [item['id'], item])).values(),
+      ];
+      localStorage.setItem('FEC', JSON.stringify(unique));
+      return unique;
+    });
   };
 
   useEffect(() => {
@@ -68,7 +53,6 @@ const OutfitProductCard = (props) => {
       localStorage.setItem('FEC', JSON.stringify(tempState));
       return tempState;
     });
-    // console.log(products.splice(id, 1));
   };
 
   /*

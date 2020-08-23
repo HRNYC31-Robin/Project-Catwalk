@@ -8,7 +8,9 @@
     "react-dev": "webpack -d --watch",
     "start": "nodemon server/index.js",
     "sass": "node-sass --watch ./client/src/styles/main -o ./client/dist/",
-    "test": "jest --coverage"
+    "test": "jest -u",
+    "test:cover": "jest --coverage",
+    "open:coverage": "open ./coverage/lcov-report/index.html"
   },
   "repository": {
     "type": "git",
@@ -40,8 +42,10 @@
   },
   "devDependencies": {
     "@babel/core": "^7.11.1",
+    "@babel/plugin-transform-runtime": "^7.11.0",
     "@babel/preset-env": "^7.11.0",
     "@babel/preset-react": "^7.10.4",
+    "@babel/runtime": "^7.11.2",
     "babel-core": "^6.26.3",
     "babel-loader": "^8.1.0",
     "babel-polyfill": "^6.26.0",

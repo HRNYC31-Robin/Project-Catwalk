@@ -1,10 +1,7 @@
 import React from 'react';
-import Enzyme from 'enzyme';
+import Enzyme from '../index.js';
 import { shallow } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-import OutfitProductCard from '../client/src/components/Deo/OutfitProductCard.jsx';
-
-Enzyme.configure({ adapter: new Adapter() });
+import OutfitProductCard from '../../client/src/components/Deo/OutfitProductCard.jsx';
 
 describe('Out-fit Component', () => {
   let component;
